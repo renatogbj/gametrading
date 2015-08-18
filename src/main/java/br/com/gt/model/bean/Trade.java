@@ -1,6 +1,7 @@
-package br.com.gt.model;
+package br.com.gt.model.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,17 +10,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Buy implements Serializable {
+public class Trade implements Serializable {
 
-	private static final long serialVersionUID = -621327733554688497L;
+	private static final long serialVersionUID = -413748945823167631L;
 
 	@Id
-	@GeneratedValue(generator = "buy_sequence", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "buy_sequence", sequenceName = "buy_sequence", allocationSize = 1)
+	@GeneratedValue(generator = "swap_sequence", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "swap_sequence", sequenceName = "swap_sequence", allocationSize = 1)
 	private Long id;
 	
 	@ManyToOne(cascade = { CascadeType.PERSIST })
@@ -30,28 +33,44 @@ public class Buy implements Serializable {
 	@JoinColumn(name = "game_id", nullable = false)
 	private Game game;
 	
-	@Column(scale = 2, nullable = false)
-	private Double price;
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@JoinTable(name = "wishlist",
+        joinColumns = @JoinColumn(name = "swap_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "game_id", referencedColumnName = "id"))
+	private List<Game> wishList;
 	
 	@Column(length = 140)
 	private String description;
 
-	public Buy() {
+	public Trade() {
 		super();
 	}
 
-	public Buy(User owner, Game game, Double price) {
+	public Trade(User owner, Game game) {
 		super();
 		this.owner = owner;
 		this.game = game;
-		this.price = price;
 	}
 
-	public Buy(User owner, Game game, Double price, String description) {
+	public Trade(User owner, Game game, List<Game> wishList) {
 		super();
 		this.owner = owner;
 		this.game = game;
-		this.price = price;
+		this.wishList = wishList;
+	}
+
+	public Trade(User owner, Game game, String description) {
+		super();
+		this.owner = owner;
+		this.game = game;
+		this.description = description;
+	}
+
+	public Trade(User owner, Game game, List<Game> wishList, String description) {
+		super();
+		this.owner = owner;
+		this.game = game;
+		this.wishList = wishList;
 		this.description = description;
 	}
 
@@ -79,12 +98,12 @@ public class Buy implements Serializable {
 		this.game = game;
 	}
 
-	public Double getPrice() {
-		return price;
+	public List<Game> getWishList() {
+		return wishList;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setWishList(List<Game> wishList) {
+		this.wishList = wishList;
 	}
 
 	public String getDescription() {

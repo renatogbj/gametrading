@@ -1,4 +1,4 @@
-package br.com.gt.model;
+package br.com.gt.model.bean;
 
 import java.io.Serializable;
 

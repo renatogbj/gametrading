@@ -1,4 +1,4 @@
-package br.com.gt.model;
+package br.com.gt.model.bean;
 
 import java.io.Serializable;
 
@@ -13,13 +13,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Sell implements Serializable {
+public class Buy implements Serializable {
 
-	private static final long serialVersionUID = 2098224790764531510L;
+	private static final long serialVersionUID = -621327733554688497L;
 
 	@Id
-	@GeneratedValue(generator = "sell_sequence", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "sell_sequence", sequenceName = "sell_sequence", allocationSize = 1)
+	@GeneratedValue(generator = "buy_sequence", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "buy_sequence", sequenceName = "buy_sequence", allocationSize = 1)
 	private Long id;
 	
 	@ManyToOne(cascade = { CascadeType.PERSIST })
@@ -36,18 +36,18 @@ public class Sell implements Serializable {
 	@Column(length = 140)
 	private String description;
 
-	public Sell() {
+	public Buy() {
 		super();
 	}
 
-	public Sell(User owner, Game game, Double price) {
+	public Buy(User owner, Game game, Double price) {
 		super();
 		this.owner = owner;
 		this.game = game;
 		this.price = price;
 	}
 
-	public Sell(User owner, Game game, Double price, String description) {
+	public Buy(User owner, Game game, Double price, String description) {
 		super();
 		this.owner = owner;
 		this.game = game;
