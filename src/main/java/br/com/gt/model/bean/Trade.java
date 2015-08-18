@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -33,7 +34,7 @@ public class Trade implements Serializable {
 	@JoinColumn(name = "game_id", nullable = false)
 	private Game game;
 	
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinTable(name = "wishlist",
         joinColumns = @JoinColumn(name = "trade_id", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "game_id", referencedColumnName = "id"))
