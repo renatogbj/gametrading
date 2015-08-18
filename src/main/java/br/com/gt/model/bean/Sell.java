@@ -1,6 +1,7 @@
 package br.com.gt.model.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,7 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -35,6 +38,12 @@ public class Sell implements Serializable {
 	
 	@Column(length = 140)
 	private String description;
+	
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@JoinTable(name = "selloffer",
+        joinColumns = @JoinColumn(name = "sell_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "offer_id", referencedColumnName = "id"))
+	private List<Offer> offers;
 
 	public Sell() {
 		super();
@@ -93,6 +102,14 @@ public class Sell implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public List<Offer> getOffers() {
+		return offers;
+	}
+
+	public void setOffers(List<Offer> offers) {
+		this.offers = offers;
 	}
 	
 }

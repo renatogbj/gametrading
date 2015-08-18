@@ -21,8 +21,8 @@ public class Trade implements Serializable {
 	private static final long serialVersionUID = -413748945823167631L;
 
 	@Id
-	@GeneratedValue(generator = "swap_sequence", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "swap_sequence", sequenceName = "swap_sequence", allocationSize = 1)
+	@GeneratedValue(generator = "trade_sequence", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "trade_sequence", sequenceName = "trade_sequence", allocationSize = 1)
 	private Long id;
 	
 	@ManyToOne(cascade = { CascadeType.PERSIST })
@@ -35,12 +35,18 @@ public class Trade implements Serializable {
 	
 	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinTable(name = "wishlist",
-        joinColumns = @JoinColumn(name = "swap_id", referencedColumnName = "id"),
+        joinColumns = @JoinColumn(name = "trade_id", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "game_id", referencedColumnName = "id"))
 	private List<Game> wishList;
 	
 	@Column(length = 140)
 	private String description;
+	
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@JoinTable(name = "tradeoffer",
+        joinColumns = @JoinColumn(name = "trade_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "offer_id", referencedColumnName = "id"))
+	private List<Offer> offers;
 
 	public Trade() {
 		super();
@@ -112,6 +118,14 @@ public class Trade implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public List<Offer> getOffers() {
+		return offers;
+	}
+
+	public void setOffers(List<Offer> offers) {
+		this.offers = offers;
 	}
 	
 }
