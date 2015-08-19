@@ -4,6 +4,8 @@
 angular.module('gametradingApp')
     .controller('IndexController', IndexController);
 
-function IndexController() {
+IndexController.$inject = ['$scope'];
+
+function IndexController($scope) {
     $scope.pessoa = 'renato';
 }
