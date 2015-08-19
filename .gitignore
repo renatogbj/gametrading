@@ -1,5 +1,6 @@
 /bin/
 /target/
+/src/main/resources/static/bower_components/
 .idea/
 .settings/
 .project

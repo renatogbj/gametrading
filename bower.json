@@ -1,0 +1,22 @@
+{
+  "name": "Game Trading",
+  "version": "0.0.0",
+  "homepage": "https://github.com/renatogbj/gametrading",
+  "authors": [
+    "Renato Borges <renatogbj@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "~1.4.4",
+    "bootstrap": "~3.3.5",
+    "angular-material": "~0.10.1",
+    "ui-router": "~0.2.15"
+  }
+}

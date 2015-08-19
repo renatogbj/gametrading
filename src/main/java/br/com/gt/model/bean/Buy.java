@@ -27,7 +27,7 @@ public class Buy implements Serializable {
 	
 	@ManyToOne(cascade = { CascadeType.PERSIST })
 	@JoinColumn(name = "user_id", nullable = false)
-	private User owner;
+	private Usr owner;
 	
 	@ManyToOne(cascade = { CascadeType.PERSIST })
 	@JoinColumn(name = "game_id", nullable = false)
@@ -49,14 +49,14 @@ public class Buy implements Serializable {
 		super();
 	}
 
-	public Buy(User owner, Game game, Double price) {
+	public Buy(Usr owner, Game game, Double price) {
 		super();
 		this.owner = owner;
 		this.game = game;
 		this.price = price;
 	}
 
-	public Buy(User owner, Game game, Double price, String description) {
+	public Buy(Usr owner, Game game, Double price, String description) {
 		super();
 		this.owner = owner;
 		this.game = game;
@@ -72,11 +72,11 @@ public class Buy implements Serializable {
 		this.id = id;
 	}
 
-	public User getOwner() {
+	public Usr getOwner() {
 		return owner;
 	}
 
-	public void setOwner(User owner) {
+	public void setOwner(Usr owner) {
 		this.owner = owner;
 	}
 

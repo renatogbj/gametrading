@@ -27,7 +27,7 @@ public class Offer implements Serializable {
 	
 	@ManyToOne(cascade = { CascadeType.PERSIST })
 	@JoinColumn(name = "bidder_id", nullable = false)
-	User bidder;
+	Usr bidder;
 
 	public Long getId() {
 		return id;
@@ -45,11 +45,11 @@ public class Offer implements Serializable {
 		this.description = description;
 	}
 
-	public User getBidder() {
+	public Usr getBidder() {
 		return bidder;
 	}
 
-	public void setBidder(User bidder) {
+	public void setBidder(Usr bidder) {
 		this.bidder = bidder;
 	}
 	
