@@ -37,7 +37,7 @@ function IndexController($scope) {
         }
     ];
 	
-	$scope.setGameImage = function(gameSelected) {
+	$scope.setGame = function(gameSelected) {
 		$scope.gameSelected = gameSelected;
 	};
 	

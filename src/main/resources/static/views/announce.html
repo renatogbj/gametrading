@@ -1,0 +1,78 @@
+<div>
+	<form novalidate ng-submit="saveAnnounce(announce)">
+	
+		<div class="row">
+			
+			<div class="col-md-5">
+				<div class="row">
+					<md-radio-group ng-model="announce.type">
+						<ul class="nav navbar-nav">
+							<li><md-radio-button value="sell" class="md-primary">Venda</md-radio-button></li>
+							<li><md-radio-button value="buy" class="md-primary">Compra</md-radio-button></li>
+							<li><md-radio-button value="trade" class="md-primary">Troca</md-radio-button></li>
+						</ul>
+				   	</md-radio-group>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-10">
+						<md-input-container>
+				        	<label>Jogo</label>
+					        <md-select ng-model="announce.game">
+					        	<md-option ng-repeat="game in games"
+					        			   value="{{game.name}}"
+					        			   ng-click="setGame(game)">{{game.name}}</md-option>
+					        </md-select>
+					      </md-input-container>
+				    </div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-10">
+						<md-input-container>
+					        <label>Descri&ccedil;&atilde;o</label>
+					        <textarea ng-model="announce.description"
+					        		  rows="3"
+					        		  columns="3"
+					        		  md-maxlength="140">
+					        </textarea>
+					    </md-input-container>
+				    </div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-4">
+						<md-input-container class="md-icon-float">
+					     	<label>Pre&ccedil;o</label>
+					     	<md-icon class="name">
+					     		<i class="fa fa-money fa-1x" style="color: green;"></i>
+					     	</md-icon>
+					      	<input ng-model="announce.price" type="number" min="0">
+					    </md-input-container>
+					</div>
+				</div>
+				
+				<div class="row">
+					<md-button class="md-raised md-primary" type="submit">
+						Salvar
+					</md-button>
+	            </div>
+				
+			</div>
+			
+			<div class="col-md-5">
+				<md-content class="md-padding">
+				    <md-card style="width: 250px">
+				      	<img width="250px" ng-src="{{ gameSelected.image }}" class="md-card-image" alt="MKX">
+				      	<md-card-content>
+				        	<h2 class="md-title">{{ gameSelected.name }}</h2>
+				        	<p>{{ gameSelected.description }}</p>
+				      	</md-card-content>
+				   	</md-card>
+				</md-content>
+			</div>
+			
+		</div>
+		
+	</form>
+</div>
