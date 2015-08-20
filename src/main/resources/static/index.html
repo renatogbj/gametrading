@@ -10,10 +10,16 @@
     <link rel="stylesheet" href="bower_components/angular/angular-csp.css"/>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="app/stylesheets/style.css"/>
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angularjs/angular.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
     <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
 
     <script src="app/javascripts/application.js"></script>
@@ -24,39 +30,58 @@
 
 <div ng-controller="IndexController">
 
-    <nav class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
+    <nav class="navbar navbar-default navbar-static-top">
 
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                <img width="15%" src="app/images/logo-mini.png"/> Game Trading
-            </a>
-        </div>
+		<div class="container">
+		
+	        <div class="navbar-header">
+	            <a class="navbar-brand" href="/">
+	                <span><img width="15%" src="app/images/logo-mini.png"/></span>
+	                Game Trading
+	            </a>
+	        </div>
 
-        <div class="collapse navbar-collapse navbar-collapse-top">
             <div class="navbar-right">
-
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="search-query animated" placeholder="Buscar" />
-                        <i class="icon-search"></i>
-                    </div>
-                </form>
-
-                <ul class="nav navbar-nav navbar-left">
+                <ul class="nav navbar-nav">
                     <li class="cdrop">
-                        <a href="#"><i class="icon-signin"></i> Login</a>
+                        <a href="#"><i class="fa fa-sign-in"></i> Login</a>
                     </li>
                     <li class="cdrop">
-                        <a href="#"><i class="icon-facebook-sign"></i> Registrar</a>
+                        <a href="#"><i class="fa fa-facebook-square"></i> Registrar</a>
                     </li>
                 </ul>
-
             </div>
+            
         </div>
-
+        
     </nav>
 
-    <h1>{{ pessoa }}</h1>
+	<div class="container">
+		<div class="row">
+		
+			<div class="col-md-2" style="heigh: 100%;">
+	    		<nav>
+		    		<ul class="nav nav-pills nav-stacked">
+		    			<li role="presentation" class="active">
+		    				<a ui-sref="offers">Anúncios</a>
+		    			</li>
+						<li role="presentation">
+							<a ui-sref="mygames">Meus jogos</a>
+						</li>
+						<li role="presentation">
+							<a ui-sref="newoffer">Novo anúncio</a>
+						</li>
+					</ul>
+		    	</nav>
+	    	</div>
+	    	
+	    	<div class="col-md-10">
+	    		<div ui-view>
+    			</div>
+	    	</div>
+	    	
+    	</div>
+    </div>
 
 </div>
 

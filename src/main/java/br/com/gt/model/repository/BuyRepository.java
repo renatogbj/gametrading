@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.gt.model.bean.Buy;
 
 @Repository
-public interface BuyReporisoty extends JpaRepository<Buy, Long> {
+public interface BuyRepository extends JpaRepository<Buy, Long> {
 
 }
