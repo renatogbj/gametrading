@@ -8,23 +8,19 @@ AnnounceController.$inject = ['$scope', 'announceService'];
 
 function AnnounceController($scope, announceService) {
     
-	$scope.gameSelected = {
-		name: 'Mortal Kombat X',
-		image: 'app/images/mkx.jpg',
-	};
-	
+	announceService.findGames().then(
+		function(gamesList) {
+			$scope.gameSelected = gamesList[0];
+			$scope.games = gamesList;
+		}
+	);
+
 	$scope.announce = {
 		type: 'sell',
 		game: $scope.gameSelected,
 		description: '',
 		price: 0.0
 	};
-	
-	announceService.findGames().then(
-		function(gamesList) {
-			$scope.games = gamesList;
-		}
-	);
 	
 	$scope.setGame = function(gameItem) {
 		$scope.gameSelected = gameItem;

@@ -71,4 +71,9 @@ public class Game implements Serializable {
 		this.cover = cover;
 	}
 	
+	@Override
+	public String toString() {
+		return "Game [id=" + id + ", name=" + name + ", platform=" + platform + ", cover=" + cover + "]";
+	}
+	
 }

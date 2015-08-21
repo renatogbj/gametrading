@@ -21,6 +21,7 @@
 					        <md-select ng-model="announce.game">
 					        	<md-option ng-repeat="game in games"
 					        			   ng-value="{{ game }}"
+					        			   ng-selected="{{ $index == 0 }}"
 					        			   ng-click="setGame(game)">{{ game.name }}</md-option>
 					        </md-select>
 					      </md-input-container>
@@ -63,7 +64,7 @@
 			<div class="col-md-5">
 				<md-content class="md-padding">
 				    <md-card style="width: 250px">
-				      	<img width="250px" ng-src="{{ gameSelected.image }}" class="md-card-image" alt="MKX">
+				      	<img id="gameImage" width="250px" ng-src="data:image/JPEG;base64,{{ gameSelected.cover }}" class="md-card-image">
 				      	<md-card-content>
 				        	<h2 class="md-title">{{ gameSelected.name }}</h2>
 				      	</md-card-content>
