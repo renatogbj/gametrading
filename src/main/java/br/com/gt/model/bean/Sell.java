@@ -111,5 +111,11 @@ public class Sell implements Serializable {
 	public void setOffers(List<Offer> offers) {
 		this.offers = offers;
 	}
+
+	@Override
+	public String toString() {
+		return "Sell [id=" + id + ", owner=" + owner + ", game=" + game + ", price=" + price + ", description="
+				+ description + "]";
+	}
 	
 }

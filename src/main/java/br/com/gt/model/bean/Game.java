@@ -25,7 +25,7 @@ public class Game implements Serializable {
 	@Column(nullable = false)
 	private String platform;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private byte[] cover;
 
 	public Game() {

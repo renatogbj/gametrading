@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="AnnounceController">
 	<form novalidate ng-submit="saveAnnounce(announce)">
 	
 		<div class="row">
@@ -20,8 +20,8 @@
 				        	<label>Jogo</label>
 					        <md-select ng-model="announce.game">
 					        	<md-option ng-repeat="game in games"
-					        			   value="{{game.name}}"
-					        			   ng-click="setGame(game)">{{game.name}}</md-option>
+					        			   ng-value="{{ game }}"
+					        			   ng-click="setGame(game)">{{ game.name }}</md-option>
 					        </md-select>
 					      </md-input-container>
 				    </div>
@@ -66,7 +66,6 @@
 				      	<img width="250px" ng-src="{{ gameSelected.image }}" class="md-card-image" alt="MKX">
 				      	<md-card-content>
 				        	<h2 class="md-title">{{ gameSelected.name }}</h2>
-				        	<p>{{ gameSelected.description }}</p>
 				      	</md-card-content>
 				   	</md-card>
 				</md-content>
