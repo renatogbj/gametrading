@@ -4,10 +4,14 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+
+import br.com.gt.model.enums.Platform;
 
 @Entity
 public class Game implements Serializable {
@@ -19,20 +23,21 @@ public class Game implements Serializable {
 	@SequenceGenerator(name = "game_sequence", sequenceName = "game_sequence", allocationSize = 1)
 	private Long id;
 	
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	private String name;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private String platform;
+	private Platform platform;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private byte[] cover;
 
 	public Game() {
 		super();
 	}
 
-	public Game(String name, String platform, byte[] cover) {
+	public Game(String name, Platform platform, byte[] cover) {
 		super();
 		this.name = name;
 		this.platform = platform;
@@ -55,11 +60,11 @@ public class Game implements Serializable {
 		this.name = name;
 	}
 
-	public String getPlatform() {
+	public Platform getPlatform() {
 		return platform;
 	}
 
-	public void setPlatform(String platform) {
+	public void setPlatform(Platform platform) {
 		this.platform = platform;
 	}
 

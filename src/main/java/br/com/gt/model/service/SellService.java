@@ -12,21 +12,21 @@ import br.com.gt.model.repository.SellRepository;
 public class SellService {
 
 	@Autowired
-	private SellRepository sellRepo;
+	private SellRepository sellRepository;
 	
 	public Sell save(Sell sell) {
-		return sellRepo.save(sell);
+		return sellRepository.save(sell);
 	}
 	
 	public void delete(Sell sell) {
-		sellRepo.delete(sell);
+		sellRepository.delete(sell);
 	}
 	
 	public Sell find(Long id) {
-		return sellRepo.findOne(id);
+		return sellRepository.findOne(id);
 	}
 	
 	public List<Sell> findAll() {
-		return sellRepo.findAll();
+		return sellRepository.findAll();
 	}
 }

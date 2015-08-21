@@ -25,11 +25,11 @@ public class Buy implements Serializable {
 	@SequenceGenerator(name = "buy_sequence", sequenceName = "buy_sequence", allocationSize = 1)
 	private Long id;
 	
-	@ManyToOne(cascade = { CascadeType.PERSIST })
+	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	private Usr owner;
 	
-	@ManyToOne(cascade = { CascadeType.PERSIST })
+	@ManyToOne
 	@JoinColumn(name = "game_id", nullable = false)
 	private Game game;
 	
@@ -39,7 +39,7 @@ public class Buy implements Serializable {
 	@Column(length = 140)
 	private String description;
 	
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@OneToMany(cascade = { CascadeType.REMOVE })
 	@JoinTable(name = "buyoffer",
         joinColumns = @JoinColumn(name = "buy_id", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "offer_id", referencedColumnName = "id"))

@@ -25,11 +25,12 @@ public class Sell implements Serializable {
 	@SequenceGenerator(name = "sell_sequence", sequenceName = "sell_sequence", allocationSize = 1)
 	private Long id;
 	
-	@ManyToOne(cascade = { CascadeType.PERSIST })
-	@JoinColumn(name = "user_id", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = true)
+	// TODO - change to nullable = false
 	private Usr owner;
 	
-	@ManyToOne(cascade = { CascadeType.PERSIST })
+	@ManyToOne
 	@JoinColumn(name = "game_id", nullable = false)
 	private Game game;
 	
@@ -39,7 +40,7 @@ public class Sell implements Serializable {
 	@Column(length = 140)
 	private String description;
 	
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@OneToMany(cascade = { CascadeType.REMOVE })
 	@JoinTable(name = "selloffer",
         joinColumns = @JoinColumn(name = "sell_id", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "offer_id", referencedColumnName = "id"))

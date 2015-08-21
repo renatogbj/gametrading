@@ -26,11 +26,11 @@ public class Trade implements Serializable {
 	@SequenceGenerator(name = "trade_sequence", sequenceName = "trade_sequence", allocationSize = 1)
 	private Long id;
 	
-	@ManyToOne(cascade = { CascadeType.PERSIST })
+	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	private Usr owner;
 	
-	@ManyToOne(cascade = { CascadeType.PERSIST })
+	@ManyToOne
 	@JoinColumn(name = "game_id", nullable = false)
 	private Game game;
 	
@@ -43,7 +43,7 @@ public class Trade implements Serializable {
 	@Column(length = 140)
 	private String description;
 	
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@OneToMany(cascade = { CascadeType.REMOVE })
 	@JoinTable(name = "tradeoffer",
         joinColumns = @JoinColumn(name = "trade_id", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "offer_id", referencedColumnName = "id"))
