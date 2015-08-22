@@ -27,14 +27,15 @@ public class Trade implements Serializable {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = false)
+	@JoinColumn(name = "user_id", nullable = true)
+	// TODO - set nullable = false
 	private Usr owner;
 	
 	@ManyToOne
 	@JoinColumn(name = "game_id", nullable = false)
 	private Game game;
 	
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@ManyToMany(cascade = { CascadeType.REMOVE })
 	@JoinTable(name = "wishlist",
         joinColumns = @JoinColumn(name = "trade_id", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "game_id", referencedColumnName = "id"))

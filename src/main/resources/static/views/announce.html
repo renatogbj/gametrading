@@ -1,4 +1,7 @@
 <div ng-controller="AnnounceController">
+	
+	
+	
 	<form novalidate ng-submit="saveAnnounce(announce)">
 	
 		<div class="row">
@@ -22,7 +25,7 @@
 					        	<md-option ng-repeat="game in games"
 					        			   ng-value="{{ game }}"
 					        			   ng-selected="{{ $index == 0 }}"
-					        			   ng-click="setGame(game)">{{ game.name}} - {{ game.platform }}</md-option>
+					        			   ng-click="setGame(game)">{{ game.name }}</md-option>
 					        </md-select>
 					      </md-input-container>
 				    </div>
@@ -41,7 +44,7 @@
 				    </div>
 				</div>
 				
-				<div class="row">
+				<div class="row" ng-show="announce.type != 'trade'">
 					<div class="col-md-4">
 						<md-input-container class="md-icon-float">
 					     	<label>Pre&ccedil;o</label>
@@ -49,6 +52,20 @@
 					     		<i class="fa fa-money fa-1x" style="color: green;"></i>
 					     	</md-icon>
 					      	<input ng-model="announce.price" type="number" min="0">
+					    </md-input-container>
+					</div>
+				</div>
+				
+				<div class="row" ng-show="announce.type == 'trade'">
+					<div class="col-md-10">
+						<md-input-container>
+					     	<label>Prefer&ecirc;ncias</label>
+					        <md-select multiple ng-model="announce.wishList">
+					        	<md-option ng-repeat="game in games"
+					        			   ng-value="{{ game }}">
+					        		{{ game.name }}
+					        	</md-option>
+					        </md-select>
 					    </md-input-container>
 					</div>
 				</div>
@@ -61,16 +78,11 @@
 				
 			</div>
 			
-			<div class="col-md-5">
-				<md-content class="md-padding">
-				    <md-card style="width: 250px">
-				      	<img id="gameImage" width="250px" ng-src="data:image/JPEG;base64,{{ gameSelected.cover }}" class="md-card-image">
-				      	<md-card-content>
-				        	<h2 class="md-title">{{ gameSelected.name }}</h2>
-				      	</md-card-content>
-				   	</md-card>
-				</md-content>
-			</div>
+			<md-content class="col-md-4 md-whiteframe-z5">
+			    <md-card>
+			      	<img ng-src="data:image/JPEG;base64,{{ gameSelected.cover }}">
+			   	</md-card>
+			</md-content>
 			
 		</div>
 		

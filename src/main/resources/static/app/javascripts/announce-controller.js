@@ -4,9 +4,9 @@
 angular.module('gametradingApp')
     .controller('AnnounceController', AnnounceController);
 
-AnnounceController.$inject = ['$scope', 'announceService'];
+AnnounceController.$inject = ['$scope', '$growl', 'announceService'];
 
-function AnnounceController($scope, announceService) {
+function AnnounceController($scope, $growl, announceService) {
     
 	announceService.findGames().then(
 		function(gamesList) {
@@ -19,40 +19,66 @@ function AnnounceController($scope, announceService) {
 		type: 'sell',
 		game: $scope.gameSelected,
 		description: '',
-		price: 0.0
+		price: 0.0,
+		wishList: []
 	};
 	
 	$scope.setGame = function(gameItem) {
 		$scope.gameSelected = gameItem;
 	};
 	
-	// saving funcitons
+	// saving functions
 	$scope.saveAnnounce = function(formItem) {
 		if (formItem.type == 'sell') {
 			announceService.saveSell(formItem).then(
 				// success response from server
 				function(response) {
-					console.warn(response);
+					successAlert();
 				},
 				// error response from server
 				function(response) {
-					console.warn(response);
+					errorAlert();
 				}
 			);
 		} else if (formItem.type == 'buy') {
 			announceService.saveBuy(formItem).then(
 				// success response from server
 				function(response) {
-					console.warn(response);
+					successAlert();
 				},
 				// error response from server
 				function(response) {
-					console.warn(response);
+					errorAlert();
 				}
 			);
 		} else if (formItem.type == 'trade') {
-			// TODO - implement wishlist
+			announceService.saveTrade(formItem).then(
+				// success response from server
+				function(response) {
+					successAlert();
+				},
+				// error response from server
+				function(response) {
+					errorAlert();
+				}
+			);
 		}
+	};
+	
+	var successAlert = function() {
+		$growl.box('Sucesso', 'Anuncio criado com sucesso!', {
+            class: 'success',
+            timeout: 2500,
+            sticky: false
+        }).open();
+	};
+	
+	var errorAlert = function() {
+		$growl.box('Erro', 'Erro ao criar anuncio!', {
+            class: 'danger',
+            timeout: 2500,
+            sticky: false
+        }).open();
 	};
 	
 }

@@ -9,6 +9,7 @@ function AnnounceService($http, $q) {
 	return ({
 		saveSell: saveSell,
 		saveBuy: saveBuy,
+		saveTrade: saveTrade,
 		findGames: findGames
 	});
 	
@@ -29,6 +30,19 @@ function AnnounceService($http, $q) {
 		var request = $http({
 			method: "POST",
 			url: "/announce/buy/save",
+			data: announce,
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+		
+		return (request.then(handleSuccess, handleError));
+	}
+	
+	function saveTrade(announce) {
+		var request = $http({
+			method: "POST",
+			url: "/announce/trade/save",
 			data: announce,
 			headers: {
 				"Content-Type": "application/json"
