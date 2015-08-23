@@ -25,7 +25,7 @@
 					        	<md-option ng-repeat="game in games"
 					        			   ng-value="{{ game }}"
 					        			   ng-selected="{{ $index == 0 }}"
-					        			   ng-click="setGame(game)">{{ game.name }}</md-option>
+					        			   ng-click="setGame(game)">{{ game.name }} - {{ game.platform }}</md-option>
 					        </md-select>
 					      </md-input-container>
 				    </div>
@@ -63,7 +63,7 @@
 					        <md-select multiple ng-model="announce.wishList">
 					        	<md-option ng-repeat="game in games"
 					        			   ng-value="{{ game }}">
-					        		{{ game.name }}
+					        		{{ game.name }} - {{ game.platform }}
 					        	</md-option>
 					        </md-select>
 					    </md-input-container>

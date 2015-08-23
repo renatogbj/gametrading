@@ -29,6 +29,9 @@
     <script src="app/javascripts/index-controller.js"></script>
     <script src="app/javascripts/announce-controller.js"></script>
     <script src="app/javascripts/announce-service.js"></script>
+    <script src="app/javascripts/announcements-controller.js"></script>
+    <script src="app/javascripts/announcements-service.js"></script>
+    
 </head>
 
 <body ng-app="gametradingApp"> 
@@ -48,11 +51,10 @@
 
             <div class="navbar-right">
                 <ul class="nav navbar-nav">
-                    <li class="cdrop">
-                        <a href="#"><i class="fa fa-sign-in"></i> Login</a>
-                    </li>
-                    <li class="cdrop">
-                        <a href="#"><i class="fa fa-facebook-square"></i> Registrar</a>
+                    <li>
+                    	<md-button data-toggle="modal" data-target="#loginModal">
+                    		<i class="fa fa-facebook-square"></i> Login
+                    	</md-button>
                     </li>
                 </ul>
             </div>
@@ -64,7 +66,7 @@
 	<div class="container">
 		<div class="row">
 		
-			<div class="col-md-2" style="heigh: 100%;">
+			<div class="col-md-2">
 	    		<nav>
 		    		<ul class="nav nav-pills nav-stacked">
 		    			<li role="presentation" class="active">
@@ -79,6 +81,37 @@
 					</ul>
 		    	</nav>
 	    	</div>
+	    	
+	    	<!-- Login Modal -->
+			<div id="loginModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+					
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title">Login com Facebook</h4>
+						</div>
+						
+						<div class="modal-body">
+							
+							<form action="/connect/facebook" method="POST">
+								<input type="hidden" name="scope" value="read_stream" />
+								<div class="formInfo">
+									<p>You aren't connected to Facebook yet. Click the button to
+										connect this application with your Facebook account.</p>
+								</div>
+								<p>
+									<button type="submit">Connect to Facebook</button>
+								</p>
+							</form>
+			
+						</div>
+						
+					</div> <!-- /.modal-content -->
+				</div> <!-- /.modal-dialog -->
+			</div> <!-- /.modal -->
 	    	
 	    	<div class="col-md-10">
 	    		<div ui-view>

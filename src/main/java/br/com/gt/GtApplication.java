@@ -9,4 +9,5 @@ public class GtApplication {
     public static void main(String[] args) {
         SpringApplication.run(GtApplication.class, args);
     }
+    
 }

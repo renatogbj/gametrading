@@ -26,6 +26,9 @@ public class Usr implements Serializable {
 	private String name;
 	
 	@Column(nullable = false)
+	private byte[] avatar;
+	
+	@Column(nullable = false)
 	private Integer likes;
 	
 	public Usr() {
