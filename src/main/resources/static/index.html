@@ -52,9 +52,11 @@
             <div class="navbar-right">
                 <ul class="nav navbar-nav">
                     <li>
-                    	<md-button data-toggle="modal" data-target="#loginModal">
-                    		<i class="fa fa-facebook-square"></i> Login
-                    	</md-button>
+                    	<form action="/connect/facebook" method="POST">
+                    		<input type="hidden" name="scope" value="read_stream" />
+	                    	<md-button type="submit">
+	                    		<i class="fa fa-facebook-square"></i> Login
+	                    	</md-button>
                     </li>
                 </ul>
             </div>

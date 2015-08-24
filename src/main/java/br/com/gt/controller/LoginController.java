@@ -1,61 +1,30 @@
 package br.com.gt.controller;
 
-import java.security.Principal;
-
-import javax.inject.Inject;
-import javax.inject.Provider;
-
-import org.springframework.social.connect.ConnectionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.facebook.api.Facebook;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
-//public class LoginController extends ConnectController {
 @Controller
 public class LoginController {
 
-//	@Autowired
-//	private Facebook facebook;
-	
-//	@Autowired
-//	private FacebookConnectionInterceptor facebookConnInterceptor;
-	
-//	@Inject
-//	public LoginController(ConnectionFactoryLocator connectionFactoryLocator, ConnectionRepository connectionRepository) {
-//		super(connectionFactoryLocator, connectionRepository);
-//	}
-	
-	
-//	@PostConstruct
-//	public void addInterceptor() {
-//		this.addInterceptor(facebookConnInterceptor);
-//	}
-	
-	private final Provider<ConnectionRepository> connectionRepositoryProvider;
-	
-	@Inject
-	public LoginController(Provider<ConnectionRepository> connectionRepositoryProvider) {
-		this.connectionRepositoryProvider = connectionRepositoryProvider;
-	}
+	@Autowired
+    private Facebook facebook;
 
-	@RequestMapping("/")
-	public String home(Principal currentUser, Model model) {
-		model.addAttribute("connectionsToProviders", connectionRepositoryProvider.get().findAllConnections());
-		return "home";
-	}
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public ModelAndView helloFacebookSuccess(Model model) {
+    	if (!facebook.isAuthorized()) {
+    		return new ModelAndView("redirect:/");
+    	}
+    	
+    	String name = facebook.userOperations().getUserProfile().getName();
+    	
+    	System.out.println("Hello, " + facebook.userOperations().getUserProfile().getName());
+    	
+    	return new ModelAndView("forward:/index.html", "name", name);
+    }
 	
-//	@RequestMapping(value="/", method=RequestMethod.GET)
-//	public String home(Model model) {
-//		Connection<Facebook> connection = connectionRepository.findPrimaryConnection(Facebook.class);
-//		if (connection == null) {
-//			return "redirect:/connect/facebook";
-//		}
-//		model.addAttribute("profile", connection.getApi().userOperations().getUserProfile());
-//		return "facebook/profile";
-//	}
-	
-//	@Override
-//    protected String connectedView(String providerId) {
-//        return "redirect:/";
-//    }
 }
