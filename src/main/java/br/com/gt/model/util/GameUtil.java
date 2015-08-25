@@ -26,7 +26,7 @@ public final class GameUtil {
 	@Autowired
 	private GameService gameService;
 	
-	@PostConstruct
+//	@PostConstruct
 	public void loadGames() {
 		File dir = getGamesDir();
 		

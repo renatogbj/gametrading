@@ -27,6 +27,7 @@
 	
     <script src="app/javascripts/application.js"></script>
     <script src="app/javascripts/index-controller.js"></script>
+    <script src="app/javascripts/login-service.js"></script>
     <script src="app/javascripts/announce-controller.js"></script>
     <script src="app/javascripts/announce-service.js"></script>
     <script src="app/javascripts/announcements-controller.js"></script>
@@ -51,12 +52,16 @@
 
             <div class="navbar-right">
                 <ul class="nav navbar-nav">
-                    <li>
+                    <li ng-show="username.name == ''">
                     	<form action="/connect/facebook" method="POST">
                     		<input type="hidden" name="scope" value="read_stream" />
 	                    	<md-button type="submit">
 	                    		<i class="fa fa-facebook-square"></i> Login
 	                    	</md-button>
+	                    </form>
+                    </li>
+                    <li ng-show="username.name != ''">
+                    	Olá, {{ username.name }}
                     </li>
                 </ul>
             </div>

@@ -4,8 +4,12 @@
 angular.module('gametradingApp')
     .controller('IndexController', IndexController);
 
-IndexController.$inject = ['$scope'];
+IndexController.$inject = ['$scope', 'loginService'];
 
-function IndexController($scope) {
-    
+function IndexController($scope, loginService) {
+    loginService.login().then(
+		function(name) {
+			$scope.username = name;
+		}
+	);
 }

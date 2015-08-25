@@ -17,7 +17,7 @@ public class FacebookController extends ConnectController {
 	
 	@Override
     protected String connectedView(String providerId){
-        return "redirect:/home";
+        return "redirect:/";
     }
 	
 }
