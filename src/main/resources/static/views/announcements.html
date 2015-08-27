@@ -1,8 +1,41 @@
 <div ng-controller="AnnouncementsController">
+
+	<div id="offerModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Enviar Oferta</h4>
+				</div>
+				
+				<div class="modal-body">
+					<form novalidate>
+						<md-input-container>
+					        <label>Mensagem</label>
+					        <textarea ng-model="offer.message"
+					        		  rows="5"
+					        		  columns="1"
+					        		  md-maxlength="500">
+					        </textarea>
+					    </md-input-container>
+					</form>
+				</div>
+				
+				<div class="modal-footer">
+					<md-button type="submit" class="md-primary md-raised" data-dismiss="modal">Enviar</button>
+				</div>
+				
+			</div> <!-- /.modal-content -->
+		</div> <!-- /.modal-dialog -->
+	</div> <!-- /.modal -->
+
 	<md-content class="">
     	<md-tabs md-dynamic-height md-border-bottom>
 			<md-tab label="Venda">
-        		<md-content class="md-padding">
+        		<md-content>
           			<md-list>
 <!-- 				    	<md-subheader class="md-no-sticky"> -->
 				    		<!-- display quantity of itens and create menu with sorting and filtering -->
@@ -10,18 +43,22 @@
 				      	<md-list-item ng-repeat="sellAnnouncement in sellAnnouncements">
 				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ sellAnnouncement.owner.avatar }}" />
 				        	<div class="md-list-item-text col-md-10">
-				          		<h3>{{ sellAnnouncement.game.name }} ({{ sellAnnouncement.game.platform }})</h3>
+				          		<h3>
+				          			{{ sellAnnouncement.game.name }} ({{ sellAnnouncement.game.platform }})
+					          		<md-button data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
+										<md-icon class="fa fa-comment"></md-icon>
+									</md-button>
+				          		</h3>
 				          		<p>{{ sellAnnouncement.description }}</p>
 				          		<h4>{{ sellAnnouncement.price | currency:'R$'}}</h4>
 				        	</div>
-				        	<img class="md-secondary" width="6%" ng-src="data:image/JPEG;base64,{{ sellAnnouncement.game.cover }}" />
-				        	<md-divider></md-divider>
+			        		<img width="8%" ng-src="data:image/JPEG;base64,{{ sellAnnouncement.game.cover }}" />
 				      	</md-list-item>
 					</md-list>
        	 		</md-content>
       		</md-tab>
       		<md-tab label="Compra">
-        		<md-content class="md-padding">
+        		<md-content>
           			<md-list>
 <!-- 				    	<md-subheader class="md-no-sticky"> -->
 				    		<!-- display quantity of itens and create menu with sorting and filtering -->
@@ -29,25 +66,34 @@
 				      	<md-list-item ng-repeat="buyAnnouncement in buyAnnouncements">
 				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ buyAnnouncement.owner.avatar }}" />
 				        	<div class="md-list-item-text col-md-10">
-				          		<h3>{{ buyAnnouncement.game.name }} ({{ buyAnnouncement.game.platform }})</h3>
+				          		<h3>
+				          			{{ buyAnnouncement.game.name }} ({{ buyAnnouncement.game.platform }})
+				          			<md-button data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
+										<md-icon class="fa fa-comment"></md-icon>
+									</md-button>
+				          		</h3>
 				          		<p>{{ buyAnnouncement.description }}</p>
 				          		<h4>{{ buyAnnouncement.price | currency:'R$'}}</h4>
 				        	</div>
-				        	<img class="md-secondary" width="6%" ng-src="data:image/JPEG;base64,{{ buyAnnouncement.game.cover }}" />
-				        	<md-divider></md-divider>
+			        		<img width="8%" ng-src="data:image/JPEG;base64,{{ buyAnnouncement.game.cover }}"/>
 				      	</md-list-item>
 					</md-list>
 		        </md-content>
       		</md-tab>
       		<md-tab label="Troca">
-        		<md-content class="md-padding">
+        		<md-content>
           			<!-- 				    	<md-subheader class="md-no-sticky"> -->
 				    		<!-- display quantity of itens and create menu with sorting and filtering -->
 <!-- 				    	</md-subheader> -->
 				      	<md-list-item ng-repeat="tradeAnnouncement in tradeAnnouncements">
 				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ tradeAnnouncement.owner.avatar }}" />
 				        	<div class="md-list-item-text col-md-10">
-				          		<h3>{{ tradeAnnouncement.game.name }} ({{ tradeAnnouncement.game.platform }})</h3>
+				          		<h3>
+				          			{{ tradeAnnouncement.game.name }} ({{ tradeAnnouncement.game.platform }})
+				          			<md-button data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
+										<md-icon class="fa fa-comment"></md-icon>
+									</md-button>
+				          		</h3>
 				          		<p>{{ tradeAnnouncement.description }}</p>
 				          		<h4>
 				          			Prefer&ecirc;ncias:
@@ -59,8 +105,7 @@
 				          			</span>
 				          		</h4>
 				        	</div>
-				        	<img class="md-secondary" width="6%" ng-src="data:image/JPEG;base64,{{ tradeAnnouncement.game.cover }}" />
-				        	<md-divider></md-divider>
+				        	<img width="8%" ng-src="data:image/JPEG;base64,{{ tradeAnnouncement.game.cover }}" />
 				      	</md-list-item>
 		        </md-content>
 		    </md-tab>

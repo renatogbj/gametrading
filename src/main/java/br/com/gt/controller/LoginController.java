@@ -20,7 +20,7 @@ public class LoginController {
 	private UsrService usrService;
 
     @RequestMapping(value = "/home/user", method = RequestMethod.GET)
-    public Usr helloFacebookSuccess() {
+    public Usr findUser() {
     	Usr user;
     	
     	if (!facebook.isAuthorized()) {

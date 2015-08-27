@@ -1,7 +1,7 @@
 angular.module('gametradingApp')
 	.controller('AnnouncementsController', AnnouncementsController);
 
-AnnouncementsController.$inject = ['$scope', 'announcementsService'];
+AnnouncementsController.$inject = ['$scope', 'announcementsService', '$mdDialog'];
 
 function AnnouncementsController($scope, announcementsService) {
 	

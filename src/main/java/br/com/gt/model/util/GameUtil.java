@@ -58,7 +58,6 @@ public final class GameUtil {
 			return new File(path);
 		}
 		return null;
-//		return new File("C:\\Users\\Renato Oobj\\Desktop\\Documents\\GitHub\\gametrading\\target\\classes\\static\\app\\images\\games");
 	}
 
 	public byte[] extractBytes(File image) throws IOException {
