@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import javax.annotation.PostConstruct;
 import javax.imageio.ImageIO;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -51,8 +52,13 @@ public final class GameUtil {
 	}
 
 	public File getGamesDir() {
-//		return new File(GameUtil.class.getClassLoader().getResource("static/app/images/games").getPath());
-		return new File("C:\\Users\\Renato Oobj\\Desktop\\Documents\\GitHub\\gametrading\\target\\classes\\static\\app\\images\\games");
+		String path = GameUtil.class.getClassLoader().getResource("static/app/images/games").getPath();
+		if (StringUtils.isNotBlank(path)) {
+			path = path.replaceAll("%20", " ");
+			return new File(path);
+		}
+		return null;
+//		return new File("C:\\Users\\Renato Oobj\\Desktop\\Documents\\GitHub\\gametrading\\target\\classes\\static\\app\\images\\games");
 	}
 
 	public byte[] extractBytes(File image) throws IOException {
