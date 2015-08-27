@@ -35,10 +35,11 @@ public class Usr implements Serializable {
 		super();
 	}
 
-	public Usr(String email, String name, Integer likes) {
+	public Usr(String email, String name, byte[] avatar, Integer likes) {
 		super();
 		this.email = email;
 		this.name = name;
+		this.avatar = avatar;
 		this.likes = likes;
 	}
 
@@ -64,6 +65,14 @@ public class Usr implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public byte[] getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(byte[] avatar) {
+		this.avatar = avatar;
 	}
 
 	public Integer getLikes() {

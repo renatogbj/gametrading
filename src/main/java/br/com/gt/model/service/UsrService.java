@@ -26,6 +26,10 @@ public class UsrService {
 		return usrRepository.findOne(id);
 	}
 	
+	public Usr find(String email) {
+		return usrRepository.findByEmail(email);
+	}
+	
 	public List<Usr> findAll() {
 		return usrRepository.findAll();
 	}

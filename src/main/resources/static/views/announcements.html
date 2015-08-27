@@ -8,12 +8,13 @@
 				    		<!-- display quantity of itens and create menu with sorting and filtering -->
 <!-- 				    	</md-subheader> -->
 				      	<md-list-item ng-repeat="sellAnnouncement in sellAnnouncements">
-				        	<img class="md-avatar" />
-				        	<div class="md-list-item-text">
-				          		<h3>{{ sellAnnouncement.game.name }}</h3>
-				          		<h4>{{ sellAnnouncement.price | currency:'R$'}}</h4>
+				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ sellAnnouncement.owner.avatar }}" />
+				        	<div class="md-list-item-text col-md-10">
+				          		<h3>{{ sellAnnouncement.game.name }} ({{ sellAnnouncement.game.platform }})</h3>
 				          		<p>{{ sellAnnouncement.description }}</p>
+				          		<h4>{{ sellAnnouncement.price | currency:'R$'}}</h4>
 				        	</div>
+				        	<img class="md-secondary" width="6%" ng-src="data:image/JPEG;base64,{{ sellAnnouncement.game.cover }}" />
 				        	<md-divider></md-divider>
 				      	</md-list-item>
 					</md-list>
@@ -21,14 +22,46 @@
       		</md-tab>
       		<md-tab label="Compra">
         		<md-content class="md-padding">
-          			<h1 class="md-display-2">Compra</h1>
-          			<p></p>
+          			<md-list>
+<!-- 				    	<md-subheader class="md-no-sticky"> -->
+				    		<!-- display quantity of itens and create menu with sorting and filtering -->
+<!-- 				    	</md-subheader> -->
+				      	<md-list-item ng-repeat="buyAnnouncement in buyAnnouncements">
+				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ buyAnnouncement.owner.avatar }}" />
+				        	<div class="md-list-item-text col-md-10">
+				          		<h3>{{ buyAnnouncement.game.name }} ({{ buyAnnouncement.game.platform }})</h3>
+				          		<p>{{ buyAnnouncement.description }}</p>
+				          		<h4>{{ buyAnnouncement.price | currency:'R$'}}</h4>
+				        	</div>
+				        	<img class="md-secondary" width="6%" ng-src="data:image/JPEG;base64,{{ buyAnnouncement.game.cover }}" />
+				        	<md-divider></md-divider>
+				      	</md-list-item>
+					</md-list>
 		        </md-content>
       		</md-tab>
       		<md-tab label="Troca">
         		<md-content class="md-padding">
-          			<h1 class="md-display-2">Troca</h1>
-        	  		<p></p>
+          			<!-- 				    	<md-subheader class="md-no-sticky"> -->
+				    		<!-- display quantity of itens and create menu with sorting and filtering -->
+<!-- 				    	</md-subheader> -->
+				      	<md-list-item ng-repeat="tradeAnnouncement in tradeAnnouncements">
+				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ tradeAnnouncement.owner.avatar }}" />
+				        	<div class="md-list-item-text col-md-10">
+				          		<h3>{{ tradeAnnouncement.game.name }} ({{ tradeAnnouncement.game.platform }})</h3>
+				          		<p>{{ tradeAnnouncement.description }}</p>
+				          		<h4>
+				          			Prefer&ecirc;ncias:
+				          			<span style="padding: 5px;" ng-repeat="wishList in tradeAnnouncement.wishList">
+			          					<img width="4%" ng-src="data:image/JPEG;base64,{{ wishList.cover }}">
+			          					<md-tooltip>
+								          {{ wishList.name }}
+								        </md-tooltip>
+				          			</span>
+				          		</h4>
+				        	</div>
+				        	<img class="md-secondary" width="6%" ng-src="data:image/JPEG;base64,{{ tradeAnnouncement.game.cover }}" />
+				        	<md-divider></md-divider>
+				      	</md-list-item>
 		        </md-content>
 		    </md-tab>
     	</md-tabs>

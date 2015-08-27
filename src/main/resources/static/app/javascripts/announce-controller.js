@@ -29,7 +29,11 @@ function AnnounceController($scope, $growl, announceService) {
 	
 	// saving functions
 	$scope.saveAnnounce = function(formItem) {
+		// set the user
+		formItem.owner = $scope.user;
+		
 		if (formItem.type == 'sell') {
+			
 			announceService.saveSell(formItem).then(
 				// success response from server
 				function(response) {

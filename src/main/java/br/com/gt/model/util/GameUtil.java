@@ -26,7 +26,7 @@ public final class GameUtil {
 	@Autowired
 	private GameService gameService;
 	
-//	@PostConstruct
+	@PostConstruct
 	public void loadGames() {
 		File dir = getGamesDir();
 		
@@ -51,8 +51,8 @@ public final class GameUtil {
 	}
 
 	public File getGamesDir() {
-		return new File(GameUtil.class.getClassLoader().getResource("static/app/images/games").getPath());
-//		return new File("C:\\Users\\Renato Oobj\\Desktop\\Documents\\GitHub\\gametrading\\target\\classes\\static\\app\\images\\games");
+//		return new File(GameUtil.class.getClassLoader().getResource("static/app/images/games").getPath());
+		return new File("C:\\Users\\Renato Oobj\\Desktop\\Documents\\GitHub\\gametrading\\target\\classes\\static\\app\\images\\games");
 	}
 
 	public byte[] extractBytes(File image) throws IOException {

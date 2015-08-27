@@ -10,4 +10,17 @@ function AnnouncementsController($scope, announcementsService) {
 			$scope.sellAnnouncements = sellList;
 		}
 	);
+	
+	announcementsService.findBuyAnnouncements().then(
+		function(buyList) {
+			$scope.buyAnnouncements = buyList;
+		}
+	);
+	
+	announcementsService.findTradeAnnouncements().then(
+		function(tradeList) {
+			$scope.tradeAnnouncements = tradeList;
+			console.log($scope.tradeAnnouncements[0].wishList[0]);
+		}
+	);
 }

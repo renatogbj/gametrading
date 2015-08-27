@@ -8,8 +8,8 @@ IndexController.$inject = ['$scope', 'loginService'];
 
 function IndexController($scope, loginService) {
     loginService.login().then(
-		function(name) {
-			$scope.username = name;
+		function(userItem) {
+			$scope.user = userItem;
 		}
 	);
 }

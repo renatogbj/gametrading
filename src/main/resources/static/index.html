@@ -52,16 +52,21 @@
 
             <div class="navbar-right">
                 <ul class="nav navbar-nav">
-                    <li ng-show="username.name == ''">
+                    <li ng-show="user.name == ''">
                     	<form action="/connect/facebook" method="POST">
-                    		<input type="hidden" name="scope" value="read_stream" />
+                    		<input type="hidden" name="scope" value="read_stream,email" />
 	                    	<md-button type="submit">
 	                    		<i class="fa fa-facebook-square"></i> Login
 	                    	</md-button>
 	                    </form>
                     </li>
-                    <li ng-show="username.name != ''">
-                    	Olá, {{ username.name }}
+                    <li ng-show="user.name != ''">
+                   		<a href="#" class="dropdown-toggle dropdown-avatar" data-toggle="dropdown">
+			            	<span>
+			                	<img width="14%" class="md-avatar" ng-src="data:image/JPEG;base64,{{ user.avatar }}" /> 
+			                	<span>{{ user.name }} <i class="fa fa-caret-down"></i></span>
+			              	</span>
+		              	</a>
                     </li>
                 </ul>
             </div>

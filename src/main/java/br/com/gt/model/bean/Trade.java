@@ -27,8 +27,7 @@ public class Trade implements Serializable {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = true)
-	// TODO - set nullable = false
+	@JoinColumn(name = "user_id", nullable = false)
 	private Usr owner;
 	
 	@ManyToOne

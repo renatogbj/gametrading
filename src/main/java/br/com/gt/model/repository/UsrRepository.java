@@ -8,4 +8,6 @@ import br.com.gt.model.bean.Usr;
 @Repository
 public interface UsrRepository extends JpaRepository<Usr, Long> {
 
+	Usr findByEmail(String email);
+
 }
