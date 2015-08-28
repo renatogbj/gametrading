@@ -15,7 +15,7 @@
 					<form novalidate>
 						<md-input-container>
 					        <label>Mensagem</label>
-					        <textarea ng-model="offer.message"
+					        <textarea ng-model="offer.description"
 					        		  rows="5"
 					        		  columns="1"
 					        		  md-maxlength="500">
@@ -25,7 +25,7 @@
 				</div>
 				
 				<div class="modal-footer">
-					<md-button type="submit" class="md-primary md-raised" data-dismiss="modal">Enviar</button>
+					<md-button ng-click="addOffer()" class="md-primary md-raised" data-dismiss="modal">Enviar</md-button>
 				</div>
 				
 			</div> <!-- /.modal-content -->
@@ -45,14 +45,14 @@
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
 				          			{{ sellAnnouncement.game.name }} ({{ sellAnnouncement.game.platform }})
-					          		<md-button data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
+					          		<md-button ng-click="setSell(sellAnnouncement)" data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
 										<md-icon class="fa fa-comment"></md-icon>
 									</md-button>
 				          		</h3>
 				          		<p>{{ sellAnnouncement.description }}</p>
 				          		<h4>{{ sellAnnouncement.price | currency:'R$'}}</h4>
 				        	</div>
-			        		<img width="8%" ng-src="data:image/JPEG;base64,{{ sellAnnouncement.game.cover }}" />
+			        		<img width="5%" ng-src="data:image/JPEG;base64,{{ sellAnnouncement.game.cover }}" />
 				      	</md-list-item>
 					</md-list>
        	 		</md-content>
@@ -97,7 +97,7 @@
 				          		<p>{{ tradeAnnouncement.description }}</p>
 				          		<h4>
 				          			Prefer&ecirc;ncias:
-				          			<span style="padding: 5px;" ng-repeat="wishList in tradeAnnouncement.wishList">
+				          			<span  ng-repeat="wishList in tradeAnnouncement.wishList">
 			          					<img width="4%" ng-src="data:image/JPEG;base64,{{ wishList.cover }}">
 			          					<md-tooltip>
 								          {{ wishList.name }}

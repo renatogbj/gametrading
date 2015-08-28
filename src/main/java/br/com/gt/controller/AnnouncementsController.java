@@ -3,6 +3,7 @@ package br.com.gt.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,4 +42,9 @@ public class AnnouncementsController {
 		return tradeService.findAll();
 	}
 	
+	@RequestMapping(value = "/announcements/offer/add", method = RequestMethod.POST)
+	public void addOfferToSell(@RequestBody Sell sell) {
+		int i = sellService.updateOffers(sell);
+		System.out.println(i);
+	}
 }

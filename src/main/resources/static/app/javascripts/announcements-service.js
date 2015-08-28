@@ -9,7 +9,8 @@ function AnnouncementsService($http, $q) {
 	return ({
 		findBuyAnnouncements: findBuyAnnouncements,
 		findSellAnnouncements: findSellAnnouncements,
-		findTradeAnnouncements: findTradeAnnouncements
+		findTradeAnnouncements: findTradeAnnouncements,
+		addOfferToSell: addOfferToSell
 	});
 	
 	function findSellAnnouncements() {
@@ -34,6 +35,19 @@ function AnnouncementsService($http, $q) {
 		var request = $http({
 			method: "GET",
 			url: "/announcements/trade"
+		});
+		
+		return (request.then(handleSuccess, handleError));
+	}
+	
+	function addOfferToSell(sell) {
+		var request = $http({
+			method: "POST",
+			url: "/announcements/offer/add",
+			data: sell,
+			headers: {
+				"Content-Type": "application/json"
+			}
 		});
 		
 		return (request.then(handleSuccess, handleError));
