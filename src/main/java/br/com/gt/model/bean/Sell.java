@@ -1,6 +1,7 @@
 package br.com.gt.model.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -39,11 +40,11 @@ public class Sell implements Serializable {
 	@Column(length = 140)
 	private String description;
 	
-	@OneToMany(cascade = { CascadeType.REMOVE })
+	@OneToMany(cascade = { CascadeType.REMOVE, CascadeType.MERGE, CascadeType.PERSIST })
 	@JoinTable(name = "selloffer",
         joinColumns = @JoinColumn(name = "sell_id", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "offer_id", referencedColumnName = "id"))
-	private List<Offer> offers;
+	private List<Offer> offers = new ArrayList<>();
 
 	public Sell() {
 		super();

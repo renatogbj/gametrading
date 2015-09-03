@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.com.gt.model.bean.Sell;
 import br.com.gt.model.repository.SellRepository;
@@ -29,10 +28,5 @@ public class SellService {
 	
 	public List<Sell> findAll() {
 		return sellRepository.findAll();
-	}
-	
-	@Transactional
-	public int updateOffers(Sell sell) {
-		return sellRepository.updateOffers(sell.getId(), sell.getOffers());
 	}
 }
