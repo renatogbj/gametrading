@@ -5,6 +5,11 @@ AnnouncementsController.$inject = ['$scope', 'announcementsService', '$growl'];
 
 function AnnouncementsController($scope, announcementsService, $growl) {
 	
+	$scope.offer = {
+		description: '',
+		bidder: $scope.user
+	}
+	
 	announcementsService.findSellAnnouncements().then(
 		function(sellList) {
 			$scope.sellAnnouncements = sellList;
@@ -23,11 +28,6 @@ function AnnouncementsController($scope, announcementsService, $growl) {
 			console.log($scope.tradeAnnouncements[0].wishList[0]);
 		}
 	);
-	
-	$scope.offer = {
-		description: '',
-		bidder: $scope.user
-	}
 	
 	$scope.addOffer = function() {
 		$scope.sell.offers.push($scope.offer);

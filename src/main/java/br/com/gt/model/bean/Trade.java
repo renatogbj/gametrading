@@ -49,6 +49,9 @@ public class Trade implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "offer_id", referencedColumnName = "id"))
 	private List<Offer> offers;
 
+	@Column
+	private boolean traded;
+	
 	public Trade() {
 		super();
 	}
@@ -127,6 +130,14 @@ public class Trade implements Serializable {
 
 	public void setOffers(List<Offer> offers) {
 		this.offers = offers;
+	}
+
+	public boolean isTraded() {
+		return traded;
+	}
+
+	public void setTraded(boolean traded) {
+		this.traded = traded;
 	}
 	
 }

@@ -2,11 +2,11 @@
  * Created by Renato Borges on 19/08/2015.
  */
 angular.module('gametradingApp')
-    .controller('IndexController', IndexController);
+    .controller('LoginController', LoginController);
 
-IndexController.$inject = ['$scope', 'loginService'];
+LoginController.$inject = ['$scope', 'loginService'];
 
-function IndexController($scope, loginService) {
+function LoginController($scope, loginService) {
     loginService.login().then(
 		function(userItem) {
 			$scope.user = userItem;

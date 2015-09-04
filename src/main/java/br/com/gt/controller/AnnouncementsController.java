@@ -33,12 +33,12 @@ public class AnnouncementsController {
 	private OfferService offerService;
 	
 	@RequestMapping(value = "/announcements/buy", method = RequestMethod.GET)
-	public List<Buy> findSellAnnouncements() {
+	public List<Buy> findBuyAnnouncements() {
 		return buyService.findAll();
 	}
 	
 	@RequestMapping(value = "/announcements/sell", method = RequestMethod.GET)
-	public List<Sell> findBuyAnnouncements() {
+	public List<Sell> findSellAnnouncements() {
 		return sellService.findAll();
 	}
 	

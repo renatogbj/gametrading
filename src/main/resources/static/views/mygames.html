@@ -1,3 +1,134 @@
-<div>
-	
+<div ng-controller="MyGamesController">
+	<md-content>
+    	<md-tabs md-dynamic-height md-border-bottom>
+			<md-tab label="Venda">
+        		<md-content>
+          			<md-list>
+<!-- 				    	<md-subheader class="md-no-sticky"> -->
+				    		<!-- display quantity of itens and create menu with sorting, filtering and pagination -->
+<!-- 				    	</md-subheader> -->
+				      	<md-list-item ng-repeat="mySellAnnouncement in mySellAnnouncements">
+				        	<div class="md-list-item-text col-md-10">
+				          		<h3>
+				          			<span ng-style="soldStyle">{{ mySellAnnouncement.game.name }} ({{ mySellAnnouncement.game.platform }})</span>
+				          			<span ng-show="!mySellAnnouncement.sold">
+										<md-button ng-click="setSold(mySellAnnouncement); soldStyle={'text-decoration':'line-through'}"
+												   class="md-icon-button md-primary"
+												   style="height: 36px; width: auto; margin: 0;">
+											<md-icon class="fa fa-thumb-tack"></md-icon>
+										</md-button>
+										<md-tooltip md-direction="top">
+									    	Marcar como vendido!
+									    </md-tooltip>
+								    </span>
+								    <span ng-show="mySellAnnouncement.sold">
+										<md-button ng-click="setUnsold(mySellAnnouncement); soldStyle={}"
+												   class="md-icon-button md-primary"
+												   style="height: 36px; width: auto; margin: 0;">
+											<md-icon class="fa fa-thumb-tack"></md-icon>
+										</md-button>
+										<md-tooltip md-direction="top">
+									    	Marcar como &agrave venda!
+									    </md-tooltip>
+								    </span>
+								    <span>
+								    	<md-button data-toggle="modal"
+								    			   data-target="#offersModal"
+								    			   class="md-icon-button md-primary"
+								    			   style="height: 36px; width: auto; margin: 0;">
+											<md-icon class="fa fa-comment"></md-icon>
+										</md-button>
+										<md-tooltip md-direction="top">
+									    	Ofertas
+									    </md-tooltip>
+								    </span>
+				          			<span>
+					          			<md-button ng-click="editMySell(mySellAnnouncement)"
+					          					   data-toggle="modal"
+					          					   data-target="#editModal"
+					          					   class="md-icon-button md-primary"
+					          					   style="height: 36px; width: auto; margin: 0;"
+					          					   ng-disabled="mySellAnnouncement.sold">
+											<md-icon class="fa fa-pencil"></md-icon>
+										</md-button>
+										<md-tooltip md-direction="top">
+									    	Editar
+									    </md-tooltip>
+								    </span>
+									<span>
+										<md-button ng-click="removeMySell(mySellAnnouncement)"
+												   data-toggle="modal"
+												   data-target="#removeModal"
+												   class="md-icon-button md-warn"
+												   style="height: 36px; width: auto; margin: 0;"
+												   ng-disabled="mySellAnnouncement.sold">
+											<md-icon class="fa fa-trash-o"></md-icon>
+										</md-button>
+										<md-tooltip md-direction="top">
+									    	Remover
+									    </md-tooltip>
+								    </span>
+				          		</h3>
+				          		<p ng-style="soldStyle">{{ mySellAnnouncement.description }}</p>
+				          		<h4 ng-style="soldStyle">{{ mySellAnnouncement.price | currency:'R$'}}</h4>
+				        	</div>
+			        		<img width="8%" ng-src="data:image/JPEG;base64,{{ mySellAnnouncement.game.cover }}" />
+				      	</md-list-item>
+					</md-list>
+       	 		</md-content>
+      		</md-tab>
+      		<md-tab label="Compra">
+        		<md-content>
+          			<md-list>
+<!-- 				    	<md-subheader class="md-no-sticky"> -->
+				    		<!-- display quantity of itens and create menu with sorting and filtering -->
+<!-- 				    	</md-subheader> -->
+				      	<md-list-item ng-repeat="buyAnnouncement in buyAnnouncements">
+				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ buyAnnouncement.owner.avatar }}" />
+				        	<div class="md-list-item-text col-md-10">
+				          		<h3>
+				          			{{ buyAnnouncement.game.name }} ({{ buyAnnouncement.game.platform }})
+				          			<md-button data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
+										<md-icon class="fa fa-comment"></md-icon>
+									</md-button>
+				          		</h3>
+				          		<p>{{ buyAnnouncement.description }}</p>
+				          		<h4>{{ buyAnnouncement.price | currency:'R$'}}</h4>
+				        	</div>
+			        		<img width="8%" ng-src="data:image/JPEG;base64,{{ buyAnnouncement.game.cover }}"/>
+				      	</md-list-item>
+					</md-list>
+		        </md-content>
+      		</md-tab>
+      		<md-tab label="Troca">
+        		<md-content>
+          			<!-- 				    	<md-subheader class="md-no-sticky"> -->
+				    		<!-- display quantity of itens and create menu with sorting and filtering -->
+<!-- 				    	</md-subheader> -->
+				      	<md-list-item ng-repeat="tradeAnnouncement in tradeAnnouncements">
+				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ tradeAnnouncement.owner.avatar }}" />
+				        	<div class="md-list-item-text col-md-10">
+				          		<h3>
+				          			{{ tradeAnnouncement.game.name }} ({{ tradeAnnouncement.game.platform }})
+				          			<md-button data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
+										<md-icon class="fa fa-comment"></md-icon>
+									</md-button>
+				          		</h3>
+				          		<p>{{ tradeAnnouncement.description }}</p>
+				          		<h4>
+				          			Prefer&ecirc;ncias:
+				          			<span  ng-repeat="wishList in tradeAnnouncement.wishList">
+			          					<img width="4%" ng-src="data:image/JPEG;base64,{{ wishList.cover }}">
+			          					<md-tooltip>
+								          {{ wishList.name }}
+								        </md-tooltip>
+				          			</span>
+				          		</h4>
+				        	</div>
+				        	<img width="8%" ng-src="data:image/JPEG;base64,{{ tradeAnnouncement.game.cover }}" />
+				      	</md-list-item>
+		        </md-content>
+		    </md-tab>
+    	</md-tabs>
+  	</md-content>
 </div>
