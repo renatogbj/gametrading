@@ -1,4 +1,37 @@
 <div ng-controller="MyGamesController">
+
+	<div id="offersModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Enviar Oferta</h4>
+				</div>
+				
+				<div class="modal-body">
+					<form novalidate>
+						<md-input-container>
+					        <label>Mensagem</label>
+					        <textarea ng-model="offer.description"
+					        		  rows="5"
+					        		  columns="1"
+					        		  md-maxlength="500">
+					        </textarea>
+					    </md-input-container>
+					</form>
+				</div>
+				
+				<div class="modal-footer">
+					<md-button ng-click="addOffer()" class="md-primary md-raised" data-dismiss="modal">Enviar</md-button>
+				</div>
+				
+			</div> <!-- /.modal-content -->
+		</div> <!-- /.modal-dialog -->
+	</div> <!-- /.modal -->
+
 	<md-content>
     	<md-tabs md-dynamic-height md-border-bottom>
 			<md-tab label="Venda">

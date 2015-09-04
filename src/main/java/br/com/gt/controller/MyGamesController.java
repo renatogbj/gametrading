@@ -19,6 +19,7 @@ public class MyGamesController {
 	
 	@RequestMapping(value = "/mygames/sell", method = RequestMethod.GET)
 	public List<Sell> findMySellAnnouncements() {
+		int a[] = {051};
 		return sellService.findAll();
 	}
 	

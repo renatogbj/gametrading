@@ -49,8 +49,8 @@
 										<md-icon class="fa fa-comment"></md-icon>
 									</md-button>
 				          		</h3>
-				          		<p>{{ sellAnnouncement.description }}</p>
 				          		<h4>{{ sellAnnouncement.price | currency:'R$'}}</h4>
+				          		<p>{{ sellAnnouncement.description }}&nbsp;</p>
 				        	</div>
 			        		<img width="8%" ng-src="data:image/JPEG;base64,{{ sellAnnouncement.game.cover }}" />
 				      	</md-list-item>
@@ -72,8 +72,8 @@
 										<md-icon class="fa fa-comment"></md-icon>
 									</md-button>
 				          		</h3>
-				          		<p>{{ buyAnnouncement.description }}</p>
 				          		<h4>{{ buyAnnouncement.price | currency:'R$'}}</h4>
+				          		<p>{{ buyAnnouncement.description }}&nbsp;</p>
 				        	</div>
 			        		<img width="8%" ng-src="data:image/JPEG;base64,{{ buyAnnouncement.game.cover }}"/>
 				      	</md-list-item>
@@ -94,7 +94,6 @@
 										<md-icon class="fa fa-comment"></md-icon>
 									</md-button>
 				          		</h3>
-				          		<p>{{ tradeAnnouncement.description }}</p>
 				          		<h4>
 				          			Prefer&ecirc;ncias:
 				          			<span  ng-repeat="wishList in tradeAnnouncement.wishList">
@@ -104,6 +103,7 @@
 								        </md-tooltip>
 				          			</span>
 				          		</h4>
+				          		<p>{{ tradeAnnouncement.description }}&nbsp;</p>
 				        	</div>
 				        	<img width="8%" ng-src="data:image/JPEG;base64,{{ tradeAnnouncement.game.cover }}" />
 				      	</md-list-item>
