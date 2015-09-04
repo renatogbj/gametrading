@@ -12,12 +12,45 @@ function MyGamesController($scope, mygamesService, $growl) {
 	);
 	
 	$scope.setSold = function(announcement) {
-		announcement.sold = true;
+		announcement.sold = !announcement.sold;
+		mygamesService.setSold(announcement).then(
+			// success response from server
+			function(response) {
+				
+			},
+			// error response from server
+			function(response) {
+				errorAlert();
+			}
+		);
 	};
 	
-	$scope.setUnsold = function(announcement) {
-		announcement.sold = false;
-	};
+//	$scope.setUnsold = function(announcement) {
+//		announcement.sold = false;
+//		mygamesService.setSold(announcement).then(
+//			// success response from server
+//			function(response) {
+//				
+//			},
+//			// error response from server
+//			function(response) {
+//				errorAlert();
+//			}
+//		);
+//	};
+	
+	$scope.removeMySell = function(announcement, idx) {
+		mygamesService.removeMySellAnnouncement(announcement).then(
+			// success response from server
+			function(response) {
+				$scope.mySellAnnouncements.splice(idx, 1);
+			},
+			// error response from server
+			function(response) {
+				errorAlert();
+			}
+		);
+	}
 	
 	var successAlert = function() {
 		$growl.box('Sucesso', 'Oferta enviada com sucesso!', {
@@ -28,7 +61,7 @@ function MyGamesController($scope, mygamesService, $growl) {
 	};
 	
 	var errorAlert = function() {
-		$growl.box('Erro', 'Erro ao enviar oferta!', {
+		$growl.box('Erro', 'Erro ao excluir a venda!', {
             class: 'danger',
             timeout: 2500,
             sticky: false

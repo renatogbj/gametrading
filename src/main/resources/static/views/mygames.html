@@ -10,25 +10,16 @@
 				      	<md-list-item ng-repeat="mySellAnnouncement in mySellAnnouncements">
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
-				          			<span ng-style="soldStyle">{{ mySellAnnouncement.game.name }} ({{ mySellAnnouncement.game.platform }})</span>
-				          			<span ng-show="!mySellAnnouncement.sold">
-										<md-button ng-click="setSold(mySellAnnouncement); soldStyle={'text-decoration':'line-through'}"
+				          			<span>{{ mySellAnnouncement.game.name }} ({{ mySellAnnouncement.game.platform }})</span>
+				          			<span>
+										<md-button ng-click="setSold(mySellAnnouncement)"
 												   class="md-icon-button md-primary"
 												   style="height: 36px; width: auto; margin: 0;">
 											<md-icon class="fa fa-thumb-tack"></md-icon>
 										</md-button>
 										<md-tooltip md-direction="top">
-									    	Marcar como vendido!
-									    </md-tooltip>
-								    </span>
-								    <span ng-show="mySellAnnouncement.sold">
-										<md-button ng-click="setUnsold(mySellAnnouncement); soldStyle={}"
-												   class="md-icon-button md-primary"
-												   style="height: 36px; width: auto; margin: 0;">
-											<md-icon class="fa fa-thumb-tack"></md-icon>
-										</md-button>
-										<md-tooltip md-direction="top">
-									    	Marcar como &agrave venda!
+									    	<span ng-show="!mySellAnnouncement.sold">Marcar como vendido!</span>
+									    	<span ng-show="mySellAnnouncement.sold">Marcar como &agrave venda!</span>
 									    </md-tooltip>
 								    </span>
 								    <span>
@@ -56,9 +47,7 @@
 									    </md-tooltip>
 								    </span>
 									<span>
-										<md-button ng-click="removeMySell(mySellAnnouncement)"
-												   data-toggle="modal"
-												   data-target="#removeModal"
+										<md-button ng-click="removeMySell(mySellAnnouncement, $index)"
 												   class="md-icon-button md-warn"
 												   style="height: 36px; width: auto; margin: 0;"
 												   ng-disabled="mySellAnnouncement.sold">
@@ -68,9 +57,10 @@
 									    	Remover
 									    </md-tooltip>
 								    </span>
+								    <span ng-show="mySellAnnouncement.sold" class="sold-title">vendido!</span>
 				          		</h3>
-				          		<p ng-style="soldStyle">{{ mySellAnnouncement.description }}</p>
-				          		<h4 ng-style="soldStyle">{{ mySellAnnouncement.price | currency:'R$'}}</h4>
+				          		<h4 ng-class="{'sold-price': mySellAnnouncement.sold}">{{ mySellAnnouncement.price | currency:'R$'}}</h4>
+				          		<p>{{ mySellAnnouncement.description }}&nbsp;</p>
 				        	</div>
 			        		<img width="8%" ng-src="data:image/JPEG;base64,{{ mySellAnnouncement.game.cover }}" />
 				      	</md-list-item>
