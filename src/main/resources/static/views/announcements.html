@@ -40,7 +40,7 @@
 <!-- 				    	<md-subheader class="md-no-sticky"> -->
 				    		<!-- display quantity of itens and create menu with sorting and filtering -->
 <!-- 				    	</md-subheader> -->
-				      	<md-list-item ng-repeat="sellAnnouncement in sellAnnouncements">
+				      	<md-list-item ng-repeat="sellAnnouncement in sellAnnouncements | filter:forSell">
 				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ sellAnnouncement.owner.avatar }}" />
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>

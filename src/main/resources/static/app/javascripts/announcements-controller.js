@@ -25,13 +25,11 @@ function AnnouncementsController($scope, announcementsService, $growl) {
 	announcementsService.findTradeAnnouncements().then(
 		function(tradeList) {
 			$scope.tradeAnnouncements = tradeList;
-			console.log($scope.tradeAnnouncements[0].wishList[0]);
 		}
 	);
 	
 	$scope.addOffer = function() {
 		$scope.sell.offers.push($scope.offer);
-		console.log($scope.sell.offers);
 		announcementsService.addOfferToSell($scope.sell).then(
 			// success response from server
 			function(response) {
@@ -46,6 +44,14 @@ function AnnouncementsController($scope, announcementsService, $growl) {
 	
 	$scope.setSell = function(sell) {
 		$scope.sell = sell;
+	};
+	
+	$scope.forSell = function(input) {
+		if (!input.sold) {
+    		return true;
+    	} else {
+    		return false;
+    	}
 	};
 	
 	var successAlert = function() {
