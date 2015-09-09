@@ -45,7 +45,7 @@
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
 				          			{{ sellAnnouncement.game.name }} ({{ sellAnnouncement.game.platform }})
-					          		<md-button ng-click="setSell(sellAnnouncement)" data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
+					          		<md-button ng-click="setType('sell', sellAnnouncement)" data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
 										<md-icon class="fa fa-comment"></md-icon>
 									</md-button>
 				          		</h3>
@@ -68,7 +68,7 @@
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
 				          			{{ buyAnnouncement.game.name }} ({{ buyAnnouncement.game.platform }})
-				          			<md-button data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
+				          			<md-button ng-click="setType('buy', buyAnnouncement)" data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
 										<md-icon class="fa fa-comment"></md-icon>
 									</md-button>
 				          		</h3>
@@ -90,7 +90,7 @@
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
 				          			{{ tradeAnnouncement.game.name }} ({{ tradeAnnouncement.game.platform }})
-				          			<md-button data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
+				          			<md-button ng-click="setType('trade', tradeAnnouncement)" data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
 										<md-icon class="fa fa-comment"></md-icon>
 									</md-button>
 				          		</h3>

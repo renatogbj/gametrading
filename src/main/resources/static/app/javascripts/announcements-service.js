@@ -10,7 +10,9 @@ function AnnouncementsService($http, $q) {
 		findBuyAnnouncements: findBuyAnnouncements,
 		findSellAnnouncements: findSellAnnouncements,
 		findTradeAnnouncements: findTradeAnnouncements,
-		addOfferToSell: addOfferToSell
+		addSellOffer: addSellOffer,
+		addBuyOffer: addBuyOffer,
+		addTradeOffer: addTradeOffer
 	});
 	
 	function findSellAnnouncements() {
@@ -40,11 +42,37 @@ function AnnouncementsService($http, $q) {
 		return (request.then(handleSuccess, handleError));
 	}
 	
-	function addOfferToSell(sell) {
+	function addSellOffer(sellOffer) {
 		var request = $http({
 			method: "POST",
-			url: "/announcements/offer/add",
-			data: sell,
+			url: "/announcements/sell/offer/add",
+			data: sellOffer,
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+		
+		return (request.then(handleSuccess, handleError));
+	}
+	
+	function addBuyOffer(buyOffer) {
+		var request = $http({
+			method: "POST",
+			url: "/announcements/buy/offer/add",
+			data: buyOffer,
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+		
+		return (request.then(handleSuccess, handleError));
+	}
+	
+	function addTradeOffer(tradeOffer) {
+		var request = $http({
+			method: "POST",
+			url: "/announcements/trade/offer/add",
+			data: tradeOffer,
 			headers: {
 				"Content-Type": "application/json"
 			}

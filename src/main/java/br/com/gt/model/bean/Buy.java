@@ -3,14 +3,12 @@ package br.com.gt.model.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -39,11 +37,8 @@ public class Buy implements Serializable {
 	@Column(length = 140)
 	private String description;
 	
-	@OneToMany(cascade = { CascadeType.REMOVE })
-	@JoinTable(name = "buyoffer",
-        joinColumns = @JoinColumn(name = "buy_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "offer_id", referencedColumnName = "id"))
-	private List<Offer> offers;
+	@OneToMany(mappedBy = "buy")
+	private List<BuyOffer> offers;
 
 	@Column
 	private boolean bought;
@@ -107,11 +102,11 @@ public class Buy implements Serializable {
 		this.description = description;
 	}
 	
-	public List<Offer> getOffers() {
+	public List<BuyOffer> getOffers() {
 		return offers;
 	}
 
-	public void setOffers(List<Offer> offers) {
+	public void setOffers(List<BuyOffer> offers) {
 		this.offers = offers;
 	}
 

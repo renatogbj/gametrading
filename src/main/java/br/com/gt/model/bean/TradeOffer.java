@@ -13,22 +13,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Offer implements Serializable {
+public class TradeOffer implements Serializable {
 
-	private static final long serialVersionUID = -4825337334125491585L;
+	private static final long serialVersionUID = -5065697654581013083L;
 
 	@Id
-	@GeneratedValue(generator = "offer_sequence", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "offer_sequence", sequenceName = "offer_sequence", allocationSize = 1)
+	@GeneratedValue(generator = "tradeoffer_sequence", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "tradeoffer_sequence", sequenceName = "tradeoffer_sequence", allocationSize = 1)
 	private Long id;
 	
 	@Column(length = 500)
-	String description;
+	private String description;
 	
-	@ManyToOne(cascade = { CascadeType.PERSIST })
+	@ManyToOne
 	@JoinColumn(name = "bidder_id", nullable = false)
-	Usr bidder;
-
+	private Usr bidder;
+	
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "trade_id", nullable = false)
+	private Trade trade;
+	
 	public Long getId() {
 		return id;
 	}
@@ -52,6 +56,12 @@ public class Offer implements Serializable {
 	public void setBidder(Usr bidder) {
 		this.bidder = bidder;
 	}
-	
-	
+
+	public Trade getTrade() {
+		return trade;
+	}
+
+	public void setTrade(Trade trade) {
+		this.trade = trade;
+	}
 }

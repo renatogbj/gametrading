@@ -43,11 +43,8 @@ public class Trade implements Serializable {
 	@Column(length = 140)
 	private String description;
 	
-	@OneToMany(cascade = { CascadeType.REMOVE })
-	@JoinTable(name = "tradeoffer",
-        joinColumns = @JoinColumn(name = "trade_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "offer_id", referencedColumnName = "id"))
-	private List<Offer> offers;
+	@OneToMany(mappedBy = "trade")
+	private List<TradeOffer> offers;
 
 	@Column
 	private boolean traded;
@@ -124,11 +121,11 @@ public class Trade implements Serializable {
 		this.description = description;
 	}
 	
-	public List<Offer> getOffers() {
+	public List<TradeOffer> getOffers() {
 		return offers;
 	}
 
-	public void setOffers(List<Offer> offers) {
+	public void setOffers(List<TradeOffer> offers) {
 		this.offers = offers;
 	}
 

@@ -29,21 +29,60 @@ function AnnouncementsController($scope, announcementsService, $growl) {
 	);
 	
 	$scope.addOffer = function() {
-		$scope.sell.offers.push($scope.offer);
-		announcementsService.addOfferToSell($scope.sell).then(
-			// success response from server
-			function(response) {
-				successAlert();
-			},
-			// error response from server
-			function(response) {
-				errorAlert();
-			}
-		);
+		$scope.offer.bidder = $scope.user;
+		if ($scope.type == 'sell') {
+			$scope.offer.sell = $scope.sell;
+			announcementsService.addSellOffer($scope.offer).then(
+				// success response from server
+				function(response) {
+					successAlert();
+				},
+				// error response from server
+				function(response) {
+					errorAlert();
+				}
+			);
+		} else if ($scope.type == 'buy') {
+			$scope.offer.buy = $scope.buy;
+			announcementsService.addBuyOffer($scope.offer).then(
+				// success response from server
+				function(response) {
+					successAlert();
+				},
+				// error response from server
+				function(response) {
+					errorAlert();
+				}
+			);
+		} else if ($scope.type == 'trade') {
+			$scope.offer.trade = $scope.trade;
+			announcementsService.addTradeOffer($scope.offer).then(
+				// success response from server
+				function(response) {
+					successAlert();
+				},
+				// error response from server
+				function(response) {
+					errorAlert();
+				}
+			);
+		}
 	};
 	
-	$scope.setSell = function(sell) {
-		$scope.sell = sell;
+	$scope.setType = function(type, announcement) {
+		$scope.type = type;
+		switch (type) {
+		case 'sell':
+			$scope.sell = announcement;
+			console.log(type + " - " + announcement);
+			break;
+		case 'buy':
+			$scope.buy = announcement;
+			break;
+		case 'trade':
+			$scope.trade = announcement;
+			break;
+		}
 	};
 	
 	$scope.forSell = function(input) {
