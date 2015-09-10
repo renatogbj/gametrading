@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.gt.model.bean.Sell;
 import br.com.gt.model.bean.SellOffer;
 import br.com.gt.model.repository.SellOfferRepository;
 
@@ -28,5 +29,9 @@ public class SellOfferService {
 	
 	public List<SellOffer> findAll() {
 		return sellOfferRepository.findAll();
+	}
+
+	public List<SellOffer> findOffers(Sell sell) {
+		return sellOfferRepository.findBySell(sell);
 	}
 }

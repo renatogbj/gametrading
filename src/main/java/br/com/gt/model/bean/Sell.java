@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Sell implements Serializable {
 
@@ -38,6 +40,7 @@ public class Sell implements Serializable {
 	private String description;
 	
 	@OneToMany(mappedBy = "sell")
+	@JsonManagedReference
 	private List<SellOffer> offers;
 
 	@Column
@@ -109,7 +112,7 @@ public class Sell implements Serializable {
 	public void setOffers(List<SellOffer> offers) {
 		this.offers = offers;
 	}
-	
+
 	public boolean isSold() {
 		return sold;
 	}

@@ -49,7 +49,8 @@ public class AnnouncementsController {
 	
 	@RequestMapping(value = "/announcements/sell", method = RequestMethod.GET)
 	public List<Sell> findSellAnnouncements() {
-		return sellService.findAll();
+		List<Sell> lista = sellService.findAll();
+		return lista;
 	}
 	
 	@RequestMapping(value = "/announcements/trade", method = RequestMethod.GET)

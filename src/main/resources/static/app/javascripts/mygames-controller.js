@@ -5,6 +5,10 @@ MyGamesController.$inject = ['$scope', 'mygamesService', '$growl'];
 
 function MyGamesController($scope, mygamesService, $growl) {
 	
+	$scope.setCurrentAnnouncement = function(announcement) {
+		$scope.currentAnnouncement = announcement;
+	};
+	
 	mygamesService.findMySellAnnouncements().then(
 		function(mySellList) {
 			$scope.mySellAnnouncements = mySellList;
@@ -24,20 +28,6 @@ function MyGamesController($scope, mygamesService, $growl) {
 			}
 		);
 	};
-	
-//	$scope.setUnsold = function(announcement) {
-//		announcement.sold = false;
-//		mygamesService.setSold(announcement).then(
-//			// success response from server
-//			function(response) {
-//				
-//			},
-//			// error response from server
-//			function(response) {
-//				errorAlert();
-//			}
-//		);
-//	};
 	
 	$scope.removeMySell = function(announcement, idx) {
 		mygamesService.removeMySellAnnouncement(announcement).then(
