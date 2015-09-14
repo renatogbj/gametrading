@@ -3,6 +3,7 @@ package br.com.gt.model.bean;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Buy implements Serializable {
@@ -37,9 +40,10 @@ public class Buy implements Serializable {
 	@Column(length = 140)
 	private String description;
 	
-	@OneToMany(mappedBy = "buy")
+	@OneToMany(mappedBy = "buy", cascade = CascadeType.REMOVE)
+	@JsonManagedReference
 	private List<BuyOffer> offers;
-
+	
 	@Column
 	private boolean bought;
 	

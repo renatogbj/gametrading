@@ -74,7 +74,6 @@ function AnnouncementsController($scope, announcementsService, $growl) {
 		switch (type) {
 		case 'sell':
 			$scope.sell = announcement;
-			console.log(type + " - " + announcement);
 			break;
 		case 'buy':
 			$scope.buy = announcement;
@@ -87,6 +86,14 @@ function AnnouncementsController($scope, announcementsService, $growl) {
 	
 	$scope.forSell = function(input) {
 		if (!input.sold) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+	};
+	
+	$scope.forBuy = function(input) {
+		if (!input.bought) {
     		return true;
     	} else {
     		return false;

@@ -2,7 +2,6 @@ package br.com.gt.model.bean;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class BuyOffer implements Serializable {
@@ -29,8 +30,9 @@ public class BuyOffer implements Serializable {
 	@JoinColumn(name = "bidder_id", nullable = false)
 	private Usr bidder;
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne
 	@JoinColumn(name = "buy_id", nullable = false)
+	@JsonBackReference
 	private Buy buy;
 	
 	public Long getId() {

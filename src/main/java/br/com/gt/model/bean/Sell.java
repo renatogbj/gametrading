@@ -3,6 +3,7 @@ package br.com.gt.model.bean;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +40,7 @@ public class Sell implements Serializable {
 	@Column(length = 140)
 	private String description;
 	
-	@OneToMany(mappedBy = "sell")
+	@OneToMany(mappedBy = "sell", cascade = CascadeType.REMOVE)
 	@JsonManagedReference
 	private List<SellOffer> offers;
 

@@ -65,19 +65,6 @@
 									    	Ofertas
 									    </md-tooltip>
 								    </span>
-				          			<span>
-					          			<md-button ng-click="editMySell(mySellAnnouncement)"
-					          					   data-toggle="modal"
-					          					   data-target="#editModal"
-					          					   class="md-icon-button md-primary"
-					          					   style="height: 36px; width: auto; margin: 0;"
-					          					   ng-disabled="mySellAnnouncement.sold">
-											<md-icon class="fa fa-pencil"></md-icon>
-										</md-button>
-										<md-tooltip md-direction="top">
-									    	Editar
-									    </md-tooltip>
-								    </span>
 									<span>
 										<md-button ng-click="removeMySell(mySellAnnouncement, $index)"
 												   class="md-icon-button md-warn"
@@ -103,24 +90,55 @@
         		<md-content>
           			<md-list>
 <!-- 				    	<md-subheader class="md-no-sticky"> -->
-				    		<!-- display quantity of itens and create menu with sorting and filtering -->
+				    		<!-- display quantity of itens and create menu with sorting, filtering and pagination -->
 <!-- 				    	</md-subheader> -->
-				      	<md-list-item ng-repeat="buyAnnouncement in buyAnnouncements">
-				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ buyAnnouncement.owner.avatar }}" />
+				      	<md-list-item ng-repeat="myBuyAnnouncement in myBuyAnnouncements">
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
-				          			{{ buyAnnouncement.game.name }} ({{ buyAnnouncement.game.platform }})
-				          			<md-button data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
-										<md-icon class="fa fa-comment"></md-icon>
-									</md-button>
+				          			<span>{{ myBuyAnnouncement.game.name }} ({{ myBuyAnnouncement.game.platform }})</span>
+				          			<span>
+										<md-button ng-click="setBought(myBuyAnnouncement)"
+												   class="md-icon-button md-primary"
+												   style="height: 36px; width: auto; margin: 0;">
+											<md-icon class="fa fa-thumb-tack"></md-icon>
+										</md-button>
+										<md-tooltip md-direction="top">
+									    	<span ng-show="!myBuyAnnouncement.bought">Marcar como comprado!</span>
+									    	<span ng-show="myBuyAnnouncement.bought">Marcar como &agrave procura!</span>
+									    </md-tooltip>
+								    </span>
+								    <span>
+								    	<md-button ng-click="setCurrentAnnouncement(myBuyAnnouncement)"
+								    			   data-toggle="modal"
+								    			   data-target="#offersModal"
+								    			   class="md-icon-button md-primary"
+								    			   style="height: 36px; width: auto; margin: 0;">
+											<md-icon class="fa fa-comment"></md-icon>
+										</md-button>
+										<md-tooltip md-direction="top">
+									    	Ofertas
+									    </md-tooltip>
+								    </span>
+									<span>
+										<md-button ng-click="removeMyBuy(myBuyAnnouncement, $index)"
+												   class="md-icon-button md-warn"
+												   style="height: 36px; width: auto; margin: 0;"
+												   ng-disabled="myBuyAnnouncement.bought">
+											<md-icon class="fa fa-trash-o"></md-icon>
+										</md-button>
+										<md-tooltip md-direction="top">
+									    	Remover
+									    </md-tooltip>
+								    </span>
+								    <span ng-show="myBuyAnnouncement.bought" class="sold-title">comprado!</span>
 				          		</h3>
-				          		<p>{{ buyAnnouncement.description }}</p>
-				          		<h4>{{ buyAnnouncement.price | currency:'R$'}}</h4>
+				          		<h4 ng-class="{'sold-price': myBuyAnnouncement.bought}">{{ myBuyAnnouncement.price | currency:'R$'}}</h4>
+				          		<p>{{ myBuyAnnouncement.description }}&nbsp;</p>
 				        	</div>
-			        		<img width="8%" ng-src="data:image/JPEG;base64,{{ buyAnnouncement.game.cover }}"/>
+			        		<img width="8%" ng-src="data:image/JPEG;base64,{{ myBuyAnnouncement.game.cover }}" />
 				      	</md-list-item>
 					</md-list>
-		        </md-content>
+       	 		</md-content>
       		</md-tab>
       		<md-tab label="Troca">
         		<md-content>

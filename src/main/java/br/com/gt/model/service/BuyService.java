@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.gt.model.bean.Buy;
 import br.com.gt.model.repository.BuyRepository;
@@ -28,5 +29,10 @@ public class BuyService {
 	
 	public List<Buy> findAll() {
 		return buyRepository.findAll();
+	}
+
+	@Transactional
+	public void setBought(Long id, boolean bought) {
+		buyRepository.setBought(id, bought);
 	}
 }
