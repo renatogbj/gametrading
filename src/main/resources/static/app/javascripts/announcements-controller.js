@@ -100,6 +100,14 @@ function AnnouncementsController($scope, announcementsService, $growl) {
     	}
 	};
 	
+	$scope.forTrade = function(input) {
+		if (!input.traded) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+	};
+	
 	var successAlert = function() {
 		$growl.box('Sucesso', 'Oferta enviada com sucesso!', {
             class: 'success',

@@ -9,10 +9,13 @@ function MyGamesService($http, $q) {
 	return ({
 		findMySellAnnouncements: findMySellAnnouncements,
 		findMyBuyAnnouncements: findMyBuyAnnouncements,
+		findMyTradeAnnouncements: findMyTradeAnnouncements,
 		removeMySellAnnouncement: removeMySellAnnouncement,
 		removeMyBuyAnnouncement: removeMyBuyAnnouncement,
+		removeMyTradeAnnouncement: removeMyTradeAnnouncement,
 		setSold: setSold,
-		setBought: setBought
+		setBought: setBought,
+		setTraded: setTraded
 	});
 	
 	function findMySellAnnouncements() {
@@ -28,6 +31,15 @@ function MyGamesService($http, $q) {
 		var request = $http({
 			method: "GET",
 			url: "/mygames/buy"
+		});
+		
+		return (request.then(handleSuccess, handleError));
+	}
+	
+	function findMyTradeAnnouncements() {
+		var request = $http({
+			method: "GET",
+			url: "/mygames/trade"
 		});
 		
 		return (request.then(handleSuccess, handleError));
@@ -59,6 +71,19 @@ function MyGamesService($http, $q) {
 		return (request.then(handleSuccess, handleError));
 	}
 	
+	function removeMyTradeAnnouncement(trade) {
+		var request = $http({
+			method: "POST",
+			url: "/mygames/trade/remove",
+			data: trade,
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+		
+		return (request.then(handleSuccess, handleError));
+	}
+	
 	function setSold(sell) {
 		var request = $http({
 			method: "POST",
@@ -77,6 +102,19 @@ function MyGamesService($http, $q) {
 			method: "POST",
 			url: "/mygames/buy/bought",
 			data: bought,
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+		
+		return (request.then(handleSuccess, handleError));
+	}
+	
+	function setTraded(traded) {
+		var request = $http({
+			method: "POST",
+			url: "/mygames/trade/traded",
+			data: traded,
 			headers: {
 				"Content-Type": "application/json"
 			}

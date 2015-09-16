@@ -26,18 +26,19 @@
 					</md-content>
 				</div>
 				
-			</div> <!-- /.modal-content -->
-		</div> <!-- /.modal-dialog -->
-	</div> <!-- /.modal -->
+			</div>
+		</div>
+	</div>
 
 	<md-content>
     	<md-tabs md-dynamic-height md-border-bottom>
+    	
 			<md-tab label="Venda">
         		<md-content>
           			<md-list>
-<!-- 				    	<md-subheader class="md-no-sticky"> -->
-				    		<!-- display quantity of itens and create menu with sorting, filtering and pagination -->
-<!-- 				    	</md-subheader> -->
+					<!-- <md-subheader class="md-no-sticky"> -->
+				    <!-- display quantity of itens and create menu with sorting, filtering and pagination -->
+					<!-- </md-subheader> -->
 				      	<md-list-item ng-repeat="mySellAnnouncement in mySellAnnouncements">
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
@@ -86,12 +87,13 @@
 					</md-list>
        	 		</md-content>
       		</md-tab>
+      		
       		<md-tab label="Compra">
         		<md-content>
           			<md-list>
-<!-- 				    	<md-subheader class="md-no-sticky"> -->
-				    		<!-- display quantity of itens and create menu with sorting, filtering and pagination -->
-<!-- 				    	</md-subheader> -->
+					<!-- <md-subheader class="md-no-sticky"> -->
+				    <!-- display quantity of itens and create menu with sorting, filtering and pagination -->
+					<!-- </md-subheader> -->
 				      	<md-list-item ng-repeat="myBuyAnnouncement in myBuyAnnouncements">
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
@@ -140,21 +142,53 @@
 					</md-list>
        	 		</md-content>
       		</md-tab>
+      		
       		<md-tab label="Troca">
         		<md-content>
-          			<!-- 				    	<md-subheader class="md-no-sticky"> -->
-				    		<!-- display quantity of itens and create menu with sorting and filtering -->
-<!-- 				    	</md-subheader> -->
-				      	<md-list-item ng-repeat="tradeAnnouncement in tradeAnnouncements">
-				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ tradeAnnouncement.owner.avatar }}" />
+          			<md-list>
+					<!-- <md-subheader class="md-no-sticky"> -->
+				    <!-- display quantity of itens and create menu with sorting, filtering and pagination -->
+					<!-- </md-subheader> -->
+				      	<md-list-item ng-repeat="myTradeAnnouncement in myTradeAnnouncements">
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
-				          			{{ tradeAnnouncement.game.name }} ({{ tradeAnnouncement.game.platform }})
-				          			<md-button data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
-										<md-icon class="fa fa-comment"></md-icon>
-									</md-button>
+				          			<span>{{ myTradeAnnouncement.game.name }} ({{ myTradeAnnouncement.game.platform }})</span>
+				          			<span>
+										<md-button ng-click="setTraded(myTradeAnnouncement)"
+												   class="md-icon-button md-primary"
+												   style="height: 36px; width: auto; margin: 0;">
+											<md-icon class="fa fa-thumb-tack"></md-icon>
+										</md-button>
+										<md-tooltip md-direction="top">
+									    	<span ng-show="!myTradeAnnouncement.traded">Marcar como trocado!</span>
+									    	<span ng-show="myTradeAnnouncement.traded">Marcar como dispon&iacute;vel!</span>
+									    </md-tooltip>
+								    </span>
+								    <span>
+								    	<md-button ng-click="setCurrentAnnouncement(myTradeAnnouncement)"
+								    			   data-toggle="modal"
+								    			   data-target="#offersModal"
+								    			   class="md-icon-button md-primary"
+								    			   style="height: 36px; width: auto; margin: 0;">
+											<md-icon class="fa fa-comment"></md-icon>
+										</md-button>
+										<md-tooltip md-direction="top">
+									    	Ofertas
+									    </md-tooltip>
+								    </span>
+									<span>
+										<md-button ng-click="removeMyTrade(myTradeAnnouncement, $index)"
+												   class="md-icon-button md-warn"
+												   style="height: 36px; width: auto; margin: 0;"
+												   ng-disabled="myTradeAnnouncement.traded">
+											<md-icon class="fa fa-trash-o"></md-icon>
+										</md-button>
+										<md-tooltip md-direction="top">
+									    	Remover
+									    </md-tooltip>
+								    </span>
+								    <span ng-show="myTradeAnnouncement.traded" class="sold-title">trocado!</span>
 				          		</h3>
-				          		<p>{{ tradeAnnouncement.description }}</p>
 				          		<h4>
 				          			Prefer&ecirc;ncias:
 				          			<span  ng-repeat="wishList in tradeAnnouncement.wishList">
@@ -164,11 +198,14 @@
 								        </md-tooltip>
 				          			</span>
 				          		</h4>
+				          		<p>{{ myTradeAnnouncement.description }}&nbsp;</p>
 				        	</div>
-				        	<img width="8%" ng-src="data:image/JPEG;base64,{{ tradeAnnouncement.game.cover }}" />
+			        		<img width="8%" ng-src="data:image/JPEG;base64,{{ myTradeAnnouncement.game.cover }}" />
 				      	</md-list-item>
-		        </md-content>
+					</md-list>
+       	 		</md-content>
 		    </md-tab>
+		    
     	</md-tabs>
   	</md-content>
 </div>

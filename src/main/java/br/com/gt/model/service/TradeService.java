@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.gt.model.bean.Trade;
 import br.com.gt.model.repository.TradeRepository;
@@ -28,5 +29,10 @@ public class TradeService {
 	
 	public List<Trade> findAll() {
 		return tradeRepository.findAll();
+	}
+	
+	@Transactional
+	public void setTraded(Long id, boolean traded) {
+		tradeRepository.setTraded(id, traded);
 	}
 }

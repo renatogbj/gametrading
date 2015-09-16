@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Trade implements Serializable {
 
@@ -43,7 +45,8 @@ public class Trade implements Serializable {
 	@Column(length = 140)
 	private String description;
 	
-	@OneToMany(mappedBy = "trade")
+	@OneToMany(mappedBy = "trade", cascade = CascadeType.REMOVE)
+	@JsonManagedReference
 	private List<TradeOffer> offers;
 
 	@Column

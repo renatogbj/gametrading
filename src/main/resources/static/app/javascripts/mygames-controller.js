@@ -21,6 +21,12 @@ function MyGamesController($scope, mygamesService, $growl) {
 		}
 	);
 	
+	mygamesService.findMyTradeAnnouncements().then(
+		function(myTradeList) {
+			$scope.myTradeAnnouncements = myTradeList;
+		}
+	);
+	
 	$scope.setSold = function(announcement) {
 		announcement.sold = !announcement.sold;
 		mygamesService.setSold(announcement).then(
@@ -38,6 +44,20 @@ function MyGamesController($scope, mygamesService, $growl) {
 	$scope.setBought = function(announcement) {
 		announcement.bought = !announcement.bought;
 		mygamesService.setBought(announcement).then(
+			// success response from server
+			function(response) {
+				
+			},
+			// error response from server
+			function(response) {
+				errorAlert();
+			}
+		);
+	};
+	
+	$scope.setTraded = function(announcement) {
+		announcement.traded = !announcement.traded;
+		mygamesService.setTraded(announcement).then(
 			// success response from server
 			function(response) {
 				
@@ -67,6 +87,19 @@ function MyGamesController($scope, mygamesService, $growl) {
 			// success response from server
 			function(response) {
 				$scope.myBuyAnnouncements.splice(idx, 1);
+			},
+			// error response from server
+			function(response) {
+				errorAlert();
+			}
+		);
+	};
+	
+	$scope.removeMyTrade = function(announcement, idx) {
+		mygamesService.removeMyTradeAnnouncement(announcement).then(
+			// success response from server
+			function(response) {
+				$scope.myTradeAnnouncements.splice(idx, 1);
 			},
 			// error response from server
 			function(response) {
