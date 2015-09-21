@@ -14,13 +14,13 @@ import javax.persistence.SequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-public class SellOfferAnswer implements Serializable {
+public class TradeOfferAnswer implements Serializable {
 
-	private static final long serialVersionUID = 8407923515654303509L;
-	
+	private static final long serialVersionUID = -3860321073219658565L;
+
 	@Id
-	@GeneratedValue(generator = "sellofferanswer_sequence", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "sellofferanswer_sequence", sequenceName = "sellofferanswer_sequence", allocationSize = 1)
+	@GeneratedValue(generator = "tradeofferanswer_sequence", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "tradeofferanswer_sequence", sequenceName = "tradeofferanswer_sequence", allocationSize = 1)
 	private Long id;
 	
 	@Column(length = 500)
@@ -33,7 +33,7 @@ public class SellOfferAnswer implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "offer_id", nullable = false)
 	@JsonBackReference(value = "offerReference")
-	private SellOffer offer;
+	private TradeOffer offer;
 
 	public Long getId() {
 		return id;
@@ -59,12 +59,11 @@ public class SellOfferAnswer implements Serializable {
 		this.author = author;
 	}
 
-	public SellOffer getOffer() {
+	public TradeOffer getOffer() {
 		return offer;
 	}
 
-	public void setOffer(SellOffer offer) {
+	public void setOffer(TradeOffer offer) {
 		this.offer = offer;
 	}
-	
 }

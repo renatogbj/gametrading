@@ -11,6 +11,8 @@ function MyGamesService($http, $q) {
 		findMyBuyAnnouncements: findMyBuyAnnouncements,
 		findMyTradeAnnouncements: findMyTradeAnnouncements,
 		addSellOfferAnswer: addSellOfferAnswer,
+		addBuyOfferAnswer: addBuyOfferAnswer,
+		addTradeOfferAnswer: addTradeOfferAnswer,
 		removeMySellAnnouncement: removeMySellAnnouncement,
 		removeMyBuyAnnouncement: removeMyBuyAnnouncement,
 		removeMyTradeAnnouncement: removeMyTradeAnnouncement,
@@ -50,6 +52,32 @@ function MyGamesService($http, $q) {
 		var request = $http({
 			method: "POST",
 			url: "/mygames/sell/answer/add",
+			data: answer,
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+		
+		return (request.then(handleSuccess, handleError));
+	}
+	
+	function addBuyOfferAnswer(answer) {
+		var request = $http({
+			method: "POST",
+			url: "/mygames/buy/answer/add",
+			data: answer,
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+		
+		return (request.then(handleSuccess, handleError));
+	}
+	
+	function addTradeOfferAnswer(answer) {
+		var request = $http({
+			method: "POST",
+			url: "/mygames/trade/answer/add",
 			data: answer,
 			headers: {
 				"Content-Type": "application/json"

@@ -29,4 +29,5 @@ public class SellOfferAnswerService {
 	public List<SellOfferAnswer> findAll() {
 		return sellOfferAnswerRepository.findAll();
 	}
+	
 }

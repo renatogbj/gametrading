@@ -1,7 +1,9 @@
 package br.com.gt.model.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class TradeOffer implements Serializable {
@@ -34,6 +38,10 @@ public class TradeOffer implements Serializable {
 	@JoinColumn(name = "trade_id", nullable = false)
 	@JsonBackReference
 	private Trade trade;
+	
+	@OneToMany(mappedBy = "offer", cascade = CascadeType.REMOVE)
+	@JsonManagedReference(value = "offerReference")
+	private List<TradeOfferAnswer> answers;
 	
 	public Long getId() {
 		return id;
@@ -66,4 +74,13 @@ public class TradeOffer implements Serializable {
 	public void setTrade(Trade trade) {
 		this.trade = trade;
 	}
+
+	public List<TradeOfferAnswer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<TradeOfferAnswer> answers) {
+		this.answers = answers;
+	}
+	
 }

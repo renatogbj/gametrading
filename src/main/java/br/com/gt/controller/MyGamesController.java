@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gt.model.bean.Buy;
+import br.com.gt.model.bean.BuyOfferAnswer;
 import br.com.gt.model.bean.Sell;
 import br.com.gt.model.bean.SellOfferAnswer;
 import br.com.gt.model.bean.Trade;
+import br.com.gt.model.bean.TradeOfferAnswer;
+import br.com.gt.model.service.BuyOfferAnswerService;
 import br.com.gt.model.service.BuyService;
 import br.com.gt.model.service.SellOfferAnswerService;
 import br.com.gt.model.service.SellService;
+import br.com.gt.model.service.TradeOfferAnswerService;
 import br.com.gt.model.service.TradeService;
 
 @RestController
@@ -31,6 +35,12 @@ public class MyGamesController {
 	
 	@Autowired
 	private SellOfferAnswerService sellOfferAnswerService;
+	
+	@Autowired
+	private BuyOfferAnswerService buyOfferAnswerService;
+	
+	@Autowired
+	private TradeOfferAnswerService tradeOfferAnswerService;
 	
 	@RequestMapping(value = "/mygames/sell", method = RequestMethod.GET)
 	public List<Sell> findMySellAnnouncements() {
@@ -50,6 +60,16 @@ public class MyGamesController {
 	@RequestMapping(value = "/mygames/sell/answer/add", method = RequestMethod.POST)
 	public void addSellOfferAnswer(@RequestBody SellOfferAnswer answer) {
 		sellOfferAnswerService.save(answer);
+	}
+	
+	@RequestMapping(value = "/mygames/buy/answer/add", method = RequestMethod.POST)
+	public void addBuyOfferAnswer(@RequestBody BuyOfferAnswer answer) {
+		buyOfferAnswerService.save(answer);
+	}
+	
+	@RequestMapping(value = "/mygames/trade/answer/add", method = RequestMethod.POST)
+	public void addTradeOfferAnswer(@RequestBody TradeOfferAnswer answer) {
+		tradeOfferAnswerService.save(answer);
 	}
 	
 	@RequestMapping(value = "/mygames/sell/remove", method = RequestMethod.POST)

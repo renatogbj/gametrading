@@ -7,8 +7,9 @@ function MyGamesController($scope, mygamesService, $growl) {
 	
 	$scope.answerOffer = false;
 	
-	$scope.setCurrentAnnouncement = function(announcement) {
+	$scope.setCurrentAnnouncement = function(type, announcement) {
 		$scope.currentAnnouncement = announcement;
+		$scope.type = type;
 	};
 	
 	mygamesService.findMySellAnnouncements().then(
@@ -117,24 +118,64 @@ function MyGamesController($scope, mygamesService, $growl) {
 			offer: offer
 		};
 		
-		mygamesService.addSellOfferAnswer(answer).then(
-			// success response from server
-			function(response) {
-				// avoids JSON circular reference
-				answer.offer = '';
-				
-				// add object to update the display without a new find request
-				if ($scope.currentAnnouncement.offers[idOffer].answers) {
-					$scope.currentAnnouncement.offers[idOffer].answers.push(answer);
-				} else {
-					$scope.currentAnnouncement.offers[idOffer].answers = [answer];
+		if ($scope.type == 'sell') {
+			mygamesService.addSellOfferAnswer(answer).then(
+				// success response from server
+				function(response) {
+					// avoids JSON circular reference
+					answer.offer = '';
+					
+					// add object to update the display without a new find request
+					if ($scope.currentAnnouncement.offers[idOffer].answers) {
+						$scope.currentAnnouncement.offers[idOffer].answers.push(answer);
+					} else {
+						$scope.currentAnnouncement.offers[idOffer].answers = [answer];
+					}
+				},
+				// error response from server
+				function(response) {
+					errorAlert();
 				}
-			},
-			// error response from server
-			function(response) {
-				errorAlert();
-			}
-		);
+			);
+		} else if ($scope.type == 'buy') {
+			mygamesService.addBuyOfferAnswer(answer).then(
+				// success response from server
+				function(response) {
+					// avoids JSON circular reference
+					answer.offer = '';
+					
+					// add object to update the display without a new find request
+					if ($scope.currentAnnouncement.offers[idOffer].answers) {
+						$scope.currentAnnouncement.offers[idOffer].answers.push(answer);
+					} else {
+						$scope.currentAnnouncement.offers[idOffer].answers = [answer];
+					}
+				},
+				// error response from server
+				function(response) {
+					errorAlert();
+				}
+			);
+		} else if ($scope.type == 'trade') {
+			mygamesService.addTradeOfferAnswer(answer).then(
+				// success response from server
+				function(response) {
+					// avoids JSON circular reference
+					answer.offer = '';
+					
+					// add object to update the display without a new find request
+					if ($scope.currentAnnouncement.offers[idOffer].answers) {
+						$scope.currentAnnouncement.offers[idOffer].answers.push(answer);
+					} else {
+						$scope.currentAnnouncement.offers[idOffer].answers = [answer];
+					}
+				},
+				// error response from server
+				function(response) {
+					errorAlert();
+				}
+			);
+		}
 		
 		// hide the text input
 		$scope.answerOffer = false;
