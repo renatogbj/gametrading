@@ -35,9 +35,9 @@
 						        	<div>
 						        		<md-list>
 											<md-list-item class="md-3-line" ng-repeat="answer in offer.answers">
-										        <img class="md-avatar" ng-src="data:image/JPEG;base64,{{ answer.bidder.avatar }}" />
+										        <img class="md-avatar" ng-src="data:image/JPEG;base64,{{ answer.author.avatar }}" />
 										        <div class="md-list-item-text" layout="column">
-											        <h3>{{ answer.bidder.name }}</h3>
+											        <h3>{{ answer.author.name }}</h3>
 											        <p>{{ answer.description }}</p>
 										        </div>
 										    </md-list-item>
@@ -52,7 +52,7 @@
 									        		  md-maxlength="500">
 									        </textarea>
 									    </md-input-container>
-									    <md-button ng-click="sendAnswer($index, currentAnnouncement, offerAnswer)"
+									    <md-button ng-click="sendAnswer($index, offer, offerAnswer)"
 									    		   aria-label="Enviar resposta"
 									    		   class="md-primary md-raised">
 									    	Enviar

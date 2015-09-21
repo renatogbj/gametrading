@@ -36,17 +36,12 @@ public class SellOffer implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "sell_id", nullable = false)
-	@JsonBackReference
+	@JsonBackReference(value = "sellReference")
 	private Sell sell;
 	
-	@OneToMany(cascade = { CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE })
-	@JsonManagedReference(value = "answerReference")
-	private List<SellOffer> answers;
-	
-	@ManyToOne(cascade = { CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinColumn(name = "offer_answer_id")
-	@JsonBackReference(value = "answerReference")
-	private SellOffer offerAnswer;
+	@OneToMany(mappedBy = "offer", cascade = CascadeType.REMOVE)
+	@JsonManagedReference(value = "offerReference")
+	private List<SellOfferAnswer> answers;
 	
 	public Long getId() {
 		return id;
@@ -79,21 +74,13 @@ public class SellOffer implements Serializable {
 	public void setSell(Sell sell) {
 		this.sell = sell;
 	}
-	
-	public List<SellOffer> getAnswers() {
+
+	public List<SellOfferAnswer> getAnswers() {
 		return answers;
 	}
 
-	public void setAnswers(List<SellOffer> answers) {
+	public void setAnswers(List<SellOfferAnswer> answers) {
 		this.answers = answers;
-	}
-	
-	public SellOffer getOfferAnswer() {
-		return offerAnswer;
-	}
-
-	public void setOfferAnswer(SellOffer offerAnswer) {
-		this.offerAnswer = offerAnswer;
 	}
 	
 }

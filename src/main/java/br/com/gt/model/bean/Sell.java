@@ -41,7 +41,7 @@ public class Sell implements Serializable {
 	private String description;
 	
 	@OneToMany(mappedBy = "sell", cascade = CascadeType.REMOVE)
-	@JsonManagedReference
+	@JsonManagedReference(value = "sellReference")
 	private List<SellOffer> offers;
 
 	@Column

@@ -110,23 +110,25 @@ function MyGamesController($scope, mygamesService, $growl) {
 		);
 	};
 	
-	$scope.sendAnswer = function(idOffer, announcement, answerText) {
+	$scope.sendAnswer = function(idOffer, offer, answerText) {
 		var answer = {
-			bidder: $scope.user,
-			description: answerText
+			author: $scope.user,
+			description: answerText,
+			offer: offer
 		};
 		
-		if (announcement.offers[idOffer].answers) {
-			announcement.offers[idOffer].answers.push(answer);
-		} else {
-			announcement.offers[idOffer].answers = [answer];
-		}
-		announcement.offers[idOffer].offerAnswer = answer;
-		
-		mygamesService.updateMySellAnnouncement(announcement).then(
+		mygamesService.addSellOfferAnswer(answer).then(
 			// success response from server
 			function(response) {
+				// avoids JSON circular reference
+				answer.offer = '';
 				
+				// add object to update the display without a new find request
+				if ($scope.currentAnnouncement.offers[idOffer].answers) {
+					$scope.currentAnnouncement.offers[idOffer].answers.push(answer);
+				} else {
+					$scope.currentAnnouncement.offers[idOffer].answers = [answer];
+				}
 			},
 			// error response from server
 			function(response) {
@@ -134,6 +136,7 @@ function MyGamesController($scope, mygamesService, $growl) {
 			}
 		);
 		
+		// hide the text input
 		$scope.answerOffer = false;
 	};
 	
