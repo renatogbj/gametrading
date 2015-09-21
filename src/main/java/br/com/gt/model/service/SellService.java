@@ -35,4 +35,19 @@ public class SellService {
 	public void setSold(Long id, boolean sold) {
 		sellRepository.setSold(id, sold);
 	}
+
+	@Transactional
+	public void saveOrUpdate(Sell sell) {
+		Sell dbSell = find(sell.getId());
+		if (dbSell == null) {
+			save(sell);
+		} else {
+			dbSell.setDescription(sell.getDescription());
+			dbSell.setGame(sell.getGame());
+			dbSell.setOffers(sell.getOffers());
+			dbSell.setOwner(sell.getOwner());
+			dbSell.setPrice(sell.getPrice());
+			dbSell.setSold(sell.isSold());
+		}
+	}
 }

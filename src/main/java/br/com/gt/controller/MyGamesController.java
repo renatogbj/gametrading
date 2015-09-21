@@ -42,6 +42,11 @@ public class MyGamesController {
 		return tradeService.findAll();
 	}
 	
+	@RequestMapping(value = "/mygames/sell/update", method = RequestMethod.POST)
+	public void updateMySellAnnouncement(@RequestBody Sell sell) {
+		sellService.saveOrUpdate(sell);
+	}
+	
 	@RequestMapping(value = "/mygames/sell/remove", method = RequestMethod.POST)
 	public void removeMySellAnnouncement(@RequestBody Sell sell) {
 		sellService.delete(sell);

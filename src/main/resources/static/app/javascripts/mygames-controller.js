@@ -5,6 +5,8 @@ MyGamesController.$inject = ['$scope', 'mygamesService', '$growl'];
 
 function MyGamesController($scope, mygamesService, $growl) {
 	
+	$scope.answerOffer = false;
+	
 	$scope.setCurrentAnnouncement = function(announcement) {
 		$scope.currentAnnouncement = announcement;
 	};
@@ -106,6 +108,37 @@ function MyGamesController($scope, mygamesService, $growl) {
 				errorAlert();
 			}
 		);
+	};
+	
+	$scope.sendAnswer = function(idOffer, announcement, answerText) {
+		var answer = {
+			bidder: $scope.user,
+			description: answerText
+		};
+		
+		if (announcement.offers[idOffer].answers) {
+			announcement.offers[idOffer].answers.push(answer);
+		} else {
+			announcement.offers[idOffer].answers = [answer];
+		}
+		announcement.offers[idOffer].offerAnswer = answer;
+		
+		mygamesService.updateMySellAnnouncement(announcement).then(
+			// success response from server
+			function(response) {
+				
+			},
+			// error response from server
+			function(response) {
+				errorAlert();
+			}
+		);
+		
+		$scope.answerOffer = false;
+	};
+	
+	$scope.showAnswerField = function() {
+		$scope.answerOffer = true;
 	};
 	
 	var successAlert = function() {
