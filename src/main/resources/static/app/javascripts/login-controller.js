@@ -7,9 +7,15 @@ angular.module('gametradingApp')
 LoginController.$inject = ['$scope', 'loginService'];
 
 function LoginController($scope, loginService) {
+	
     loginService.login().then(
 		function(userItem) {
 			$scope.user = userItem;
 		}
 	);
+    
+    $scope.logout = function() {
+    	FB.logout();
+    }
+    
 }

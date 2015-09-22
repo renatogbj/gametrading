@@ -141,6 +141,29 @@ function AnnouncementsController($scope, announcementsService, $growl) {
 		return true;
 	};
 	
+	$scope.filterPlatform = function(input) {
+		if ($scope.searchPlatform) {
+			if (input.game.platform === $scope.searchPlatform.id) {
+				console.log("returning true");
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return true;
+	};
+	
+	$scope.platforms = [
+	    {
+	    	id: 'PS4',
+	    	name: 'PlayStation 4'
+	    },
+	    {
+	    	id: 'XBOX_ONE',
+	    	name: 'XBox One'
+	    }
+	];
+	
 	var successAlert = function() {
 		$growl.box('Sucesso', 'Oferta enviada com sucesso!', {
             class: 'success',

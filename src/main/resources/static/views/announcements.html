@@ -80,12 +80,23 @@
        	 		</md-content>
       		</md-tab>
       		<md-tab label="Compra">
-        		<md-content>
+        		<md-content style="overflow: inherit">
+        			<div class="row">
+						<md-input-container class="col-md-3">
+				    		<label>Buscar jogo</label>
+				    		<input ng-model="searchGame">
+				    	</md-input-container>
+				    	<md-input-container class="col-md-2">
+				    		<label>Pre&ccedil;o m&iacute;nimo</label>
+				    		<input type="number" min="0" ng-model="searchMinPrice">
+				    	</md-input-container>
+				    	<md-input-container class="col-md-2">
+				    		<label>Pre&ccedil;o m&aacute;ximo</label>
+				    		<input type="number" min="0" ng-model="searchMaxPrice">
+				    	</md-input-container>
+			    	</div>
           			<md-list>
-					<!-- <md-subheader class="md-no-sticky"> -->
-				    <!-- display quantity of itens and create menu with sorting and filtering -->
-					<!-- </md-subheader> -->
-				      	<md-list-item ng-repeat="buyAnnouncement in buyAnnouncements | filter:forBuy">
+				      	<md-list-item ng-repeat="buyAnnouncement in buyAnnouncements | filter:forBuy | filter:filterGame | filter:filterMinPrice | filter:filterMaxPrice">
 				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ buyAnnouncement.owner.avatar }}" />
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
@@ -108,11 +119,15 @@
 		        </md-content>
       		</md-tab>
       		<md-tab label="Troca">
-        		<md-content>
-          			<!-- <md-subheader class="md-no-sticky"> -->
-				    <!-- display quantity of itens and create menu with sorting and filtering -->
-					<!-- </md-subheader> -->
-				      	<md-list-item ng-repeat="tradeAnnouncement in tradeAnnouncements | filter:forTrade">
+        		<md-content style="overflow: inherit">
+        			<div class="row">
+						<md-input-container class="col-md-3">
+				    		<label>Buscar jogo</label>
+				    		<input ng-model="searchGame">
+				    	</md-input-container>
+			    	</div>
+					<md-list>
+				      	<md-list-item ng-repeat="tradeAnnouncement in tradeAnnouncements | filter:forTrade | filter:filterGame">
 				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ tradeAnnouncement.owner.avatar }}" />
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
@@ -139,6 +154,7 @@
 				        	</div>
 				        	<img width="8%" ng-src="data:image/JPEG;base64,{{ tradeAnnouncement.game.cover }}" />
 				      	</md-list-item>
+					</md-list>
 		        </md-content>
 		    </md-tab>
     	</md-tabs>
