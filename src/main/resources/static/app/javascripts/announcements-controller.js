@@ -108,6 +108,39 @@ function AnnouncementsController($scope, announcementsService, $growl) {
     	}
 	};
 	
+	$scope.filterGame = function(input) {
+		if ($scope.searchGame) {
+			if (input.game.name.toLowerCase().indexOf($scope.searchGame.toLowerCase()) > -1) {
+	    		return true;
+	    	} else {
+	    		return false;
+	    	}
+		}
+		return true;
+	};
+	
+	$scope.filterMinPrice = function(input) {
+		if ($scope.searchMinPrice) {
+			if (input.price >= $scope.searchMinPrice) {
+	    		return true;
+	    	} else {
+	    		return false;
+	    	}
+		}
+		return true;
+	};
+	
+	$scope.filterMaxPrice = function(input) {
+		if ($scope.searchMaxPrice) {
+			if (input.price <= $scope.searchMaxPrice) {
+	    		return true;
+	    	} else {
+	    		return false;
+	    	}
+		}
+		return true;
+	};
+	
 	var successAlert = function() {
 		$growl.box('Sucesso', 'Oferta enviada com sucesso!', {
             class: 'success',

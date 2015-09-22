@@ -5,7 +5,7 @@
 			<div class="modal-content">
 			
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<h4 class="modal-title">Enviar Oferta</h4>
@@ -25,7 +25,12 @@
 				</div>
 				
 				<div class="modal-footer">
-					<md-button ng-click="addOffer()" class="md-primary md-raised" data-dismiss="modal">Enviar</md-button>
+					<md-button ng-click="addOffer()"
+							   class="md-primary md-raised"
+							   data-dismiss="modal"
+							   aria-label="Enviar">
+						Enviar
+					</md-button>
 				</div>
 				
 			</div> <!-- /.modal-content -->
@@ -35,17 +40,34 @@
 	<md-content>
     	<md-tabs md-dynamic-height md-border-bottom>
 			<md-tab label="Venda">
-        		<md-content>
+        		<md-content style="overflow: inherit">
+        			<div class="row">
+						<md-input-container class="col-md-3">
+				    		<label>Buscar jogo</label>
+				    		<input ng-model="searchGame">
+				    	</md-input-container>
+				    	<md-input-container class="col-md-2">
+				    		<label>Pre&ccedil;o m&iacute;nimo</label>
+				    		<input type="number" min="0" ng-model="searchMinPrice">
+				    	</md-input-container>
+				    	<md-input-container class="col-md-2">
+				    		<label>Pre&ccedil;o m&aacute;ximo</label>
+				    		<input type="number" min="0" ng-model="searchMaxPrice">
+				    	</md-input-container>
+			    	</div>
           			<md-list>
-					<!-- <md-subheader class="md-no-sticky"> -->
-				    <!-- display quantity of itens and create menu with sorting and filtering -->
-					<!-- </md-subheader> -->
-				      	<md-list-item ng-repeat="sellAnnouncement in sellAnnouncements | filter:forSell">
+				      	<md-list-item ng-repeat="sellAnnouncement in sellAnnouncements | filter:forSell | filter:filterGame | filter:filterMinPrice | filter:filterMaxPrice">
 				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ sellAnnouncement.owner.avatar }}" />
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
 				          			{{ sellAnnouncement.game.name }} ({{ sellAnnouncement.game.platform }})
-					          		<md-button ng-click="setType('sell', sellAnnouncement)" aria-label="Ofertar" data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
+					          		<md-button ng-click="setType('sell', sellAnnouncement)"
+					          				   aria-label="Ofertar"
+					          				   data-toggle="modal"
+					          				   data-target="#offerModal"
+					          				   class="md-icon-button md-primary"
+					          				   ng-alt="Ofertar"
+					          				   style="height: 36px;">
 										<md-icon class="fa fa-comment"></md-icon>
 									</md-button>
 				          		</h3>
@@ -68,7 +90,12 @@
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
 				          			{{ buyAnnouncement.game.name }} ({{ buyAnnouncement.game.platform }})
-				          			<md-button ng-click="setType('buy', buyAnnouncement)" data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
+				          			<md-button ng-click="setType('buy', buyAnnouncement)"
+				          					   data-toggle="modal"
+				          					   data-target="#offerModal"
+				          					   aria-label="Ofertar"
+				          					   class="md-icon-button md-primary"
+				          					   style="height: 36px;">
 										<md-icon class="fa fa-comment"></md-icon>
 									</md-button>
 				          		</h3>
@@ -90,7 +117,12 @@
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
 				          			{{ tradeAnnouncement.game.name }} ({{ tradeAnnouncement.game.platform }})
-				          			<md-button ng-click="setType('trade', tradeAnnouncement)" data-toggle="modal" data-target="#offerModal" class="md-icon-button md-primary" ng-alt="Ofertar" style="height: 36px;">
+				          			<md-button ng-click="setType('trade', tradeAnnouncement)"
+				          					   data-toggle="modal"
+				          					   data-target="#offerModal"
+				          					   class="md-icon-button md-primary"
+				          					   aria-label="Ofertar"
+				          					   style="height: 36px;">
 										<md-icon class="fa fa-comment"></md-icon>
 									</md-button>
 				          		</h3>
