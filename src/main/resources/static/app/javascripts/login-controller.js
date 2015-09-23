@@ -4,9 +4,13 @@
 angular.module('gametradingApp')
     .controller('LoginController', LoginController);
 
-LoginController.$inject = ['$scope', 'loginService'];
+LoginController.$inject = ['$scope', 'loginService', '$location'];
 
-function LoginController($scope, loginService) {
+function LoginController($scope, loginService, $location) {
+	
+	$scope.isActive = function(route) {
+        return route === $location.path();
+    }
 	
     loginService.login().then(
 		function(userItem) {
