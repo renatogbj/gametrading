@@ -1,52 +1,55 @@
 angular.module('gametradingApp')
-	.service('announcementsService', AnnouncementsService);
+	.service('myoffersService', MyOffersService);
 
-AnnouncementsService.$inject = ['$http', '$q'];
+MyOffersService.$inject = ['$http', '$q'];
 
-function AnnouncementsService($http, $q) {
+function MyOffersService($http, $q) {
 	
 	// return public API for this service
 	return ({
-		findBuyAnnouncements: findBuyAnnouncements,
 		findSellAnnouncements: findSellAnnouncements,
+		findBuyAnnouncements: findBuyAnnouncements,
 		findTradeAnnouncements: findTradeAnnouncements,
-		addSellOffer: addSellOffer,
-		addBuyOffer: addBuyOffer,
-		addTradeOffer: addTradeOffer
+		addSellOfferAnswer: addSellOfferAnswer,
+		addBuyOfferAnswer: addBuyOfferAnswer,
+		addTradeOfferAnswer: addTradeOfferAnswer
 	});
 	
-	function findSellAnnouncements() {
+	function findSellAnnouncements(userEmail) {
 		var request = $http({
 			method: "GET",
-			url: "/announcements/sell"
+			url: "/myoffers/sell",
+			params: {userEmail: userEmail}
 		});
 		
 		return (request.then(handleSuccess, handleError));
 	}
 	
-	function findBuyAnnouncements() {
+	function findBuyAnnouncements(userEmail) {
 		var request = $http({
 			method: "GET",
-			url: "/announcements/buy"
+			url: "/myoffers/buy",
+			params: {userEmail: userEmail}
 		});
 		
 		return (request.then(handleSuccess, handleError));
 	}
 	
-	function findTradeAnnouncements() {
+	function findTradeAnnouncements(userEmail) {
 		var request = $http({
 			method: "GET",
-			url: "/announcements/trade"
+			url: "/myoffers/trade",
+			params: {userEmail: userEmail}
 		});
 		
 		return (request.then(handleSuccess, handleError));
 	}
 	
-	function addSellOffer(sellOffer) {
+	function addSellOfferAnswer(answer) {
 		var request = $http({
 			method: "POST",
-			url: "/announcements/sell/offer/add",
-			data: sellOffer,
+			url: "/myoffers/sell/answer/add",
+			data: answer,
 			headers: {
 				"Content-Type": "application/json"
 			}
@@ -55,11 +58,11 @@ function AnnouncementsService($http, $q) {
 		return (request.then(handleSuccess, handleError));
 	}
 	
-	function addBuyOffer(buyOffer) {
+	function addBuyOfferAnswer(answer) {
 		var request = $http({
 			method: "POST",
-			url: "/announcements/buy/offer/add",
-			data: buyOffer,
+			url: "/myoffers/buy/answer/add",
+			data: answer,
 			headers: {
 				"Content-Type": "application/json"
 			}
@@ -68,11 +71,11 @@ function AnnouncementsService($http, $q) {
 		return (request.then(handleSuccess, handleError));
 	}
 	
-	function addTradeOffer(tradeOffer) {
+	function addTradeOfferAnswer(answer) {
 		var request = $http({
 			method: "POST",
-			url: "/announcements/trade/offer/add",
-			data: tradeOffer,
+			url: "/myoffers/trade/answer/add",
+			data: answer,
 			headers: {
 				"Content-Type": "application/json"
 			}

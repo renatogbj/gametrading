@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.gt.model.bean.TradeOffer;
+import br.com.gt.model.bean.Usr;
 import br.com.gt.model.repository.TradeOfferRepository;
 
 @Service
@@ -29,4 +30,9 @@ public class TradeOfferService {
 	public List<TradeOffer> findAll() {
 		return tradeOfferRepository.findAll();
 	}
+
+	public List<TradeOffer> findByBidder(Usr bidder) {
+		return tradeOfferRepository.findByBidder(bidder);
+	}
+	
 }

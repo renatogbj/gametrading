@@ -1,0 +1,162 @@
+<div ng-controller="MyOffersController">
+
+	<div id="offersModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Ofertas</h4>
+				</div>
+				
+				<div class="modal-body">
+					<md-content>
+						<md-list>
+							<md-list-item class="md-3-line" ng-repeat="offer in currentAnnouncement.offers">
+						        <img class="md-avatar" ng-src="data:image/JPEG;base64,{{ offer.bidder.avatar }}" />
+						        <div class="md-list-item-text" layout="column">
+						        	<h3>
+						        		{{ offer.bidder.name }}
+						        		<span>
+							        		<md-button ng-click="showAnswerField()"
+							        				   aria-label="Responder"
+													   class="md-icon-button md-primary"
+													   style="height: 36px; width: auto; margin: 0;">
+												<md-icon class="fa fa-comment"></md-icon>
+											</md-button>
+											<md-tooltip md-direction="top">
+										    	Responder
+										    </md-tooltip>
+										</span>
+						        	</h3>
+						        	<p>{{ offer.description }}</p>
+						        	<div>
+						        		<md-list>
+											<md-list-item class="md-3-line" ng-repeat="answer in offer.answers">
+										        <img class="md-avatar" ng-src="data:image/JPEG;base64,{{ answer.author.avatar }}" />
+										        <div class="md-list-item-text" layout="column">
+											        <h3>{{ answer.author.name }}</h3>
+											        <p>{{ answer.description }}</p>
+										        </div>
+										    </md-list-item>
+										</md-list>
+						        	</div>
+									<span ng-show="answerOffer">
+										<md-input-container>
+									        <label>Mensagem</label>
+									        <textarea ng-model="offerAnswer"
+									        		  rows="3"
+									        		  columns="3"
+									        		  md-maxlength="500">
+									        </textarea>
+									    </md-input-container>
+									    <md-button ng-click="sendAnswer($index, offer, offerAnswer)"
+									    		   aria-label="Enviar resposta"
+									    		   class="md-primary md-raised">
+									    	Enviar
+									    </md-button>
+									</span>
+						        </div>
+						        <md-divider></md-divider>
+					      	</md-list-item>
+					   	</md-list>
+					</md-content>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<md-content>
+    	<md-tabs md-dynamic-height md-border-bottom>
+    	
+			<md-tab label="Venda">
+        		<md-content style="overflow: inherit">
+        		
+          			<md-list>
+				      	<md-list-item ng-repeat="sellAnnouncement in sellAnnouncements">
+				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ sellAnnouncement.owner.avatar }}" />
+				        	<div class="md-list-item-text col-md-10">
+				          		<h3>
+				          			{{ sellAnnouncement.game.name }} ({{ sellAnnouncement.game.platform }})
+				          			<md-button ng-click="setCurrentAnnouncement('sell', sellAnnouncement)"
+							    			   aria-label="Ofertas"
+							    			   data-toggle="modal"
+							    			   data-target="#offersModal"
+							    			   class="md-icon-button md-primary"
+							    			   style="height: 36px; width: auto; margin: 0;">
+										<md-icon class="fa fa-comment"></md-icon>
+									</md-button>
+				          		</h3>
+				          		<h4>{{ sellAnnouncement.price | currency:'R$'}}</h4>
+				          		<p>{{ sellAnnouncement.description }}&nbsp;</p>
+				        	</div>
+			        		<img width="8%" ng-src="data:image/JPEG;base64,{{ sellAnnouncement.game.cover }}" />
+				      	</md-list-item>
+					</md-list>
+					
+       	 		</md-content>
+      		</md-tab>
+      		
+      		<md-tab label="Compra">
+      			<md-content style="overflow: inherit">
+        		
+          			<md-list>
+				      	<md-list-item ng-repeat="buyAnnouncement in buyAnnouncements">
+				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ buyAnnouncement.owner.avatar }}" />
+				        	<div class="md-list-item-text col-md-10">
+				          		<h3>
+				          			{{ buyAnnouncement.game.name }} ({{ buyAnnouncement.game.platform }})
+				          			<md-button ng-click="setCurrentAnnouncement('buy', buyAnnouncement)"
+							    			   aria-label="Ofertas"
+							    			   data-toggle="modal"
+							    			   data-target="#offersModal"
+							    			   class="md-icon-button md-primary"
+							    			   style="height: 36px; width: auto; margin: 0;">
+										<md-icon class="fa fa-comment"></md-icon>
+									</md-button>
+				          		</h3>
+				          		<h4>{{ buyAnnouncement.price | currency:'R$'}}</h4>
+				          		<p>{{ buyAnnouncement.description }}&nbsp;</p>
+				        	</div>
+			        		<img width="8%" ng-src="data:image/JPEG;base64,{{ buyAnnouncement.game.cover }}" />
+				      	</md-list-item>
+					</md-list>
+					
+       	 		</md-content>
+      		</md-tab>
+      		
+      		<md-tab label="Troca">
+      			<md-content style="overflow: inherit">
+        		
+          			<md-list>
+				      	<md-list-item ng-repeat="tradeAnnouncement in tradeAnnouncements">
+				        	<img class="md-avatar" ng-src="data:image/JPEG;base64,{{ tradeAnnouncement.owner.avatar }}" />
+				        	<div class="md-list-item-text col-md-10">
+				          		<h3>
+				          			{{ tradeAnnouncement.game.name }} ({{ tradeAnnouncement.game.platform }})
+				          			<md-button ng-click="setCurrentAnnouncement('trade', tradeAnnouncement)"
+							    			   aria-label="Ofertas"
+							    			   data-toggle="modal"
+							    			   data-target="#offersModal"
+							    			   class="md-icon-button md-primary"
+							    			   style="height: 36px; width: auto; margin: 0;">
+										<md-icon class="fa fa-comment"></md-icon>
+									</md-button>
+				          		</h3>
+				          		<h4>{{ tradeAnnouncement.price | currency:'R$'}}</h4>
+				          		<p>{{ tradeAnnouncement.description }}&nbsp;</p>
+				        	</div>
+			        		<img width="8%" ng-src="data:image/JPEG;base64,{{ tradeAnnouncement.game.cover }}" />
+				      	</md-list-item>
+					</md-list>
+					
+       	 		</md-content>
+      		</md-tab>
+      		
+		</md-tabs>
+	</md-content>
+	
+</div>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.gt.model.bean.Sell;
 import br.com.gt.model.bean.SellOffer;
+import br.com.gt.model.bean.Usr;
 import br.com.gt.model.repository.SellOfferRepository;
 
 @Service
@@ -34,4 +35,9 @@ public class SellOfferService {
 	public List<SellOffer> findOffers(Sell sell) {
 		return sellOfferRepository.findBySell(sell);
 	}
+	
+	public List<SellOffer> findByBidder(Usr bidder) {
+		return sellOfferRepository.findByBidder(bidder);
+	}
+	
 }

@@ -42,15 +42,15 @@ public class AnnouncementsController {
 	@Autowired
 	private TradeOfferService tradeOfferService;
 	
-	@RequestMapping(value = "/announcements/buy", method = RequestMethod.GET)
-	public List<Buy> findBuyAnnouncements() {
-		return buyService.findAll();
-	}
-	
 	@RequestMapping(value = "/announcements/sell", method = RequestMethod.GET)
 	public List<Sell> findSellAnnouncements() {
 		List<Sell> lista = sellService.findAll();
 		return lista;
+	}
+	
+	@RequestMapping(value = "/announcements/buy", method = RequestMethod.GET)
+	public List<Buy> findBuyAnnouncements() {
+		return buyService.findAll();
 	}
 	
 	@RequestMapping(value = "/announcements/trade", method = RequestMethod.GET)
