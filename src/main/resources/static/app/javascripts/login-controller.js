@@ -15,7 +15,11 @@ function LoginController($scope, loginService) {
 	);
     
     $scope.logout = function() {
-    	FB.logout();
-    }
+    	loginService.logout().then(
+			function(result) {
+				console.log("logged out!");
+			}
+		);
+    };
     
 }

@@ -55,7 +55,7 @@
             <div class="navbar-right">
                 <ul class="nav navbar-nav">
                     <li ng-show="user.name == ''">
-                    	<form action="/connect/facebook" method="POST">
+                    	<form action="/signin/facebook" method="POST">
                     		<input type="hidden" name="scope" value="read_stream,email" />
 	                    	<md-button type="submit">
 	                    		<i class="fa fa-facebook-square"></i> Login
@@ -70,11 +70,13 @@
 			              	</span>
 		              	</a>
                     </li>
-                    <li>
-                    	<md-button ng-click="logout()">
-                    		Logout
-                    	</md-button>
-                    </li>
+<!--                     <li ng-show="user.name != ''"> -->
+<!--                     	<form action="/signout" method="POST"> -->
+<!-- 	                    	<md-button type="submit"> -->
+<!-- 	                    		<i class="fa fa-facebook-square"></i> Logout -->
+<!-- 	                    	</md-button> -->
+<!--                     	</form> -->
+<!--                     </li> -->
                 </ul>
             </div>
             
@@ -89,13 +91,27 @@
 	    		<nav>
 		    		<ul class="nav nav-pills nav-stacked">
 		    			<li role="presentation" class="active">
-		    				<a ui-sref="announcements">AN&Uacute;NCIOS</a>
+		    				<a ui-sref="announcements">
+		    					<i class="fa fa-newspaper-o"></i>
+		    					An&uacute;ncios</a>
 		    			</li>
 						<li role="presentation">
-							<a ui-sref="mygames">MEUS JOGOS</a>
+							<a ui-sref="mygames">
+								<i class="fa fa-bullhorn"></i>
+								Meus An&uacute;ncios
+							</a>
 						</li>
 						<li role="presentation">
-							<a ui-sref="announce">NOVO AN&Uacute;NCIO</a>
+							<a ui-sref="offers">
+								<i class="fa fa-commenting-o"></i>
+								Minhas Ofertas
+							</a>
+						</li>
+						<li role="presentation">
+							<a ui-sref="announce">
+								<i class="fa fa-plus"></i>
+								Novo An&uacute;ncio
+							</a>
 						</li>
 					</ul>
 		    	</nav>
