@@ -28,7 +28,7 @@ public class TradeOfferAnswer implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "author_id", nullable = false)
-	private Usr author;
+	private User author;
 	
 	@ManyToOne
 	@JoinColumn(name = "offer_id", nullable = false)
@@ -51,11 +51,11 @@ public class TradeOfferAnswer implements Serializable {
 		this.description = description;
 	}
 
-	public Usr getAuthor() {
+	public User getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(Usr author) {
+	public void setAuthor(User author) {
 		this.author = author;
 	}
 

@@ -30,7 +30,7 @@ public class Trade implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
-	private Usr owner;
+	private User owner;
 	
 	@ManyToOne
 	@JoinColumn(name = "game_id", nullable = false)
@@ -56,27 +56,27 @@ public class Trade implements Serializable {
 		super();
 	}
 
-	public Trade(Usr owner, Game game) {
+	public Trade(User owner, Game game) {
 		super();
 		this.owner = owner;
 		this.game = game;
 	}
 
-	public Trade(Usr owner, Game game, List<Game> wishList) {
+	public Trade(User owner, Game game, List<Game> wishList) {
 		super();
 		this.owner = owner;
 		this.game = game;
 		this.wishList = wishList;
 	}
 
-	public Trade(Usr owner, Game game, String description) {
+	public Trade(User owner, Game game, String description) {
 		super();
 		this.owner = owner;
 		this.game = game;
 		this.description = description;
 	}
 
-	public Trade(Usr owner, Game game, List<Game> wishList, String description) {
+	public Trade(User owner, Game game, List<Game> wishList, String description) {
 		super();
 		this.owner = owner;
 		this.game = game;
@@ -92,11 +92,11 @@ public class Trade implements Serializable {
 		this.id = id;
 	}
 
-	public Usr getOwner() {
+	public User getOwner() {
 		return owner;
 	}
 
-	public void setOwner(Usr owner) {
+	public void setOwner(User owner) {
 		this.owner = owner;
 	}
 

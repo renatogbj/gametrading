@@ -9,24 +9,29 @@ config.$inject = ['$stateProvider', '$urlRouterProvider'];
 function config($stateProvider, $urlRouterProvider) {
 	'use strict';
 	
+	var login = {
+		url: '/login',
+		templateUrl: 'views/login.html'
+	}
+	
 	var announcements = {
 		url: '/announcements',
-		templateUrl: 'views/announcements.html',
+		templateUrl: 'views/announcements.html'
 	};
 	
 	var mygames = {
 		url: '/mygames',
-		templateUrl: 'views/mygames.html',
+		templateUrl: 'views/mygames.html'
 	};
 	
 	var announce = {
 		url: '/announce',
-		templateUrl: 'views/announce.html',
+		templateUrl: 'views/announce.html'
 	};
 	
 	var myoffers = {
 		url: '/myoffers',
-		templateUrl: 'views/myoffers.html',
+		templateUrl: 'views/myoffers.html'
 	};
 	
 	$stateProvider
@@ -36,4 +41,5 @@ function config($stateProvider, $urlRouterProvider) {
 		.state('myoffers', myoffers);
 
 	$urlRouterProvider.otherwise("/");
+	
 }

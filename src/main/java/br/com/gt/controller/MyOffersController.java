@@ -20,20 +20,20 @@ import br.com.gt.model.bean.SellOfferAnswer;
 import br.com.gt.model.bean.Trade;
 import br.com.gt.model.bean.TradeOffer;
 import br.com.gt.model.bean.TradeOfferAnswer;
-import br.com.gt.model.bean.Usr;
+import br.com.gt.model.bean.User;
 import br.com.gt.model.service.BuyOfferAnswerService;
 import br.com.gt.model.service.BuyOfferService;
 import br.com.gt.model.service.SellOfferAnswerService;
 import br.com.gt.model.service.SellOfferService;
 import br.com.gt.model.service.TradeOfferAnswerService;
 import br.com.gt.model.service.TradeOfferService;
-import br.com.gt.model.service.UsrService;
+import br.com.gt.model.service.UserService;
 
 @RestController
 public class MyOffersController {
 
 	@Autowired
-	private UsrService userService;
+	private UserService userService;
 	
 	@Autowired
 	private SellOfferService sellOfferService;
@@ -55,7 +55,7 @@ public class MyOffersController {
 	
 	@RequestMapping(value = "/myoffers/sell", method = RequestMethod.GET)
 	public Set<Sell> findSellAnnouncements(@RequestParam("userEmail") String userEmail) {
-		Usr user = userService.find(userEmail);
+		User user = userService.find(userEmail);
 		
 		List<SellOffer> offers = sellOfferService.findByBidder(user);
 		Set<Sell> sell = new HashSet<>();
@@ -69,7 +69,7 @@ public class MyOffersController {
 	
 	@RequestMapping(value = "/myoffers/buy", method = RequestMethod.GET)
 	public Set<Buy> findBuyAnnouncements(@RequestParam("userEmail") String userEmail) {
-		Usr user = userService.find(userEmail);
+		User user = userService.find(userEmail);
 		
 		List<BuyOffer> offers = buyOfferService.findByBidder(user);
 		Set<Buy> buy = new HashSet<>();
@@ -83,7 +83,7 @@ public class MyOffersController {
 	
 	@RequestMapping(value = "/myoffers/trade", method = RequestMethod.GET)
 	public Set<Trade> findTradeAnnouncements(@RequestParam("userEmail") String userEmail) {
-		Usr user = userService.find(userEmail);
+		User user = userService.find(userEmail);
 		
 		List<TradeOffer> offers = tradeOfferService.findByBidder(user);
 		Set<Trade> trade = new HashSet<>();

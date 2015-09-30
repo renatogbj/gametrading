@@ -28,7 +28,7 @@ public class Buy implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
-	private Usr owner;
+	private User owner;
 	
 	@ManyToOne
 	@JoinColumn(name = "game_id", nullable = false)
@@ -51,14 +51,14 @@ public class Buy implements Serializable {
 		super();
 	}
 
-	public Buy(Usr owner, Game game, Double price) {
+	public Buy(User owner, Game game, Double price) {
 		super();
 		this.owner = owner;
 		this.game = game;
 		this.price = price;
 	}
 
-	public Buy(Usr owner, Game game, Double price, String description) {
+	public Buy(User owner, Game game, Double price, String description) {
 		super();
 		this.owner = owner;
 		this.game = game;
@@ -74,11 +74,11 @@ public class Buy implements Serializable {
 		this.id = id;
 	}
 
-	public Usr getOwner() {
+	public User getOwner() {
 		return owner;
 	}
 
-	public void setOwner(Usr owner) {
+	public void setOwner(User owner) {
 		this.owner = owner;
 	}
 

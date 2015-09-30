@@ -32,7 +32,7 @@ public class TradeOffer implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "bidder_id", nullable = false)
-	private Usr bidder;
+	private User bidder;
 	
 	@ManyToOne
 	@JoinColumn(name = "trade_id", nullable = false)
@@ -59,11 +59,11 @@ public class TradeOffer implements Serializable {
 		this.description = description;
 	}
 
-	public Usr getBidder() {
+	public User getBidder() {
 		return bidder;
 	}
 
-	public void setBidder(Usr bidder) {
+	public void setBidder(User bidder) {
 		this.bidder = bidder;
 	}
 

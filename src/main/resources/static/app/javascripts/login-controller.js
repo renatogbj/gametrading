@@ -12,18 +12,10 @@ function LoginController($scope, loginService, $location) {
         return route === $location.path();
     }
 	
-    loginService.login().then(
-		function(userItem) {
-			$scope.user = userItem;
-		}
-	);
-    
-    $scope.logout = function() {
-    	loginService.logout().then(
-			function(result) {
-				console.log("logged out!");
-			}
-		);
-    };
+//    loginService.login().then(
+//		function(userItem) {
+//			$scope.user = userItem;
+//		}
+//	);
     
 }

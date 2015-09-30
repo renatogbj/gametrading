@@ -7,13 +7,13 @@ import org.springframework.stereotype.Repository;
 
 import br.com.gt.model.bean.Sell;
 import br.com.gt.model.bean.SellOffer;
-import br.com.gt.model.bean.Usr;
+import br.com.gt.model.bean.User;
 
 @Repository
 public interface SellOfferRepository extends JpaRepository<SellOffer, Long> {
 
 	List<SellOffer> findBySell(Sell sell);
 
-	List<SellOffer> findByBidder(Usr bidder);
+	List<SellOffer> findByBidder(User bidder);
 
 }
