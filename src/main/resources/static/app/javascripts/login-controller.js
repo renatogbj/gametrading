@@ -36,6 +36,7 @@ function LoginController($rootScope, $scope, loginService, $location, $http) {
 	$scope.credentials = {};
 	
 	$scope.login = function() {
+		console.log("tried to login");
 		authenticate($scope.credentials, function() {
 			if ($rootScope.authenticated) {
 				$location.path("/");

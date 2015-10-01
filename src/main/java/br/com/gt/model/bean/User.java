@@ -32,7 +32,7 @@ public class User implements Serializable, UserDetails {
 	@Column(nullable = false)
 	private String username;
 	
-	@Column(nullable = false)
+	@Column
 	private String password;
 	
 	@Column(nullable = false)
@@ -43,6 +43,9 @@ public class User implements Serializable, UserDetails {
 	
 	@Column(nullable = false)
 	private Integer likes;
+	
+	@Column
+	private String city;
 	
 	public User() {
 		super();
@@ -110,6 +113,14 @@ public class User implements Serializable, UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	@Override

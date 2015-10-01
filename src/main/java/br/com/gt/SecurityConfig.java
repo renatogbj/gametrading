@@ -24,12 +24,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.httpBasic()
-			.and()
 			.formLogin()
 			.and()
+			.logout().logoutSuccessUrl("/announcements")
+			.and()
 			.authorizeRequests()
-			.antMatchers("/myoffers/**", "/mygames/**", "/announce/**").authenticated()
+			.antMatchers("/myoffers", "/mygames", "/announce").authenticated()
 			.antMatchers(HttpMethod.POST, "/announcements/**").authenticated()
 			.anyRequest().permitAll()
 			.and()

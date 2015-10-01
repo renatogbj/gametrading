@@ -29,7 +29,6 @@
 	
     <script src="app/javascripts/application.js"></script>
     <script src="app/javascripts/index-controller.js"></script>
-    <script src="app/javascripts/login-controller.js"></script>
     <script src="app/javascripts/login-service.js"></script>
     <script src="app/javascripts/announce-controller.js"></script>
     <script src="app/javascripts/announce-service.js"></script>
@@ -65,20 +64,16 @@
             <div class="navbar-right">
                 <ul class="nav navbar-nav">
                     <li ng-show="!authenticated">
-                    	<a href="/login"><i class="fa fa-facebook-square"></i> Login</a>
-<!--                     	<form action="/connect/facebook" method="POST"> -->
-<!--                     		<input type="hidden" name="scope" value="read_stream,email" /> -->
-<!-- 	                    	<md-button type="submit"> -->
-<!-- 	                    		<i class="fa fa-facebook-square"></i> Login -->
-<!-- 	                    	</md-button> -->
-<!-- 	                    	<md-button type="submit"> -->
-<!-- 	                    		<i class="fa fa-facebook-square"></i> Logout -->
-<!-- 	                    	</md-button> -->
-<!-- 	                    	<input type="hidden" name="_method" value="delete" /> -->
-<!-- 	                    </form> -->
+                    	<a href="/login">
+                    		<i class="fa fa-sign-in"></i>
+                    		Login
+                    	</a>
                     </li>
                     <li ng-show="authenticated">
-                    	<a href="" ng-click="logout()">logout</a>
+                    	<a href="" ng-click="logout()">
+                    		<i class="fa fa-sign-out"></i>
+                    		Logout
+                    	</a>
                     </li>
                 </ul>
             </div>
@@ -98,23 +93,32 @@
 		    					<i class="fa fa-newspaper-o"></i>
 		    					An&uacute;ncios</a>
 		    			</li>
-						<li role="presentation" ng-class="{active:isActive('/mygames')}">
+						<li role="presentation" ng-class="{'inactive-link':!authenticated, active:isActive('/mygames')}" ng-disabled="authenticated">
 							<a ui-sref="mygames">
 								<i class="fa fa-bullhorn"></i>
 								Meus An&uacute;ncios
 							</a>
+							<md-tooltip ng-show="!authenticated" md-direction="right">
+								Fa&ccedil;a login primeiro.
+							</md-tooltip>
 						</li>
-						<li role="presentation" ng-class="{active:isActive('/myoffers')}">
+						<li role="presentation" ng-class="{'inactive-link':!authenticated, active:isActive('/myoffers')}">
 							<a ui-sref="myoffers">
 								<i class="fa fa-commenting-o"></i>
 								Minhas Ofertas
 							</a>
+							<md-tooltip ng-show="!authenticated" md-direction="right">
+								Fa&ccedil;a login primeiro.
+							</md-tooltip>
 						</li>
-						<li role="presentation" ng-class="{active:isActive('/announce')}">
+						<li role="presentation" ng-class="{'inactive-link':!authenticated, 'active':isActive('/announce')}">
 							<a ui-sref="announce">
 								<i class="fa fa-plus"></i>
 								Novo An&uacute;ncio
 							</a>
+							<md-tooltip ng-show="!authenticated" md-direction="right">
+								Fa&ccedil;a login primeiro.
+							</md-tooltip>
 						</li>
 					</ul>
 		    	</nav>

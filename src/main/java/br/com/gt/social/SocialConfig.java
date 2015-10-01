@@ -1,4 +1,4 @@
-package br.com.gt;
+package br.com.gt.social;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
@@ -17,7 +17,6 @@ import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
-import org.springframework.social.connect.web.ConnectController;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 
 @Configuration
@@ -57,14 +56,6 @@ public class SocialConfig {
     public UsersConnectionRepository usersConnectionRepository() {
         return new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator(), 
             textEncryptor);
-    }
-	
-	@Bean
-    public ConnectController connectController() {
-		ConnectController controller = new ConnectController(
-	            connectionFactoryLocator(), connectionRepository());
-//        controller.setApplicationUrl(environment.getProperty("application.url"));
-        return controller;
     }
 
 }

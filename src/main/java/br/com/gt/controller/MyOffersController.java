@@ -55,7 +55,7 @@ public class MyOffersController {
 	
 	@RequestMapping(value = "/myoffers/sell", method = RequestMethod.GET)
 	public Set<Sell> findSellAnnouncements(@RequestParam("userEmail") String userEmail) {
-		User user = userService.find(userEmail);
+		User user = userService.findByEmail(userEmail);
 		
 		List<SellOffer> offers = sellOfferService.findByBidder(user);
 		Set<Sell> sell = new HashSet<>();
@@ -69,7 +69,7 @@ public class MyOffersController {
 	
 	@RequestMapping(value = "/myoffers/buy", method = RequestMethod.GET)
 	public Set<Buy> findBuyAnnouncements(@RequestParam("userEmail") String userEmail) {
-		User user = userService.find(userEmail);
+		User user = userService.findByEmail(userEmail);
 		
 		List<BuyOffer> offers = buyOfferService.findByBidder(user);
 		Set<Buy> buy = new HashSet<>();
@@ -83,7 +83,7 @@ public class MyOffersController {
 	
 	@RequestMapping(value = "/myoffers/trade", method = RequestMethod.GET)
 	public Set<Trade> findTradeAnnouncements(@RequestParam("userEmail") String userEmail) {
-		User user = userService.find(userEmail);
+		User user = userService.findByEmail(userEmail);
 		
 		List<TradeOffer> offers = tradeOfferService.findByBidder(user);
 		Set<Trade> trade = new HashSet<>();

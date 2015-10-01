@@ -7,13 +7,17 @@ function LoginService($http, $q) {
 	
 	// return public API for this service
 	return ({
-		authenticate: authenticate
+		loginFacebook: loginFacebook
 	});
 	
-	function authenticate() {
+	function loginFacebook() {
 		var request = $http({
-			method: "GET",
-			url: "/user"
+			method: "POST",
+			url: "/connect/facebook",
+//			data: scope,
+			headers: {
+				"Content-Type": "application/json"
+			}
 		});
 		
 		return (request.then(handleSuccess, handleError));

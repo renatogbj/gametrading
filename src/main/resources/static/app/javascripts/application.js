@@ -9,6 +9,7 @@ config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 function config($stateProvider, $urlRouterProvider, $locationProvider) {
 	'use strict';
 	
+	// removes the # (hash) from the URL
 	$locationProvider.html5Mode(true);
 	
 	var login = {
@@ -43,6 +44,6 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
 		.state('announce', announce)
 		.state('myoffers', myoffers);
 
-	$urlRouterProvider.otherwise("/");
+	$urlRouterProvider.otherwise("announcements");
 	
 }

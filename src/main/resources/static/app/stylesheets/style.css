@@ -14,3 +14,11 @@
 	width: auto;
 	margin: 0;
 }
+
+.inactive-link a {
+	pointer-events: none;
+}
+
+.inactive-link {
+	cursor: not-allowed;
+}

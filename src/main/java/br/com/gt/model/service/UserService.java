@@ -39,7 +39,7 @@ public class UserService implements UserDetailsService {
 		return userRepository.findOne(id);
 	}
 	
-	public User find(String email) {
+	public User findByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
 	
