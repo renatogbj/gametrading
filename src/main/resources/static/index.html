@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
 
+	<base href="/">
+
     <title>Game Trading</title>
 
     <link rel="stylesheet" href="bower_components/angular/angular-csp.css"/>
@@ -26,6 +28,7 @@
     <script src="bower_components/angular-ui-growl/src/growl.js"></script>
 	
     <script src="app/javascripts/application.js"></script>
+    <script src="app/javascripts/index-controller.js"></script>
     <script src="app/javascripts/login-controller.js"></script>
     <script src="app/javascripts/login-service.js"></script>
     <script src="app/javascripts/announce-controller.js"></script>
@@ -46,7 +49,7 @@
 
 <body ng-app="gametradingApp" ng-cloak class="ng-cloak">
 
-<div ng-controller="LoginController">
+<div ng-controller="IndexController">
 
     <nav class="navbar navbar-default navbar-static-top">
 
@@ -61,8 +64,8 @@
 
             <div class="navbar-right">
                 <ul class="nav navbar-nav">
-                    <li>
-                    	<a href="#/login"><i class="fa fa-facebook-square"></i> Login</a>
+                    <li ng-show="!authenticated">
+                    	<a href="/login"><i class="fa fa-facebook-square"></i> Login</a>
 <!--                     	<form action="/connect/facebook" method="POST"> -->
 <!--                     		<input type="hidden" name="scope" value="read_stream,email" /> -->
 <!-- 	                    	<md-button type="submit"> -->

@@ -2,7 +2,8 @@ package br.com.gt.model.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,8 +15,17 @@ import br.com.gt.model.repository.UserRepository;
 @Service
 public class UserService implements UserDetailsService {
 	
-	@Autowired
 	private UserRepository userRepository;
+
+	public UserService() {
+		super();
+	}
+	
+	@Inject
+	public UserService(UserRepository userRepository) {
+		super();
+		this.userRepository = userRepository;
+	}
 	
 	public User save(User usr) {
 		return userRepository.save(usr);

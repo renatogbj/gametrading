@@ -7,13 +7,13 @@ function LoginService($http, $q) {
 	
 	// return public API for this service
 	return ({
-		login: login
+		authenticate: authenticate
 	});
 	
-	function login() {
+	function authenticate() {
 		var request = $http({
 			method: "GET",
-			url: "/home/user"
+			url: "/user"
 		});
 		
 		return (request.then(handleSuccess, handleError));

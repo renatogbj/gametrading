@@ -4,10 +4,12 @@
 angular.module('gametradingApp', ['ngMaterial', 'ui.router', 'ui.growl'])
 	.config(config);
 
-config.$inject = ['$stateProvider', '$urlRouterProvider'];
+config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
-function config($stateProvider, $urlRouterProvider) {
+function config($stateProvider, $urlRouterProvider, $locationProvider) {
 	'use strict';
+	
+	$locationProvider.html5Mode(true);
 	
 	var login = {
 		url: '/login',

@@ -4,18 +4,44 @@
 angular.module('gametradingApp')
     .controller('LoginController', LoginController);
 
-LoginController.$inject = ['$scope', 'loginService', '$location'];
+LoginController.$inject = ['$rootScope', '$scope', 'loginService', '$location'];
 
-function LoginController($scope, loginService, $location) {
+function LoginController($rootScope, $scope, loginService, $location) {
 	
-	$scope.isActive = function(route) {
-        return route === $location.path();
-    }
+//	var authenticate = function(credentials, callback) {
+//
+//		var headers = credentials ? {authorization : "Basic "
+//	        + btoa(credentials.username + ":" + credentials.password)
+//	    } : {};
+//
+//	    $http.get('user', {headers : headers}).success(function(data) {
+//	    	if (data.name) {
+//	    		$rootScope.authenticated = true;
+//	    	} else {
+//	    		$rootScope.authenticated = false;
+//	    	}
+//	    	callback && callback();
+//	    }).error(function() {
+//	    	$rootScope.authenticated = false;
+//	    	callback && callback();
+//	    });
+//	    
+//	}
+//	
+//	authenticate();
+//	
+//	$scope.credentials = {};
+//	
+//	$scope.login = function() {
+//		authenticate($scope.credentials, function() {
+//			if ($rootScope.authenticated) {
+//				$location.path("/");
+//				$scope.error = false;
+//			} else {
+//				$location.path("/login");
+//				$scope.error = true;
+//			}
+//		});
+//	};
 	
-//    loginService.login().then(
-//		function(userItem) {
-//			$scope.user = userItem;
-//		}
-//	);
-    
 }
