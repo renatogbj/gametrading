@@ -37,6 +37,7 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
 	};
 	
 	$stateProvider
+		.state('login', login)
 		.state('announcements', announcements)
 		.state('mygames', mygames)
 		.state('announce', announce)
