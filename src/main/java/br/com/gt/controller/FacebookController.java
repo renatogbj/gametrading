@@ -13,9 +13,10 @@ import br.com.gt.social.FacebookInterceptor;
 public class FacebookController extends ConnectController {
 	
 	@Inject
-	public FacebookController(ConnectionFactoryLocator connectionFactoryLocator, ConnectionRepository connectionRepository) {
+	public FacebookController(ConnectionFactoryLocator connectionFactoryLocator,
+			ConnectionRepository connectionRepository, FacebookInterceptor interceptor) {
 		super(connectionFactoryLocator, connectionRepository);
-		addInterceptor(new FacebookInterceptor());
+		addInterceptor(interceptor);
 	}
 	
 	@Override
