@@ -1,6 +1,10 @@
 package br.com.gt.social;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.RememberMeAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionFactory;
 import org.springframework.social.connect.UserProfile;
@@ -18,6 +22,8 @@ import br.com.gt.model.service.UserService;
 @Component
 public class FacebookInterceptor implements ConnectInterceptor<Facebook> {
 
+	private static final Logger LOG = Logger.getLogger(FacebookInterceptor.class);
+	
 	@Autowired
 	private UserService userService;
 	
@@ -30,6 +36,11 @@ public class FacebookInterceptor implements ConnectInterceptor<Facebook> {
 		User user = userService.findByEmail(userFacebook.getEmail());
 		
 		if (user != null) {
+			Authentication auth = new RememberMeAuthenticationToken(user.getUsername(), user, user.getAuthorities());
+			auth.setAuthenticated(true);
+			SecurityContextHolder.getContext().setAuthentication(auth);
+			
+			LOG.info("User '" + user.getUsername() + "' logged in.");
 			return;
 		}
 		
@@ -43,6 +54,12 @@ public class FacebookInterceptor implements ConnectInterceptor<Facebook> {
 		user.setCity(userFacebook.getAddress().getCity());
 		
 		userService.save(user);
+		
+		Authentication auth = new RememberMeAuthenticationToken(user.getUsername(), user, user.getAuthorities());
+		auth.setAuthenticated(true);
+		SecurityContextHolder.getContext().setAuthentication(auth);
+		
+		LOG.info("User '" + user.getUsername() + "' logged in.");
 	}
 
 	@Override

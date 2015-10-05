@@ -17,6 +17,7 @@ import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
+import org.springframework.social.connect.web.ConnectController;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 
 @Configuration
@@ -30,7 +31,10 @@ public class SocialConfig {
 
     @Autowired
     private TextEncryptor textEncryptor;
-	
+    
+    @Autowired
+    private FacebookInterceptor facebookInterceptor;
+    
 	@Bean
     public ConnectionFactoryLocator connectionFactoryLocator() {
         ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
@@ -58,4 +62,11 @@ public class SocialConfig {
             textEncryptor);
     }
 
+	@Bean
+    public ConnectController connectController() {
+		ConnectController connectController = new ConnectController(connectionFactoryLocator(),
+				connectionRepository());
+		connectController.addInterceptor(facebookInterceptor);
+		return connectController;
+    }
 }

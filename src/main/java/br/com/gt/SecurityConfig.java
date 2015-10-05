@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.security.crypto.encrypt.TextEncryptor;
 
@@ -15,7 +15,7 @@ import br.com.gt.model.repository.UserRepository;
 import br.com.gt.model.service.UserService;
 
 @Configuration
-@EnableWebMvcSecurity
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -25,17 +25,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.formLogin()
+				.defaultSuccessUrl("/announcements")
 			.and()
-			.logout().logoutSuccessUrl("/announcements")
+				.logout()
+					.logoutSuccessUrl("/announcements")
 			.and()
-			.authorizeRequests()
-			.antMatchers("/myoffers", "/mygames", "/announce").authenticated()
-			.antMatchers(HttpMethod.POST, "/announcements/**").authenticated()
-			.anyRequest().permitAll()
+				.authorizeRequests()
+					.antMatchers("/**").permitAll()
+					.antMatchers("/myoffers/**", "/mygames/**", "/announce/**").authenticated()
+					.antMatchers(HttpMethod.POST, "/announcements/**").authenticated()
 			.and()
-			.rememberMe().tokenValiditySeconds(2419200).key("gametradingKey")
+				.rememberMe()
 			.and()
-			.csrf().disable();
+				.csrf().disable();
 	}
 	
 	@Override
