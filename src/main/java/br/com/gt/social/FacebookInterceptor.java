@@ -2,13 +2,14 @@ package br.com.gt.social;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.RememberMeAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionFactory;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.social.connect.web.ConnectInterceptor;
+import org.springframework.social.connect.web.DisconnectInterceptor;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.ImageType;
 import org.springframework.social.facebook.api.UserOperations;
@@ -20,7 +21,7 @@ import br.com.gt.model.bean.User;
 import br.com.gt.model.service.UserService;
 
 @Component
-public class FacebookInterceptor implements ConnectInterceptor<Facebook> {
+public class FacebookInterceptor implements ConnectInterceptor<Facebook>, DisconnectInterceptor<Facebook> {
 
 	private static final Logger LOG = Logger.getLogger(FacebookInterceptor.class);
 	
@@ -36,8 +37,7 @@ public class FacebookInterceptor implements ConnectInterceptor<Facebook> {
 		User user = userService.findByEmail(userFacebook.getEmail());
 		
 		if (user != null) {
-			Authentication auth = new RememberMeAuthenticationToken(user.getUsername(), user, user.getAuthorities());
-			auth.setAuthenticated(true);
+			Authentication auth = new UsernamePasswordAuthenticationToken(user.getUsername(), user, user.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(auth);
 			
 			LOG.info("User '" + user.getUsername() + "' logged in.");
@@ -49,14 +49,13 @@ public class FacebookInterceptor implements ConnectInterceptor<Facebook> {
 		user.setAvatar(userOperations.getUserProfileImage(ImageType.SQUARE));
 		user.setEmail(userProfile.getEmail());
 		user.setLikes(0);
-		user.setName(userProfile.getName());
-		user.setUsername(userProfile.getUsername());
-		user.setCity(userFacebook.getAddress().getCity());
+		user.setFirstName(userProfile.getFirstName());
+		user.setLastName(userProfile.getLastName());
+		user.setUsername(userProfile.getName());
 		
 		userService.save(user);
 		
-		Authentication auth = new RememberMeAuthenticationToken(user.getUsername(), user, user.getAuthorities());
-		auth.setAuthenticated(true);
+		Authentication auth = new UsernamePasswordAuthenticationToken(user.getUsername(), user, user.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(auth);
 		
 		LOG.info("User '" + user.getUsername() + "' logged in.");
@@ -65,6 +64,17 @@ public class FacebookInterceptor implements ConnectInterceptor<Facebook> {
 	@Override
 	public void preConnect(ConnectionFactory<Facebook> provider, MultiValueMap<String, String> parameters, WebRequest request) {
 		// nothing to do
+	}
+
+	@Override
+	public void preDisconnect(ConnectionFactory<Facebook> connectionFactory, WebRequest request) {
+		// nothing to do
+	}
+
+	@Override
+	public void postDisconnect(ConnectionFactory<Facebook> connectionFactory, WebRequest request) {
+		SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
+		LOG.info("User '" + SecurityContextHolder.getContext().getAuthentication().getName() + "' logged out.");
 	}
 
 }

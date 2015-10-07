@@ -14,6 +14,8 @@ function AnnounceService($http, $q) {
 	});
 	
 	function saveSell(announce) {
+		console.log(announce);
+		
 		var request = $http({
 			method: "POST",
 			url: "/announce/sell/save",

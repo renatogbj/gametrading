@@ -35,13 +35,16 @@ public class User implements Serializable, UserDetails {
 	@Column
 	private String password;
 	
-	@Column(nullable = false)
-	private String name;
+	@Column
+	private String firstName;
 	
-	@Column(nullable = false)
+	@Column
+	private String lastName;
+	
+	@Column
 	private byte[] avatar;
 	
-	@Column(nullable = false)
+	@Column
 	private Integer likes;
 	
 	@Column
@@ -54,7 +57,7 @@ public class User implements Serializable, UserDetails {
 	public User(String email, String name, byte[] avatar, Integer likes) {
 		super();
 		this.email = email;
-		this.name = name;
+		this.firstName = name;
 		this.avatar = avatar;
 		this.likes = likes;
 	}
@@ -75,12 +78,20 @@ public class User implements Serializable, UserDetails {
 		this.email = email;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	
 	public byte[] getAvatar() {

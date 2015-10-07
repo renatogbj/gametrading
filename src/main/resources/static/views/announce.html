@@ -6,7 +6,7 @@
 			
 			<div class="col-md-5">
 				<div class="row">
-					<md-radio-group ng-model="announce.type">
+					<md-radio-group ng-model="type">
 						<ul class="nav navbar-nav">
 							<li><md-radio-button value="sell" class="md-primary">Venda</md-radio-button></li>
 							<li><md-radio-button value="buy" class="md-primary">Compra</md-radio-button></li>
@@ -42,7 +42,7 @@
 				    </div>
 				</div>
 				
-				<div class="row" ng-show="announce.type != 'trade'">
+				<div class="row" ng-show="type != 'trade'">
 					<div class="col-md-4">
 						<md-input-container class="md-icon-float">
 					     	<label>Pre&ccedil;o</label>
@@ -54,7 +54,7 @@
 					</div>
 				</div>
 				
-				<div class="row" ng-show="announce.type == 'trade'">
+				<div class="row" ng-show="type == 'trade'">
 					<div class="col-md-10">
 						<md-input-container>
 					     	<label>Prefer&ecirc;ncias</label>

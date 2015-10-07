@@ -8,7 +8,7 @@ public class IndexController {
 
 	@RequestMapping(value = "/{[path:[^\\.]*}")
 	public String redirect() {
-	  return "forward:/";
+		return "forward:/";
 	}
 	
 }

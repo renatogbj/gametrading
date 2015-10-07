@@ -15,8 +15,9 @@ function AnnounceController($scope, $growl, announceService) {
 		}
 	);
 
+	$scope.type = 'sell';
+	
 	$scope.announce = {
-		type: 'sell',
 		game: $scope.gameSelected,
 		description: '',
 		price: 0.0,
@@ -29,10 +30,11 @@ function AnnounceController($scope, $growl, announceService) {
 	
 	// saving functions
 	$scope.saveAnnounce = function(formItem) {
+		
 		// set the user
 		formItem.owner = $scope.user;
 		
-		if (formItem.type == 'sell') {
+		if ($scope.type == 'sell') {
 			
 			announceService.saveSell(formItem).then(
 				// success response from server
@@ -44,7 +46,7 @@ function AnnounceController($scope, $growl, announceService) {
 					errorAlert();
 				}
 			);
-		} else if (formItem.type == 'buy') {
+		} else if ($scope.type == 'buy') {
 			announceService.saveBuy(formItem).then(
 				// success response from server
 				function(response) {
@@ -55,7 +57,7 @@ function AnnounceController($scope, $growl, announceService) {
 					errorAlert();
 				}
 			);
-		} else if (formItem.type == 'trade') {
+		} else if ($scope.type == 'trade') {
 			announceService.saveTrade(formItem).then(
 				// success response from server
 				function(response) {

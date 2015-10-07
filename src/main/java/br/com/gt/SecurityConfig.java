@@ -25,6 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.formLogin()
+				.loginPage("/")
 				.defaultSuccessUrl("/announcements")
 			.and()
 				.logout()
@@ -34,8 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers("/**").permitAll()
 					.antMatchers("/myoffers/**", "/mygames/**", "/announce/**").authenticated()
 					.antMatchers(HttpMethod.POST, "/announcements/**").authenticated()
-			.and()
-				.rememberMe()
+//			.and()
+//				.rememberMe()
 			.and()
 				.csrf().disable();
 	}

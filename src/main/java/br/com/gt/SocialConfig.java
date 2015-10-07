@@ -1,11 +1,9 @@
-package br.com.gt.social;
+package br.com.gt;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.env.Environment;
@@ -17,10 +15,9 @@ import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
-import org.springframework.social.connect.web.ConnectController;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 
-@Configuration
+//@Configuration
 public class SocialConfig {
 
 	@Inject
@@ -29,13 +26,11 @@ public class SocialConfig {
 	@Inject
     private DataSource dataSource;
 
-    @Autowired
+    @Inject
     private TextEncryptor textEncryptor;
     
-    @Autowired
-    private FacebookInterceptor facebookInterceptor;
-    
 	@Bean
+	@Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
     public ConnectionFactoryLocator connectionFactoryLocator() {
         ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
         
@@ -62,11 +57,4 @@ public class SocialConfig {
             textEncryptor);
     }
 
-	@Bean
-    public ConnectController connectController() {
-		ConnectController connectController = new ConnectController(connectionFactoryLocator(),
-				connectionRepository());
-		connectController.addInterceptor(facebookInterceptor);
-		return connectController;
-    }
 }

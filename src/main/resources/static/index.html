@@ -64,16 +64,25 @@
             <div class="navbar-right">
                 <ul class="nav navbar-nav">
                     <li ng-show="!authenticated">
-                    	<a href="/login">
-                    		<i class="fa fa-sign-in"></i>
-                    		Login
-                    	</a>
+                    	<form role="form" action="connect/facebook" method="POST">
+							<input type="hidden" name="scope" value="read_stream,email" />
+							<md-button type="submit">
+								<i class="fa fa-facebook-square"></i>
+								LOGIN
+							</md-button>
+						</form>
                     </li>
                     <li ng-show="authenticated">
-                    	<a href="" ng-click="logout()">
-                    		<i class="fa fa-sign-out"></i>
-                    		Logout
-                    	</a>
+                    	<img ng-src="data:image/JPEG;base64,{{ user.avatar }}" width="50%" style="text-alignment: center; margin: 6px 8px;" />
+                    </li>
+                    <li ng-show="authenticated">
+                    	<form role="form" action="connect/facebook" method="POST">
+                    		<input type="hidden" name="_method" value="delete" />
+                    		<md-button type="submit">
+								<i class="fa fa-sign-out"></i>
+								LOGOUT
+							</md-button>
+                    	</form>
                     </li>
                 </ul>
             </div>

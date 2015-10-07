@@ -15,7 +15,7 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
 	var login = {
 		url: '/login',
 		templateUrl: 'views/login.html'
-	}
+	};
 	
 	var announcements = {
 		url: '/announcements',

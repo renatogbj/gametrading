@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LoginController {
-
+	
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public Principal user(Principal user) {
     	return user;
     }
-	
+    
 }
