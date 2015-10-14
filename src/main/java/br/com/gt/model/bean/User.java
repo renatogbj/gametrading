@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -46,10 +47,11 @@ public class User implements Serializable, UserDetails {
 	
 	@Column
 	private Integer likes;
-	
+
+    @JsonIgnore
 	@Column
 	private String city;
-	
+
 	public User() {
 		super();
 	}
@@ -125,15 +127,18 @@ public class User implements Serializable, UserDetails {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+    @JsonIgnore
 	public String getCity() {
 		return city;
 	}
 
+    @JsonIgnore
 	public void setCity(String city) {
 		this.city = city;
 	}
 
+    @JsonIgnore
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorities = new ArrayList<>();
@@ -141,24 +146,28 @@ public class User implements Serializable, UserDetails {
 		return authorities;
 	}
 
+    @JsonIgnore
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
 	}
 
+    @JsonIgnore
 	@Override
 	public boolean isAccountNonLocked() {
 		return true;
 	}
 
+    @JsonIgnore
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
 
+    @JsonIgnore
 	@Override
 	public boolean isEnabled() {
 		return true;
 	}
-	
+
 }

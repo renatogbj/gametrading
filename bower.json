@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "homepage": "https://github.com/renatogbj/gametrading",
   "authors": [
-    "Renato Borges <renatogbj@gmail.com>"
+    "Renato Borges <renatogbj@gmail.com>",
+    "Leonardo Borges <leonardocostaborges@gmail.com>"
   ],
   "license": "MIT",
   "ignore": [
