@@ -21,7 +21,7 @@ function AnnounceService($http, $q) {
 			url: "/announce/sell/save",
 			data: announce,
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/x-www-form-urlencoded"
 			}
 		});
 		
