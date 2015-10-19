@@ -1,73 +1,73 @@
 <div ng-controller="MyGamesController">
 
-	<div id="offersModal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
+<!-- 	<div id="offersModal" class="modal fade" role="dialog" ng-show="hasOffers"> -->
+<!-- 		<div class="modal-dialog"> -->
+<!-- 			<div class="modal-content"> -->
 			
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title">Ofertas</h4>
-				</div>
+<!-- 				<div class="modal-header"> -->
+<!-- 					<button type="button" class="close" data-dismiss="modal"> -->
+<!-- 						<span aria-hidden="true">&times;</span> -->
+<!-- 					</button> -->
+<!-- 					<h4 class="modal-title">Ofertas</h4> -->
+<!-- 				</div> -->
 				
-				<div class="modal-body">
-					<md-content>
-						<md-list>
-							<md-list-item class="md-3-line" ng-repeat="offer in currentAnnouncement.offers">
-						        <img class="md-avatar" ng-src="data:image/JPEG;base64,{{ offer.bidder.avatar }}" />
-						        <div class="md-list-item-text" layout="column">
-						        	<h3>
-						        		{{ offer.bidder.name }}
-						        		<span>
-							        		<md-button ng-click="showAnswerField()"
-							        				   aria-label="Responder"
-													   class="md-icon-button md-primary"
-													   style="height: 36px; width: auto; margin: 0;">
-												<md-icon class="fa fa-comment"></md-icon>
-											</md-button>
-											<md-tooltip md-direction="top">
-										    	Responder
-										    </md-tooltip>
-										</span>
-						        	</h3>
-						        	<p>{{ offer.description }}</p>
-						        	<div>
-						        		<md-list>
-											<md-list-item class="md-3-line" ng-repeat="answer in offer.answers">
-										        <img class="md-avatar" ng-src="data:image/JPEG;base64,{{ answer.author.avatar }}" />
-										        <div class="md-list-item-text" layout="column">
-											        <h3>{{ answer.author.name }}</h3>
-											        <p>{{ answer.description }}</p>
-										        </div>
-										    </md-list-item>
-										</md-list>
-						        	</div>
-									<span ng-show="answerOffer">
-										<md-input-container>
-									        <label>Mensagem</label>
-									        <textarea ng-model="offerAnswer"
-									        		  rows="3"
-									        		  columns="3"
-									        		  md-maxlength="500">
-									        </textarea>
-									    </md-input-container>
-									    <md-button ng-click="sendAnswer($index, offer, offerAnswer)"
-									    		   aria-label="Enviar resposta"
-									    		   class="md-primary md-raised">
-									    	Enviar
-									    </md-button>
-									</span>
-						        </div>
-						        <md-divider></md-divider>
-					      	</md-list-item>
-					   	</md-list>
-					</md-content>
-				</div>
+<!-- 				<div class="modal-body"> -->
+<!-- 					<md-content> -->
+<!-- 						<md-list> -->
+<!-- 							<md-list-item class="md-3-line" ng-repeat="offer in currentAnnouncement.offers"> -->
+<!-- 						        <img class="md-avatar" ng-src="data:image/JPEG;base64,{{ offer.bidder.avatar }}" /> -->
+<!-- 						        <div class="md-list-item-text" layout="column"> -->
+<!-- 						        	<h3> -->
+<!-- 						        		{{ offer.bidder.name }} -->
+<!-- 						        		<span> -->
+<!-- 							        		<md-button ng-click="showAnswerField()" -->
+<!-- 							        				   aria-label="Responder" -->
+<!-- 													   class="md-icon-button md-primary" -->
+<!-- 													   style="height: 36px; width: auto; margin: 0;"> -->
+<!-- 												<md-icon class="fa fa-comment"></md-icon> -->
+<!-- 											</md-button> -->
+<!-- 											<md-tooltip md-direction="top"> -->
+<!-- 										    	Responder -->
+<!-- 										    </md-tooltip> -->
+<!-- 										</span> -->
+<!-- 						        	</h3> -->
+<!-- 						        	<p>{{ offer.description }}</p> -->
+<!-- 						        	<div> -->
+<!-- 						        		<md-list> -->
+<!-- 											<md-list-item class="md-3-line" ng-repeat="answer in offer.answers"> -->
+<!-- 										        <img class="md-avatar" ng-src="data:image/JPEG;base64,{{ answer.author.avatar }}" /> -->
+<!-- 										        <div class="md-list-item-text" layout="column"> -->
+<!-- 											        <h3>{{ answer.author.name }}</h3> -->
+<!-- 											        <p>{{ answer.description }}</p> -->
+<!-- 										        </div> -->
+<!-- 										    </md-list-item> -->
+<!-- 										</md-list> -->
+<!-- 						        	</div> -->
+<!-- 									<span ng-show="answerOffer"> -->
+<!-- 										<md-input-container> -->
+<!-- 									        <label>Mensagem</label> -->
+<!-- 									        <textarea ng-model="offerAnswer" -->
+<!-- 									        		  rows="3" -->
+<!-- 									        		  columns="3" -->
+<!-- 									        		  md-maxlength="500"> -->
+<!-- 									        </textarea> -->
+<!-- 									    </md-input-container> -->
+<!-- 									    <md-button ng-click="sendAnswer($index, offer, offerAnswer)" -->
+<!-- 									    		   aria-label="Enviar resposta" -->
+<!-- 									    		   class="md-primary md-raised"> -->
+<!-- 									    	Enviar -->
+<!-- 									    </md-button> -->
+<!-- 									</span> -->
+<!-- 						        </div> -->
+<!-- 						        <md-divider></md-divider> -->
+<!-- 					      	</md-list-item> -->
+<!-- 					   	</md-list> -->
+<!-- 					</md-content> -->
+<!-- 				</div> -->
 				
-			</div>
-		</div>
-	</div>
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 
 	<md-content>
     	<md-tabs md-dynamic-height md-border-bottom>
@@ -75,53 +75,52 @@
 			<md-tab label="Venda">
         		<md-content>
           			<md-list>
-					<!-- <md-subheader class="md-no-sticky"> -->
-				    <!-- display quantity of itens and create menu with sorting, filtering and pagination -->
-					<!-- </md-subheader> -->
 				      	<md-list-item ng-repeat="mySellAnnouncement in mySellAnnouncements">
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
 				          			<span>{{ mySellAnnouncement.game.name }} ({{ mySellAnnouncement.game.platform }})</span>
-				          			<span>
-										<md-button ng-click="setSold(mySellAnnouncement)"
-												   aria-label="Marcar como vendido"
-												   class="md-icon-button md-primary"
-												   style="height: 36px; width: auto; margin: 0;">
-											<md-icon class="fa fa-thumb-tack"></md-icon>
-										</md-button>
-										<md-tooltip md-direction="top">
-									    	<span ng-show="!mySellAnnouncement.sold">Marcar como vendido!</span>
-									    	<span ng-show="mySellAnnouncement.sold">Marcar como &agrave venda!</span>
-									    </md-tooltip>
-								    </span>
-								    <span>
-								    	<md-button ng-click="setCurrentAnnouncement('sell', mySellAnnouncement)"
-								    			   aria-label="Ofertas"
-								    			   data-toggle="modal"
-								    			   data-target="#offersModal"
-								    			   class="md-icon-button md-primary"
-								    			   style="height: 36px; width: auto; margin: 0;">
-											<md-icon class="fa fa-comment"></md-icon>
-										</md-button>
-										<md-tooltip md-direction="top">
-									    	Ofertas
-									    </md-tooltip>
-								    </span>
-									<span>
-										<md-button ng-click="removeMySell(mySellAnnouncement, $index)"
-												   aria-label="Remover"
-												   class="md-icon-button md-warn"
-												   style="height: 36px; width: auto; margin: 0;"
-												   ng-disabled="mySellAnnouncement.sold">
-											<md-icon class="fa fa-trash-o"></md-icon>
-										</md-button>
-										<md-tooltip md-direction="top">
-									    	Remover
-									    </md-tooltip>
-								    </span>
+				          			<md-menu>
+							      		<md-button aria-label="Op&ccedil;c&otildees" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+							        		<md-icon class="fa fa-cog"></md-icon>
+							      		</md-button>
+							      		<md-menu-content width="4">
+							        		<md-menu-item>
+							        			<md-button ng-click="setSold(mySellAnnouncement)"
+														   aria-label="Marcar como vendido">
+													<md-icon class="fa fa-thumb-tack"></md-icon>
+													<span ng-show="!mySellAnnouncement.sold">Marcar como vendido</span>
+									    			<span ng-show="mySellAnnouncement.sold">Marcar como &agrave venda</span>
+												</md-button>
+							        		</md-menu-item>
+							        		<md-menu-item>
+								        		<md-button ng-click="openOfferModal('sell', mySellAnnouncement)"
+										    			   aria-label="Ofertas"
+										    			   data-toggle="modal"
+										    			   data-target="#offersModal"
+										    			   ng-show="mySellAnnouncement.offers.length > 0">
+													<md-icon class="fa fa-comment"></md-icon>
+													Ver ofertas recebidas
+												</md-button>
+												<md-button ng-click="openOfferModal('sell', mySellAnnouncement)"
+										    			   aria-label="Ofertas"
+										    			   ng-show="mySellAnnouncement.offers.length <= 0">
+													<md-icon class="fa fa-comment"></md-icon>
+													Ver ofertas recebidas
+												</md-button>
+											</md-menu-item>
+											<md-menu-item>
+												<md-button ng-click="removeMySell(mySellAnnouncement, $index)"
+														   aria-label="Remover"
+														   ng-disabled="mySellAnnouncement.sold">
+													<md-icon class="fa fa-trash-o"></md-icon>
+													Remover an&uacute;ncio
+												</md-button>
+											</md-menu-item>
+							        	</md-menu-content>
+							        </md-menu>
 								    <span ng-show="mySellAnnouncement.sold" class="sold-title">vendido!</span>
 				          		</h3>
-				          		<h4 ng-class="{'sold-price': mySellAnnouncement.sold}">{{ mySellAnnouncement.price | currency:'R$'}}</h4>
+				          		<h4>{{ mySellAnnouncement.price | currency:'R$'}}</h4>
 				          		<p>{{ mySellAnnouncement.description }}&nbsp;</p>
 				        	</div>
 			        		<img width="8%" ng-src="data:image/JPEG;base64,{{ mySellAnnouncement.game.cover }}" />
@@ -133,47 +132,41 @@
       		<md-tab label="Compra">
         		<md-content>
           			<md-list>
-					<!-- <md-subheader class="md-no-sticky"> -->
-				    <!-- display quantity of itens and create menu with sorting, filtering and pagination -->
-					<!-- </md-subheader> -->
 				      	<md-list-item ng-repeat="myBuyAnnouncement in myBuyAnnouncements">
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
 				          			<span>{{ myBuyAnnouncement.game.name }} ({{ myBuyAnnouncement.game.platform }})</span>
-				          			<span>
-										<md-button ng-click="setBought(myBuyAnnouncement)"
-												   class="md-icon-button md-primary"
-												   style="height: 36px; width: auto; margin: 0;">
-											<md-icon class="fa fa-thumb-tack"></md-icon>
-										</md-button>
-										<md-tooltip md-direction="top">
-									    	<span ng-show="!myBuyAnnouncement.bought">Marcar como comprado!</span>
-									    	<span ng-show="myBuyAnnouncement.bought">Marcar como &agrave procura!</span>
-									    </md-tooltip>
-								    </span>
-								    <span>
-								    	<md-button ng-click="setCurrentAnnouncement('buy', myBuyAnnouncement)"
-								    			   data-toggle="modal"
-								    			   data-target="#offersModal"
-								    			   class="md-icon-button md-primary"
-								    			   style="height: 36px; width: auto; margin: 0;">
-											<md-icon class="fa fa-comment"></md-icon>
-										</md-button>
-										<md-tooltip md-direction="top">
-									    	Ofertas
-									    </md-tooltip>
-								    </span>
-									<span>
-										<md-button ng-click="removeMyBuy(myBuyAnnouncement, $index)"
-												   class="md-icon-button md-warn"
-												   style="height: 36px; width: auto; margin: 0;"
-												   ng-disabled="myBuyAnnouncement.bought">
-											<md-icon class="fa fa-trash-o"></md-icon>
-										</md-button>
-										<md-tooltip md-direction="top">
-									    	Remover
-									    </md-tooltip>
-								    </span>
+				          			<md-menu>
+							      		<md-button aria-label="Op&ccedil;c&otildees" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+							        		<md-icon class="fa fa-cog"></md-icon>
+							      		</md-button>
+							      		<md-menu-content width="4">
+							        		<md-menu-item>
+							        			<md-button ng-click="setBought(myBuyAnnouncement)">
+													<md-icon class="fa fa-thumb-tack"></md-icon>
+													<span ng-show="!myBuyAnnouncement.bought">Marcar como comprado</span>
+									    			<span ng-show="myBuyAnnouncement.bought">Marcar como &agrave procura</span>
+												</md-button>
+							        		</md-menu-item>
+							        		<md-menu-item>
+								        		<md-button ng-click="setCurrentAnnouncement('buy', myBuyAnnouncement)"
+										    			   data-toggle="modal"
+										    			   data-target="#offersModal">
+													<md-icon class="fa fa-comment"></md-icon>
+													Ver ofertas recebidas
+												</md-button>
+											</md-menu-item>
+											<md-menu-item>
+												<md-button ng-click="removeMyBuy(myBuyAnnouncement, $index)"
+														   class="md-icon-button md-warn"
+														   style="height: 36px; width: auto; margin: 0;"
+														   ng-disabled="myBuyAnnouncement.bought">
+													<md-icon class="fa fa-trash-o"></md-icon>
+													Remover an&uacute;ncio
+												</md-button>
+											</md-menu-item>
+							        	</md-menu-content>
+							        </md-menu>
 								    <span ng-show="myBuyAnnouncement.bought" class="sold-title">comprado!</span>
 				          		</h3>
 				          		<h4 ng-class="{'sold-price': myBuyAnnouncement.bought}">{{ myBuyAnnouncement.price | currency:'R$'}}</h4>

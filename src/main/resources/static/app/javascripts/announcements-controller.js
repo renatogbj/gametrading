@@ -10,6 +10,12 @@ function AnnouncementsController($scope, announcementsService, $growl) {
 		bidder: $scope.user
 	}
 	
+	var originatorEv;
+	$scope.openMenu = function($mdOpenMenu, ev) {
+		originatorEv = ev;
+		$mdOpenMenu(ev);
+	};
+	
 	announcementsService.findSellAnnouncements().then(
 		function(sellList) {
 			$scope.sellAnnouncements = sellList;

@@ -61,15 +61,22 @@
 				        	<div class="md-list-item-text col-md-10">
 				          		<h3>
 				          			{{ sellAnnouncement.game.name }} ({{ sellAnnouncement.game.platform }})
-					          		<md-button ng-click="setType('sell', sellAnnouncement)"
-					          				   aria-label="Ofertar"
-					          				   data-toggle="modal"
-					          				   data-target="#offerModal"
-					          				   class="md-icon-button md-primary"
-					          				   ng-alt="Ofertar"
-					          				   style="height: 36px;">
-										<md-icon class="fa fa-comment"></md-icon>
-									</md-button>
+									<md-menu>
+							      		<md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+							        		<md-icon class="fa fa-cog"></md-icon>
+							      		</md-button>
+							      		<md-menu-content width="4">
+							        		<md-menu-item>
+							        			<md-button ng-click="setType('sell', sellAnnouncement)"
+								          				   aria-label="Ofertar"
+								          				   data-toggle="modal"
+								          				   data-target="#offerModal">
+													<md-icon class="fa fa-comment"></md-icon>
+													Enviar oferta
+												</md-button>
+							        		</md-menu-item>
+							        	</md-menu-content>
+							        </md-menu>
 				          		</h3>
 				          		<h4>{{ sellAnnouncement.price | currency:'R$'}}</h4>
 				          		<p>{{ sellAnnouncement.description }}&nbsp;</p>

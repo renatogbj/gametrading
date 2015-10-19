@@ -1,9 +1,9 @@
 angular.module('gametradingApp')
 	.controller('MyGamesController', MyGamesController);
 
-MyGamesController.$inject = ['$scope', 'mygamesService', '$growl'];
+MyGamesController.$inject = ['$scope', 'mygamesService', '$growl', '$mdDialog'];
 
-function MyGamesController($scope, mygamesService, $growl) {
+function MyGamesController($scope, mygamesService, $growl, $mdDialog) {
 	
 	$scope.answerOffer = false;
 	
@@ -185,6 +185,29 @@ function MyGamesController($scope, mygamesService, $growl) {
 		$scope.answerOffer = true;
 	};
 	
+	$scope.hasOffers = false;
+	
+	$scope.openOfferModal = function(type, announcement) {
+		$scope.currentAnnouncement = announcement;
+		$scope.type = type;
+		
+		if (announcement.offers.length <= 0) {
+			$scope.hasOffers = false;
+			var alert = $mdDialog.alert()
+				.title('Sem ofertas')
+				.content('Nenhuma oferta foi recebida para este anuncio ainda!')
+				.ok('Fechar');
+	
+			$mdDialog
+				.show(alert)
+				.finally(function() {
+					alert = undefined;
+				});
+		} else {
+			$scope.hasOffers = true;
+		}
+	};
+	
 	var successAlert = function() {
 		$growl.box('Sucesso', 'Oferta enviada com sucesso!', {
             class: 'success',
@@ -199,5 +222,12 @@ function MyGamesController($scope, mygamesService, $growl) {
             timeout: 2500,
             sticky: false
         }).open();
+	};
+	
+	// options menu
+	var originatorEv;
+	$scope.openMenu = function($mdOpenMenu, ev) {
+		originatorEv = ev;
+		$mdOpenMenu(ev);
 	};
 }
