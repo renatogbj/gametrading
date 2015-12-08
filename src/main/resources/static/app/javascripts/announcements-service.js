@@ -1,92 +1,61 @@
-angular.module('gametradingApp')
-	.service('announcementsService', AnnouncementsService);
+/**
+ * Created by Renato Borges.
+ */
+(function() {
+	'use strict';
+	
+	angular
+		.module('gametradingApp')
+		.factory('AnnouncementsService', AnnouncementsService);
 
-AnnouncementsService.$inject = ['$http', '$q'];
+	AnnouncementsService.$inject = ['$http', '$q'];
 
-function AnnouncementsService($http, $q) {
-	
-	// return public API for this service
-	return ({
-		findBuyAnnouncements: findBuyAnnouncements,
-		findSellAnnouncements: findSellAnnouncements,
-		findTradeAnnouncements: findTradeAnnouncements,
-		addSellOffer: addSellOffer,
-		addBuyOffer: addBuyOffer,
-		addTradeOffer: addTradeOffer
-	});
-	
-	function findSellAnnouncements() {
-		var request = $http({
-			method: "GET",
-			url: "/announcements/sell"
-		});
+	function AnnouncementsService($http, $q) {
+		// return public API for this service
+		return {
+			findBuyAnnouncements: findBuyAnnouncements,
+			findSellAnnouncements: findSellAnnouncements,
+			findTradeAnnouncements: findTradeAnnouncements,
+			addSellOffer: addSellOffer,
+			addBuyOffer: addBuyOffer,
+			addTradeOffer: addTradeOffer
+		};
 		
-		return (request.then(handleSuccess, handleError));
-	}
-	
-	function findBuyAnnouncements() {
-		var request = $http({
-			method: "GET",
-			url: "/announcements/buy"
-		});
+		function findSellAnnouncements() {
+			return $http.get('/announcements/sell').then(onSuccess, onError);
+		}
 		
-		return (request.then(handleSuccess, handleError));
-	}
-	
-	function findTradeAnnouncements() {
-		var request = $http({
-			method: "GET",
-			url: "/announcements/trade"
-		});
+		function findBuyAnnouncements() {
+			return $http.get('/announcements/buy').then(onSuccess, onError);
+		}
 		
-		return (request.then(handleSuccess, handleError));
-	}
-	
-	function addSellOffer(sellOffer) {
-		var request = $http({
-			method: "POST",
-			url: "/announcements/sell/offer/add",
-			data: sellOffer,
-			headers: {
-				"Content-Type": "application/json"
-			}
-		});
+		function findTradeAnnouncements() {
+			return $http.get('/announcements/trade').then(onSuccess, onError);
+		}
 		
-		return (request.then(handleSuccess, handleError));
-	}
-	
-	function addBuyOffer(buyOffer) {
-		var request = $http({
-			method: "POST",
-			url: "/announcements/buy/offer/add",
-			data: buyOffer,
-			headers: {
-				"Content-Type": "application/json"
-			}
-		});
+		function addSellOffer(offer) {
+			return $http.post('/announcements/sell/offer/add', offer).then(onSuccess, onError);
+		}
 		
-		return (request.then(handleSuccess, handleError));
-	}
-	
-	function addTradeOffer(tradeOffer) {
-		var request = $http({
-			method: "POST",
-			url: "/announcements/trade/offer/add",
-			data: tradeOffer,
-			headers: {
-				"Content-Type": "application/json"
-			}
-		});
+		function addBuyOffer(offer) {
+			return $http.post('/announcements/buy/offer/add', offer).then(onSuccess, onError);
+		}
 		
-		return (request.then(handleSuccess, handleError));
+		function addTradeOffer(offer) {
+			return $http.post('/announcements/trade/offer/add', offer).then(onSuccess, onError);
+		}
+		
+		function onSuccess(response) {
+			// returns the data from the server
+			return response.data;
+		}
+		
+		function onError(response) {
+			// ensures that AngularJS executes the error handling functions in the promise chain
+			console.log("An error ocurred! " + response);
+			return $q.reject(response);
+		}
+		
 	}
 	
-	function handleError(response) {
-		return ($q.reject("An error ocurred!" + response));
-	}
-	
-	function handleSuccess(response) {
-		return (response.data);
-	}
-	
-}
+})();

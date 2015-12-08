@@ -1,12 +1,13 @@
 /**
  * Created by Renato Borges on 19/08/2015.
  */
-angular.module('gametradingApp')
+angular
+	.module('gametradingApp')
     .controller('IndexController', IndexController);
 
-IndexController.$inject = ['$scope', 'loginService', '$location', '$location', '$http'];
+IndexController.$inject = ['$scope', '$location', '$location', '$http'];
 
-function IndexController($scope, loginService, $location, $location, $http) {
+function IndexController($scope, $location, $location, $http) {
 	
 	$scope.credentials = {};
 	
@@ -19,7 +20,6 @@ function IndexController($scope, loginService, $location, $location, $http) {
 	    $http.get('user', {headers : headers}).success(function(data) {
     		$scope.user = data.credentials;
     		$scope.authenticated = data.authenticated;
-	    	console.log($scope.user);
 	    }).error(function() {
 	    	$scope.authenticated = false;
 	    });

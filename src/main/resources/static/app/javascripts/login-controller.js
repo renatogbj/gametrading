@@ -4,8 +4,8 @@
 angular.module('gametradingApp')
     .controller('LoginController', LoginController);
 
-LoginController.$inject = ['$rootScope', '$scope', 'loginService', '$location', '$http'];
+LoginController.$inject = ['$rootScope', '$scope', '$location', '$http'];
 
-function LoginController($rootScope, $scope, loginService, $location, $http) {
+function LoginController($rootScope, $scope, $location, $http) {
 	
 }

@@ -1,9 +1,9 @@
-angular.module('gametradingApp')
-	.controller('AnnouncementsController', AnnouncementsController);
+angular
+	.module('gametradingApp')
+	.controller('AnnouncementsController',
+		['$scope', 'AnnouncementsService', '$growl', AnnouncementsController]);
 
-AnnouncementsController.$inject = ['$scope', 'announcementsService', '$growl'];
-
-function AnnouncementsController($scope, announcementsService, $growl) {
+function AnnouncementsController($scope, AnnouncementsService, $growl) {
 	
 	$scope.offer = {
 		description: '',
@@ -16,19 +16,19 @@ function AnnouncementsController($scope, announcementsService, $growl) {
 		$mdOpenMenu(ev);
 	};
 	
-	announcementsService.findSellAnnouncements().then(
-		function(sellList) {
-			$scope.sellAnnouncements = sellList;
+	AnnouncementsService.findSellAnnouncements().then(
+		function(data) {
+			$scope.sellAnnouncements = data;
 		}
 	);
 	
-	announcementsService.findBuyAnnouncements().then(
+	AnnouncementsService.findBuyAnnouncements().then(
 		function(buyList) {
 			$scope.buyAnnouncements = buyList;
 		}
 	);
 	
-	announcementsService.findTradeAnnouncements().then(
+	AnnouncementsService.findTradeAnnouncements().then(
 		function(tradeList) {
 			$scope.tradeAnnouncements = tradeList;
 		}
@@ -38,7 +38,7 @@ function AnnouncementsController($scope, announcementsService, $growl) {
 		$scope.offer.bidder = $scope.user;
 		if ($scope.type == 'sell') {
 			$scope.offer.sell = $scope.sell;
-			announcementsService.addSellOffer($scope.offer).then(
+			AnnouncementsService.addSellOffer($scope.offer).then(
 				// success response from server
 				function(response) {
 					successAlert();
@@ -50,7 +50,7 @@ function AnnouncementsController($scope, announcementsService, $growl) {
 			);
 		} else if ($scope.type == 'buy') {
 			$scope.offer.buy = $scope.buy;
-			announcementsService.addBuyOffer($scope.offer).then(
+			AnnouncementsService.addBuyOffer($scope.offer).then(
 				// success response from server
 				function(response) {
 					successAlert();
@@ -62,7 +62,7 @@ function AnnouncementsController($scope, announcementsService, $growl) {
 			);
 		} else if ($scope.type == 'trade') {
 			$scope.offer.trade = $scope.trade;
-			announcementsService.addTradeOffer($scope.offer).then(
+			AnnouncementsService.addTradeOffer($scope.offer).then(
 				// success response from server
 				function(response) {
 					successAlert();

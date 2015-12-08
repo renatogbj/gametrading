@@ -32,11 +32,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.logoutSuccessUrl("/announcements")
 			.and()
 				.authorizeRequests()
-					.antMatchers("/**").permitAll()
 					.antMatchers("/myoffers/**", "/mygames/**", "/announce/**").authenticated()
 					.antMatchers(HttpMethod.POST, "/announcements/**").authenticated()
-//			.and()
-//				.rememberMe()
+					.antMatchers("/**").permitAll()
+			.and()
+				.rememberMe()
 			.and()
 				.csrf().disable();
 	}

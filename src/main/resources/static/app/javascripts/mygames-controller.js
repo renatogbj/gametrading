@@ -1,9 +1,9 @@
 angular.module('gametradingApp')
 	.controller('MyGamesController', MyGamesController);
 
-MyGamesController.$inject = ['$scope', 'mygamesService', '$growl', '$mdDialog'];
+MyGamesController.$inject = ['$scope', 'MyGamesService', '$growl', '$mdDialog'];
 
-function MyGamesController($scope, mygamesService, $growl, $mdDialog) {
+function MyGamesController($scope, MyGamesService, $growl, $mdDialog) {
 	
 	$scope.answerOffer = false;
 	
@@ -12,19 +12,19 @@ function MyGamesController($scope, mygamesService, $growl, $mdDialog) {
 		$scope.type = type;
 	};
 	
-	mygamesService.findMySellAnnouncements().then(
+	MyGamesService.findMySellAnnouncements().then(
 		function(mySellList) {
 			$scope.mySellAnnouncements = mySellList;
 		}
 	);
 	
-	mygamesService.findMyBuyAnnouncements().then(
+	MyGamesService.findMyBuyAnnouncements().then(
 		function(myBuyList) {
 			$scope.myBuyAnnouncements = myBuyList;
 		}
 	);
 	
-	mygamesService.findMyTradeAnnouncements().then(
+	MyGamesService.findMyTradeAnnouncements().then(
 		function(myTradeList) {
 			$scope.myTradeAnnouncements = myTradeList;
 		}
@@ -32,7 +32,7 @@ function MyGamesController($scope, mygamesService, $growl, $mdDialog) {
 	
 	$scope.setSold = function(announcement) {
 		announcement.sold = !announcement.sold;
-		mygamesService.setSold(announcement).then(
+		MyGamesService.setSold(announcement).then(
 			// success response from server
 			function(response) {
 				
@@ -46,7 +46,7 @@ function MyGamesController($scope, mygamesService, $growl, $mdDialog) {
 	
 	$scope.setBought = function(announcement) {
 		announcement.bought = !announcement.bought;
-		mygamesService.setBought(announcement).then(
+		MyGamesService.setBought(announcement).then(
 			// success response from server
 			function(response) {
 				
@@ -60,7 +60,7 @@ function MyGamesController($scope, mygamesService, $growl, $mdDialog) {
 	
 	$scope.setTraded = function(announcement) {
 		announcement.traded = !announcement.traded;
-		mygamesService.setTraded(announcement).then(
+		MyGamesService.setTraded(announcement).then(
 			// success response from server
 			function(response) {
 				
@@ -73,7 +73,7 @@ function MyGamesController($scope, mygamesService, $growl, $mdDialog) {
 	};
 	
 	$scope.removeMySell = function(announcement, idx) {
-		mygamesService.removeMySellAnnouncement(announcement).then(
+		MyGamesService.removeMySellAnnouncement(announcement).then(
 			// success response from server
 			function(response) {
 				$scope.mySellAnnouncements.splice(idx, 1);
@@ -86,7 +86,7 @@ function MyGamesController($scope, mygamesService, $growl, $mdDialog) {
 	};
 	
 	$scope.removeMyBuy = function(announcement, idx) {
-		mygamesService.removeMyBuyAnnouncement(announcement).then(
+		MyGamesService.removeMyBuyAnnouncement(announcement).then(
 			// success response from server
 			function(response) {
 				$scope.myBuyAnnouncements.splice(idx, 1);
@@ -99,7 +99,7 @@ function MyGamesController($scope, mygamesService, $growl, $mdDialog) {
 	};
 	
 	$scope.removeMyTrade = function(announcement, idx) {
-		mygamesService.removeMyTradeAnnouncement(announcement).then(
+		MyGamesService.removeMyTradeAnnouncement(announcement).then(
 			// success response from server
 			function(response) {
 				$scope.myTradeAnnouncements.splice(idx, 1);
@@ -119,7 +119,7 @@ function MyGamesController($scope, mygamesService, $growl, $mdDialog) {
 		};
 		
 		if ($scope.type == 'sell') {
-			mygamesService.addSellOfferAnswer(answer).then(
+			MyGamesService.addSellOfferAnswer(answer).then(
 				// success response from server
 				function(response) {
 					// avoids JSON circular reference
@@ -138,7 +138,7 @@ function MyGamesController($scope, mygamesService, $growl, $mdDialog) {
 				}
 			);
 		} else if ($scope.type == 'buy') {
-			mygamesService.addBuyOfferAnswer(answer).then(
+			MyGamesService.addBuyOfferAnswer(answer).then(
 				// success response from server
 				function(response) {
 					// avoids JSON circular reference
@@ -157,7 +157,7 @@ function MyGamesController($scope, mygamesService, $growl, $mdDialog) {
 				}
 			);
 		} else if ($scope.type == 'trade') {
-			mygamesService.addTradeOfferAnswer(answer).then(
+			MyGamesService.addTradeOfferAnswer(answer).then(
 				// success response from server
 				function(response) {
 					// avoids JSON circular reference

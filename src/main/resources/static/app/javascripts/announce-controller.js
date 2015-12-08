@@ -4,11 +4,11 @@
 angular.module('gametradingApp')
     .controller('AnnounceController', AnnounceController);
 
-AnnounceController.$inject = ['$scope', '$growl', 'announceService'];
+AnnounceController.$inject = ['$scope', '$growl', 'AnnounceService'];
 
-function AnnounceController($scope, $growl, announceService) {
+function AnnounceController($scope, $growl, AnnounceService) {
     
-	announceService.findGames().then(
+	AnnounceService.findGames().then(
 		function(gamesList) {
 			$scope.gameSelected = gamesList[0];
 			$scope.games = gamesList;
@@ -36,7 +36,7 @@ function AnnounceController($scope, $growl, announceService) {
 		
 		if ($scope.type == 'sell') {
 			
-			announceService.saveSell(formItem).then(
+			AnnounceService.saveSell(formItem).then(
 				// success response from server
 				function(response) {
 					successAlert();
@@ -47,7 +47,7 @@ function AnnounceController($scope, $growl, announceService) {
 				}
 			);
 		} else if ($scope.type == 'buy') {
-			announceService.saveBuy(formItem).then(
+			AnnounceService.saveBuy(formItem).then(
 				// success response from server
 				function(response) {
 					successAlert();
@@ -58,7 +58,7 @@ function AnnounceController($scope, $growl, announceService) {
 				}
 			);
 		} else if ($scope.type == 'trade') {
-			announceService.saveTrade(formItem).then(
+			AnnounceService.saveTrade(formItem).then(
 				// success response from server
 				function(response) {
 					successAlert();

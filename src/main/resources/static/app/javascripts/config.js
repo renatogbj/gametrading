@@ -1,12 +1,13 @@
 /**
- * Created by Renato Borges on 18/08/2015.
+ * Created by Renato Borges on 08/12/2015.
  */
-angular.module('gametradingApp', ['ngMaterial', 'ui.router', 'ui.growl'])
-	.config(config);
+angular
+	.module('gametradingApp')
+	.config(Config);
 
-config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+Config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
-function config($stateProvider, $urlRouterProvider, $locationProvider) {
+function Config($stateProvider, $urlRouterProvider, $locationProvider) {
 	'use strict';
 	
 	// removes the # (hash) from the URL

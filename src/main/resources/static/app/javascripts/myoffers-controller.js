@@ -1,12 +1,12 @@
 angular.module('gametradingApp')
 	.controller('MyOffersController', MyOffersController);
 
-MyOffersController.$inject = ['$scope', 'myoffersService', '$growl'];
+MyOffersController.$inject = ['$scope', 'MyOffersService', '$growl'];
 
-function MyOffersController($scope, myoffersService, $growl) {
+function MyOffersController($scope, MyOffersService, $growl) {
 
 	if ($scope.user) {
-		myoffersService.findSellAnnouncements($scope.user.email).then(
+		MyOffersService.findSellAnnouncements($scope.user.email).then(
 			function(sellList) {
 				$scope.sellAnnouncements = sellList;
 			}
@@ -14,7 +14,7 @@ function MyOffersController($scope, myoffersService, $growl) {
 	}
 	
 	if ($scope.user) {
-		myoffersService.findBuyAnnouncements($scope.user.email).then(
+		MyOffersService.findBuyAnnouncements($scope.user.email).then(
 			function(buyList) {
 				$scope.buyAnnouncements = buyList;
 			}
@@ -22,7 +22,7 @@ function MyOffersController($scope, myoffersService, $growl) {
 	}
 	
 	if ($scope.user) {
-		myoffersService.findTradeAnnouncements($scope.user.email).then(
+		MyOffersService.findTradeAnnouncements($scope.user.email).then(
 			function(tradeList) {
 				$scope.tradeAnnouncements = tradeList;
 			}
@@ -48,7 +48,7 @@ function MyOffersController($scope, myoffersService, $growl) {
 		};
 		
 		if ($scope.type == 'sell') {
-			myoffersService.addSellOfferAnswer(answer).then(
+			MyOffersService.addSellOfferAnswer(answer).then(
 				// success response from server
 				function(response) {
 					// avoids JSON circular reference
@@ -67,7 +67,7 @@ function MyOffersController($scope, myoffersService, $growl) {
 				}
 			);
 		} else if ($scope.type == 'buy') {
-			myoffersService.addBuyOfferAnswer(answer).then(
+			MyOffersService.addBuyOfferAnswer(answer).then(
 				// success response from server
 				function(response) {
 					// avoids JSON circular reference
@@ -86,7 +86,7 @@ function MyOffersController($scope, myoffersService, $growl) {
 				}
 			);
 		} else if ($scope.type == 'trade') {
-			myoffersService.addTradeOfferAnswer(answer).then(
+			MyOffersService.addTradeOfferAnswer(answer).then(
 				// success response from server
 				function(response) {
 					// avoids JSON circular reference
