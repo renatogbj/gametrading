@@ -13,33 +13,27 @@ function Config($stateProvider, $urlRouterProvider, $locationProvider) {
 	// removes the # (hash) from the URL
 	$locationProvider.html5Mode(true);
 	
-	var login = {
-		url: '/login',
-		templateUrl: 'views/login.html'
-	};
-	
 	var announcements = {
 		url: '/announcements',
-		templateUrl: 'views/announcements.html'
+		templateUrl: 'views/announcements/announcements.html'
 	};
 	
 	var mygames = {
 		url: '/mygames',
-		templateUrl: 'views/mygames.html'
+		templateUrl: 'views/mygames/mygames.html'
 	};
 	
 	var announce = {
 		url: '/announce',
-		templateUrl: 'views/announce.html'
+		templateUrl: 'views/announce/announce.html'
 	};
 	
 	var myoffers = {
 		url: '/myoffers',
-		templateUrl: 'views/myoffers.html'
+		templateUrl: 'views/myoffers/myoffers.html'
 	};
 	
 	$stateProvider
-		.state('login', login)
 		.state('announcements', announcements)
 		.state('mygames', mygames)
 		.state('announce', announce)

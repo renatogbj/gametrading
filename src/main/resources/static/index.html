@@ -29,16 +29,17 @@
 	
     <script src="app/javascripts/app.js"></script>
     <script src="app/javascripts/config.js"></script>
-    <script src="app/javascripts/index-controller.js"></script>
-    <script src="app/javascripts/login-service.js"></script>
-    <script src="app/javascripts/announce-controller.js"></script>
-    <script src="app/javascripts/announce-service.js"></script>
-    <script src="app/javascripts/announcements-controller.js"></script>
-    <script src="app/javascripts/announcements-service.js"></script>
-    <script src="app/javascripts/mygames-controller.js"></script>
-    <script src="app/javascripts/mygames-service.js"></script>
-    <script src="app/javascripts/myoffers-controller.js"></script>
-    <script src="app/javascripts/myoffers-service.js"></script>
+    
+    <script src="views/home/index-controller.js"></script>
+    <script src="views/home/login-service.js"></script>
+    <script src="views/announce/announce-controller.js"></script>
+    <script src="views/announce/announce-service.js"></script>
+    <script src="views/announcements/announcements-controller.js"></script>
+    <script src="views/announcements/announcements-service.js"></script>
+    <script src="views/mygames/mygames-controller.js"></script>
+    <script src="views/mygames/mygames-service.js"></script>
+    <script src="views/myoffers/myoffers-controller.js"></script>
+    <script src="views/myoffers/myoffers-service.js"></script>
     
     <style type="text/css">
 		[ng\:cloak], [ng-cloak], .ng-cloak {
@@ -49,7 +50,7 @@
 
 <body ng-app="gametradingApp" ng-cloak class="ng-cloak">
 
-<div ng-controller="IndexController as index">
+<div ng-controller="IndexController">
 
     <nav class="navbar navbar-default navbar-static-top">
 
@@ -64,7 +65,7 @@
 
             <div class="navbar-right">
                 <ul class="nav navbar-nav">
-                    <li ng-show="!index.authenticated">
+                    <li ng-show="!authenticated">
                     	<form role="form" action="connect/facebook" method="POST">
 							<input type="hidden" name="scope" value="read_stream,email" />
 							<md-button type="submit">
@@ -73,12 +74,12 @@
 							</md-button>
 						</form>
                     </li>
-                    <li ng-show="index.authenticated">
-                    	<img ng-src="data:image/JPEG;base64,{{ index.user.avatar }}"
+                    <li ng-show="authenticated">
+                    	<img ng-src="data:image/JPEG;base64,{{ user.avatar }}"
                     		 style="text-alignment:center; margin:6px 8px;"
                     		 width="50%" />
                     </li>
-                    <li ng-show="index.authenticated">
+                    <li ng-show="authenticated">
                     	<form role="form" action="connect/facebook" method="POST">
                     		<input type="hidden" name="_method" value="delete" />
                     		<md-button type="submit">
@@ -100,40 +101,40 @@
 			<div class="col-md-2">
 	    		<nav>
 		    		<ul class="nav nav-pills nav-stacked">
-		    			<li ng-class="{active:index.isActive('/announcements')}"
+		    			<li ng-class="{active:isActive('/announcements')}"
 		    				role="presentation">
 		    				<a ui-sref="announcements">
 		    					<i class="fa fa-newspaper-o"></i>
 		    					An&uacute;ncios</a>
 		    			</li>
-						<li ng-class="{'inactive-link':!index.authenticated, active:index.isActive('/mygames')}"
+						<li ng-class="{'inactive-link':!authenticated, active:isActive('/mygames')}"
 							role="presentation"
-							ng-disabled="index.authenticated">
+							ng-disabled="authenticated">
 							<a ui-sref="mygames">
 								<i class="fa fa-bullhorn"></i>
 								Meus An&uacute;ncios
 							</a>
-							<md-tooltip ng-show="!index.authenticated" md-direction="right">
+							<md-tooltip ng-show="!authenticated" md-direction="right">
 								Fa&ccedil;a login primeiro.
 							</md-tooltip>
 						</li>
-						<li ng-class="{'inactive-link':!index.authenticated, active:index.isActive('/myoffers')}"
+						<li ng-class="{'inactive-link':!authenticated, active:isActive('/myoffers')}"
 							role="presentation">
 							<a ui-sref="myoffers">
 								<i class="fa fa-commenting-o"></i>
 								Minhas Ofertas
 							</a>
-							<md-tooltip ng-show="!index.authenticated" md-direction="right">
+							<md-tooltip ng-show="!authenticated" md-direction="right">
 								Fa&ccedil;a login primeiro.
 							</md-tooltip>
 						</li>
-						<li ng-class="{'inactive-link':!index.authenticated, 'active':index.isActive('/announce')}"
+						<li ng-class="{'inactive-link':!authenticated, 'active':isActive('/announce')}"
 							role="presentation">
 							<a ui-sref="announce">
 								<i class="fa fa-plus"></i>
 								Novo An&uacute;ncio
 							</a>
-							<md-tooltip ng-show="!index.authenticated" md-direction="right">
+							<md-tooltip ng-show="!authenticated" md-direction="right">
 								Fa&ccedil;a login primeiro.
 							</md-tooltip>
 						</li>

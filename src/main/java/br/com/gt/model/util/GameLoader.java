@@ -20,9 +20,9 @@ import br.com.gt.model.enums.Platform;
 import br.com.gt.model.service.GameService;
 
 @Component
-public final class GameUtil {
+public final class GameLoader {
 
-	private static final Logger LOG = Logger.getLogger(GameUtil.class);
+	private static final Logger LOG = Logger.getLogger(GameLoader.class);
 	
 	@Autowired
 	private GameService gameService;
@@ -52,7 +52,7 @@ public final class GameUtil {
 	}
 
 	public File getGamesDir() {
-		String path = GameUtil.class.getClassLoader().getResource("static/app/images/games").getPath();
+		String path = GameLoader.class.getClassLoader().getResource("static/app/images/games").getPath();
 		if (StringUtils.isNotBlank(path)) {
 			path = path.replaceAll("%20", " ");
 			return new File(path);
