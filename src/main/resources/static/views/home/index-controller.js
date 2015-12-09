@@ -1,25 +1,31 @@
 /**
  * Created by Renato Borges on 19/08/2015.
  */
-angular
-	.module('gametradingApp')
-    .controller('IndexController', IndexController);
-
-IndexController.$inject = ['$scope', '$location', 'LoginService'];
-
-function IndexController($scope, $location, LoginService) {
+(function() {
+	'use strict';
 	
-	LoginService.authenticate().then(
-		function(auth) {
-			$scope.user = auth.credentials;
-			$scope.authenticated = auth.authenticated;
-		},
-		function(error) {
-			$scope.authenticated = false;
-		}
-	);
+	angular
+		.module('gametradingApp')
+	    .controller('IndexController', IndexController);
+
+	IndexController.$inject = ['$scope', '$location', 'LoginService'];
 	
-	$scope.isActive = function(route) {
-        return route === $location.path();
-    }
-}
+	function IndexController($scope, $location, LoginService) {
+		
+		LoginService.authenticate().then(
+			function(auth) {
+				$scope.user = auth.credentials;
+				$scope.authenticated = auth.authenticated;
+			},
+			function(error) {
+				$scope.authenticated = false;
+			}
+		);
+		
+		$scope.isActive = function(route) {
+	        return route === $location.path();
+	    }
+		
+	}
+	
+})();

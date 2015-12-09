@@ -65,7 +65,7 @@
 
             <div class="navbar-right">
                 <ul class="nav navbar-nav">
-                    <li ng-show="!authenticated">
+                    <li ng-hide="authenticated">
                     	<form role="form" action="connect/facebook" method="POST">
 							<input type="hidden" name="scope" value="read_stream,email" />
 							<md-button type="submit">
@@ -107,36 +107,29 @@
 		    					<i class="fa fa-newspaper-o"></i>
 		    					An&uacute;ncios</a>
 		    			</li>
-						<li ng-class="{'inactive-link':!authenticated, active:isActive('/mygames')}"
-							role="presentation"
-							ng-disabled="authenticated">
+						<li ng-class="{active:isActive('/mygames')}"
+							ng-show="authenticated"
+							role="presentation">
 							<a ui-sref="mygames">
 								<i class="fa fa-bullhorn"></i>
 								Meus An&uacute;ncios
 							</a>
-							<md-tooltip ng-show="!authenticated" md-direction="right">
-								Fa&ccedil;a login primeiro.
-							</md-tooltip>
 						</li>
-						<li ng-class="{'inactive-link':!authenticated, active:isActive('/myoffers')}"
+						<li ng-class="{active:isActive('/myoffers')}"
+							ng-show="authenticated"
 							role="presentation">
 							<a ui-sref="myoffers">
 								<i class="fa fa-commenting-o"></i>
 								Minhas Ofertas
 							</a>
-							<md-tooltip ng-show="!authenticated" md-direction="right">
-								Fa&ccedil;a login primeiro.
-							</md-tooltip>
 						</li>
-						<li ng-class="{'inactive-link':!authenticated, 'active':isActive('/announce')}"
+						<li ng-class="{'active':isActive('/announce')}"
+							ng-show="authenticated"
 							role="presentation">
 							<a ui-sref="announce">
 								<i class="fa fa-plus"></i>
 								Novo An&uacute;ncio
 							</a>
-							<md-tooltip ng-show="!authenticated" md-direction="right">
-								Fa&ccedil;a login primeiro.
-							</md-tooltip>
 						</li>
 					</ul>
 		    	</nav>
